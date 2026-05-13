@@ -1,5 +1,5 @@
-import Image from "next/image";
-import { images } from "@/lib/images";
+import Image from 'next/image';
+import { images } from '@/lib/images';
 
 type Feature = {
   title: string;
@@ -10,25 +10,25 @@ type Feature = {
 
 const features: Feature[] = [
   {
-    title: "Online medical consultations",
+    title: 'Online medical consultations',
     description:
-      "Connect with verified doctors, therapists, and specialists for virtual consultations from anywhere.",
+      'Connect with verified doctors, therapists, and specialists for virtual consultations from anywhere.',
     image: images.feature1,
-    bgClass: "bg-sky-50/40",
+    bgClass: 'bg-sky-50/40',
   },
   {
-    title: "Hospital, pharmacy & lab partnerships",
+    title: 'Hospital, pharmacy & lab partnerships',
     description:
-      "Book diagnostic tests with registered hospitals, pharmacies and laboratories and receive results digitally.",
+      'Book diagnostic tests with registered hospitals, pharmacies and laboratories and receive results digitally.',
     image: images.feature2,
-    bgClass: "bg-orange-50/40",
+    bgClass: 'bg-orange-50/40',
   },
   {
-    title: "Guided health support",
+    title: 'Guided health support',
     description:
-      "Get clear guidance to help you navigate symptoms, appointments, and health information more easily.",
+      'Get clear guidance to help you navigate symptoms, appointments, and health information more easily.',
     image: images.feature3,
-    bgClass: "bg-emerald-50/40",
+    bgClass: 'bg-emerald-50/40',
   },
 ];
 
@@ -45,17 +45,16 @@ export function HomeFeatures() {
           </h2>
           <p className="mx-auto mt-4 max-w-3xl px-4 text-[15px] font-normal leading-relaxed text-gray-700 md:mt-6 md:text-[17px]">
             OHealth brings healthcare services together so you can access care,
-            diagnostics, and your health data without stress or unnecessary
-            hospital visits.
+            diagnostics, and your health data without stress or unnecessary hospital
+            visits.
           </p>
         </div>
 
         <div className="flex flex-col gap-6 md:grid md:grid-cols-3 md:gap-8">
-          {features.map((feature) => (
+          {features.map(feature => (
             <article
               key={feature.title}
-              className="group flex h-full flex-col rounded-3xl border border-gray-100 bg-[#f3f4f6] p-6 shadow-sm transition-all hover:shadow-md md:rounded-4xl md:p-8"
-            >
+              className="group flex h-full flex-col rounded-3xl border border-gray-100 bg-[#f3f4f6] p-6 shadow-sm transition-all hover:shadow-md md:rounded-4xl md:p-8">
               <div className="mb-6 md:mb-8">
                 <h3 className="text-[20px] font-bold leading-tight text-gray-900 md:text-[22px]">
                   {feature.title}
@@ -66,8 +65,7 @@ export function HomeFeatures() {
               </div>
 
               <div
-                className={`relative mt-auto flex h-60 items-center justify-center overflow-hidden rounded-2xl border border-gray-50/50 md:h-80 ${feature.bgClass}`}
-              >
+                className={`relative mt-auto flex h-60 items-center justify-center overflow-hidden rounded-2xl border border-gray-50/50 md:h-80 ${feature.bgClass}`}>
                 <div className="relative h-full w-full transition-transform duration-700 ease-out group-hover:scale-[1.04]">
                   <Image
                     src={feature.image}

@@ -1,11 +1,11 @@
-import type { Metadata } from "next";
-import { SiteChrome } from "@/components/layout/SiteChrome";
-import { MarketingDocHero } from "@/components/marketing/MarketingDocHero";
-import { PolicyBody } from "@/components/marketing/PolicyBody";
-import { termsSections } from "@/content/legal";
+import type { Metadata } from 'next';
+import { SiteChrome } from '@/components/layout/SiteChrome';
+import { MarketingDocHero } from '@/components/marketing/MarketingDocHero';
+import { PolicyBody } from '@/components/marketing/PolicyBody';
+import { termsSections } from '@/content/legal';
 
 export const metadata: Metadata = {
-  title: "Terms & conditions",
+  title: 'Terms & conditions',
 };
 
 export default function TermsPage() {

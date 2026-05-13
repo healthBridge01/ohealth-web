@@ -1,11 +1,11 @@
-import type { Metadata } from "next";
-import { SiteChrome } from "@/components/layout/SiteChrome";
-import { ContactLeadForm } from "@/components/contact/ContactLeadForm";
-import { SupportCardGrid } from "@/components/contact/SupportCardGrid";
-import { MarketingDocHero } from "@/components/marketing/MarketingDocHero";
+import type { Metadata } from 'next';
+import { SiteChrome } from '@/components/layout/SiteChrome';
+import { ContactLeadForm } from '@/components/contact/ContactLeadForm';
+import { SupportCardGrid } from '@/components/contact/SupportCardGrid';
+import { MarketingDocHero } from '@/components/marketing/MarketingDocHero';
 
 export const metadata: Metadata = {
-  title: "Contact",
+  title: 'Contact',
 };
 
 export default function ContactPage() {

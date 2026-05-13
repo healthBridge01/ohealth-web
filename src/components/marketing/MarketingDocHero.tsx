@@ -19,9 +19,7 @@ export function MarketingDocHero({
           {eyebrow}
         </p>
       ) : null}
-      {metaLine ? (
-        <p className="mt-3 text-sm text-gray-500 md:mt-4">{metaLine}</p>
-      ) : null}
+      {metaLine ? <p className="mt-3 text-sm text-gray-500 md:mt-4">{metaLine}</p> : null}
       <h1 className="mt-2 text-4xl font-bold tracking-tight text-gray-900 md:text-5xl">
         {title}
       </h1>

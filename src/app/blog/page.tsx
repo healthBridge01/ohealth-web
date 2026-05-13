@@ -1,10 +1,10 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import { SiteChrome } from "@/components/layout/SiteChrome";
-import { MarketingDocHero } from "@/components/marketing/MarketingDocHero";
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { SiteChrome } from '@/components/layout/SiteChrome';
+import { MarketingDocHero } from '@/components/marketing/MarketingDocHero';
 
 export const metadata: Metadata = {
-  title: "Blog",
+  title: 'Blog',
 };
 
 export default function BlogPage() {
@@ -16,16 +16,12 @@ export default function BlogPage() {
       />
       <div className="bg-white px-5 py-16 text-center md:px-10 md:py-24">
         <p className="mx-auto max-w-lg text-gray-600">
-          We&apos;re preparing editorial content for this space. Until then,
-          visit our{" "}
+          We&apos;re preparing editorial content for this space. Until then, visit our{' '}
           <Link href="/faq" className="font-semibold text-brand-blue hover:underline">
             FAQs
-          </Link>{" "}
-          or{" "}
-          <Link
-            href="/contact"
-            className="font-semibold text-brand-blue hover:underline"
-          >
+          </Link>{' '}
+          or{' '}
+          <Link href="/contact" className="font-semibold text-brand-blue hover:underline">
             contact us
           </Link>
           .

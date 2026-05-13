@@ -1,5 +1,5 @@
-import Image from "next/image";
-import { images } from "@/lib/images";
+import Image from 'next/image';
+import { images } from '@/lib/images';
 
 export function HomeHowItWorks() {
   return (
@@ -10,9 +10,8 @@ export function HomeHowItWorks() {
             How OHealth works
           </h2>
           <p className="mx-auto mt-4 max-w-3xl text-[15px] font-normal leading-relaxed text-gray-500 md:mt-6 md:text-[18px]">
-            Create an account, connect with verified professionals, book
-            consultations or lab tests, and manage your health data — all in one
-            seamless experience.
+            Create an account, connect with verified professionals, book consultations or
+            lab tests, and manage your health data — all in one seamless experience.
           </p>
         </div>
 

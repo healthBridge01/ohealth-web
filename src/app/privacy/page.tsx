@@ -1,11 +1,11 @@
-import type { Metadata } from "next";
-import { SiteChrome } from "@/components/layout/SiteChrome";
-import { MarketingDocHero } from "@/components/marketing/MarketingDocHero";
-import { PolicyBody } from "@/components/marketing/PolicyBody";
-import { privacySections } from "@/content/legal";
+import type { Metadata } from 'next';
+import { SiteChrome } from '@/components/layout/SiteChrome';
+import { MarketingDocHero } from '@/components/marketing/MarketingDocHero';
+import { PolicyBody } from '@/components/marketing/PolicyBody';
+import { privacySections } from '@/content/legal';
 
 export const metadata: Metadata = {
-  title: "Privacy policy",
+  title: 'Privacy policy',
 };
 
 export default function PrivacyPage() {

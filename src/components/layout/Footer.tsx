@@ -1,8 +1,5 @@
-import Link from "next/link";
-import {
-  footerLegalColumns,
-  footerPrimaryLinks,
-} from "@/lib/nav";
+import Link from 'next/link';
+import { footerLegalColumns, footerPrimaryLinks } from '@/lib/nav';
 
 function AppleIcon() {
   return (
@@ -12,8 +9,7 @@ function AppleIcon() {
       viewBox="0 0 814 1000"
       fill="white"
       xmlns="http://www.w3.org/2000/svg"
-      aria-hidden
-    >
+      aria-hidden>
       <path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-37.3-155.5-127.4C46.7 790.7 0 663 0 541.8c0-207.5 135.4-317.3 269-317.3 70.1 0 128.4 46.4 172.5 46.4 42.8 0 109.6-49.8 188.4-49.8l34.9.4zM554.1 158.3c31.3-35.6 53.9-85.2 53.9-134.8 0-6.9-.6-13.8-1.9-19.4-50.6 1.9-110.8 33.7-147.1 75.8-28.5 32.4-55.1 81.6-55.1 131.9 0 7.6 1.3 15.1 1.9 17.6 3.2.6 8.4 1.3 13.6 1.3 45.4 0 102.5-30.4 134.7-72.4z" />
     </svg>
   );
@@ -26,8 +22,7 @@ function PlayIcon() {
       height="20"
       viewBox="0 0 512 512"
       xmlns="http://www.w3.org/2000/svg"
-      aria-hidden
-    >
+      aria-hidden>
       <path
         d="M48 59.49v393a4.33 4.33 0 007.35 3.05L260 256 55.35 56.44A4.33 4.33 0 0048 59.49z"
         fill="#32BBFF"
@@ -55,28 +50,24 @@ export function Footer() {
         <div className="max-w-md">
           <div className="mb-4 flex items-center gap-2">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-blue">
-              <span className="text-sm font-bold tracking-tighter text-white">
-                O
-              </span>
+              <span className="text-sm font-bold tracking-tighter text-white">O</span>
             </div>
             <span className="text-lg font-bold tracking-tight text-gray-900">
               OHealth
             </span>
           </div>
           <p className="text-sm leading-relaxed text-gray-500">
-            OHealth is a digital healthcare platform that connects you with
-            verified healthcare professionals, lets you book consultations and
-            lab tests online, and securely manage all your health records in one
-            place.
+            OHealth is a digital healthcare platform that connects you with verified
+            healthcare professionals, lets you book consultations and lab tests online,
+            and securely manage all your health records in one place.
           </p>
 
           <div className="mt-10 grid grid-cols-2 gap-x-8 gap-y-3 text-sm font-medium text-gray-600 sm:grid-cols-3">
-            {footerPrimaryLinks.map((item) => (
+            {footerPrimaryLinks.map(item => (
               <Link
                 key={item.href + item.label}
                 href={item.href}
-                className="whitespace-nowrap transition-colors hover:text-brand-blue"
-              >
+                className="whitespace-nowrap transition-colors hover:text-brand-blue">
                 {item.label}
               </Link>
             ))}
@@ -84,14 +75,11 @@ export function Footer() {
         </div>
 
         <div className="flex flex-col gap-4 lg:items-end">
-          <p className="text-sm font-bold text-gray-900 lg:text-right">
-            Get the app
-          </p>
+          <p className="text-sm font-bold text-gray-900 lg:text-right">Get the app</p>
           <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
             <Link
               href="#"
-              className="flex w-full max-w-44 items-center gap-3 rounded-xl bg-gray-900 px-5 py-3 text-white transition-colors hover:bg-gray-800 sm:w-44"
-            >
+              className="flex w-full max-w-44 items-center gap-3 rounded-xl bg-gray-900 px-5 py-3 text-white transition-colors hover:bg-gray-800 sm:w-44">
               <AppleIcon />
               <div className="text-left">
                 <div className="text-[9px] uppercase leading-none opacity-70">
@@ -102,16 +90,13 @@ export function Footer() {
             </Link>
             <Link
               href="#"
-              className="flex w-full max-w-44 items-center gap-3 rounded-xl bg-gray-900 px-5 py-3 text-white transition-colors hover:bg-gray-800 sm:w-44"
-            >
+              className="flex w-full max-w-44 items-center gap-3 rounded-xl bg-gray-900 px-5 py-3 text-white transition-colors hover:bg-gray-800 sm:w-44">
               <PlayIcon />
               <div className="text-left">
                 <div className="text-[9px] uppercase leading-none opacity-70">
                   Get it on
                 </div>
-                <div className="text-sm font-bold leading-tight">
-                  Google Play
-                </div>
+                <div className="text-sm font-bold leading-tight">Google Play</div>
               </div>
             </Link>
           </div>
@@ -119,18 +104,15 @@ export function Footer() {
       </div>
 
       <div className="mx-auto mt-12 grid max-w-6xl gap-10 border-t border-gray-200 pt-10 md:grid-cols-2 lg:grid-cols-4">
-        {footerLegalColumns.map((col) => (
+        {footerLegalColumns.map(col => (
           <div key={col.title}>
             <p className="text-xs font-semibold uppercase tracking-wide text-gray-400">
               {col.title}
             </p>
             <ul className="mt-3 space-y-2 text-sm text-gray-600">
-              {col.links.map((l) => (
+              {col.links.map(l => (
                 <li key={l.href + l.label}>
-                  <Link
-                    href={l.href}
-                    className="transition-colors hover:text-brand-blue"
-                  >
+                  <Link href={l.href} className="transition-colors hover:text-brand-blue">
                     {l.label}
                   </Link>
                 </li>

@@ -1,12 +1,12 @@
-import { Footer } from "@/components/layout/Footer";
-import { Navbar, type NavbarVariant } from "@/components/layout/Navbar";
+import { Footer } from '@/components/layout/Footer';
+import { Navbar, type NavbarVariant } from '@/components/layout/Navbar';
 
 type SiteChromeProps = {
   children: React.ReactNode;
   navVariant?: NavbarVariant;
 };
 
-export function SiteChrome({ children, navVariant = "default" }: SiteChromeProps) {
+export function SiteChrome({ children, navVariant = 'default' }: SiteChromeProps) {
   return (
     <>
       <Navbar variant={navVariant} />

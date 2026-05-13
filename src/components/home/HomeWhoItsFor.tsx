@@ -1,5 +1,5 @@
-import Image from "next/image";
-import { images } from "@/lib/images";
+import Image from 'next/image';
+import { images } from '@/lib/images';
 
 type Audience = {
   title: string;
@@ -9,22 +9,22 @@ type Audience = {
 
 const audiences: Audience[] = [
   {
-    title: "Patients",
+    title: 'Patients',
     description:
-      "Access trusted healthcare professionals, book consultations and tests online, and take control of your health records.",
-    borderClass: "border-orange-600",
+      'Access trusted healthcare professionals, book consultations and tests online, and take control of your health records.',
+    borderClass: 'border-orange-600',
   },
   {
-    title: "Healthcare professionals",
+    title: 'Healthcare professionals',
     description:
-      "Reach more patients digitally, manage appointments efficiently, and deliver quality care with less administrative friction.",
-    borderClass: "border-orange-300",
+      'Reach more patients digitally, manage appointments efficiently, and deliver quality care with less administrative friction.',
+    borderClass: 'border-orange-300',
   },
   {
-    title: "Hospitals, pharmacies & lab partners",
+    title: 'Hospitals, pharmacies & lab partners',
     description:
-      "Expand your digital presence, receive bookings seamlessly, and connect with patients looking for reliable diagnostic services.",
-    borderClass: "border-orange-200",
+      'Expand your digital presence, receive bookings seamlessly, and connect with patients looking for reliable diagnostic services.',
+    borderClass: 'border-orange-200',
   },
 ];
 
@@ -41,11 +41,10 @@ export function HomeWhoItsFor() {
           </p>
 
           <div className="space-y-6">
-            {audiences.map((item) => (
+            {audiences.map(item => (
               <div
                 key={item.title}
-                className={`border-l-4 pl-3 transition-all duration-300 ${item.borderClass}`}
-              >
+                className={`border-l-4 pl-3 transition-all duration-300 ${item.borderClass}`}>
                 <h3 className="mb-1 text-[17px] font-bold text-gray-900 md:text-[19px]">
                   {item.title}
                 </h3>

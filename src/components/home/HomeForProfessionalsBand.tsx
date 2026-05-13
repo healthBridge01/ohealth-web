@@ -1,6 +1,6 @@
-import Image from "next/image";
-import Link from "next/link";
-import { images } from "@/lib/images";
+import Image from 'next/image';
+import Link from 'next/link';
+import { images } from '@/lib/images';
 
 export function HomeForProfessionalsBand() {
   return (
@@ -13,13 +13,12 @@ export function HomeForProfessionalsBand() {
           Grow your practice with OHealth
         </h2>
         <p className="mx-auto mt-1 max-w-2xl text-[12px] leading-relaxed text-[#353a44] md:text-[14px]">
-          Join a trusted digital platform to reach more patients, manage your
-          schedule, and deliver care flexibly.
+          Join a trusted digital platform to reach more patients, manage your schedule,
+          and deliver care flexibly.
         </p>
         <Link
           href="/for-professionals"
-          className="mt-8 inline-block rounded-xl bg-brand-cta px-8 py-3.5 text-[15px] font-bold text-white shadow-md shadow-blue-100 transition-all hover:bg-[#0041cc] md:text-[16px]"
-        >
+          className="mt-8 inline-block rounded-xl bg-brand-cta px-8 py-3.5 text-[15px] font-bold text-white shadow-md shadow-blue-100 transition-all hover:bg-[#0041cc] md:text-[16px]">
           Get started as a provider
         </Link>
 

@@ -1,9 +1,9 @@
-import type { Metadata } from "next";
-import { SiteChrome } from "@/components/layout/SiteChrome";
-import { ForProfessionalsContent } from "@/components/for-professionals/ForProfessionalsContent";
+import type { Metadata } from 'next';
+import { SiteChrome } from '@/components/layout/SiteChrome';
+import { ForProfessionalsContent } from '@/components/for-professionals/ForProfessionalsContent';
 
 export const metadata: Metadata = {
-  title: "For professionals",
+  title: 'For professionals',
 };
 
 export default function ForProfessionalsPage() {

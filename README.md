@@ -25,22 +25,30 @@ Open [http://localhost:3000](http://localhost:3000) in your browser. Pages updat
 
 ## Scripts
 
-| Command        | Description                                      |
-| -------------- | ------------------------------------------------ |
-| `npm run dev`  | Start Next.js in development mode with Turbopack |
-| `npm run build` | Create an optimized production build            |
-| `npm run start` | Run the production server (after `build`)      |
-| `npm run lint`  | Run ESLint across the project                    |
+| Command                | Description                                      |
+| ---------------------- | ------------------------------------------------ |
+| `npm run dev`          | Start Next.js in development mode with Turbopack |
+| `npm run build`        | Create an optimized production build             |
+| `npm run start`        | Run the production server (after `build`)        |
+| `npm run lint`         | ESLint (Next.js + TypeScript + Prettier rules)   |
+| `npm run lint:fix`     | ESLint with `--fix`                              |
+| `npm run format`       | Format with Prettier                             |
+| `npm run format:check` | Verify formatting (useful in CI)                 |
+| `npm run check`        | `format:check` + `lint` + `build` (full gate)    |
+
+After `npm install`, the **`prepare`** script runs **Husky** so Git uses `.husky/` hooks. **lint-staged** runs on pre-commit: ESLint with fix on staged `*.{ts,tsx,js,mjs,cjs}`, Prettier on staged `*.{json,css,md,yml,yaml}`.
+
+Config files: `eslint.config.mjs`, `.prettierrc`, `.prettierignore`.
 
 ## Project structure
 
-| Path | Purpose |
-| ---- | ------- |
-| `src/app/` | App Router routes and layouts (`page.tsx`, `layout.tsx`) |
-| `src/components/` | UI sections and layout (home, marketing, contact, FAQ, etc.) |
-| `src/content/` | Typed copy and structured data (legal text, FAQs, contact cards) |
-| `src/lib/` | Shared utilities (navigation config, Cloudinary image loader) |
-| `public/` | Static assets served from the site root |
+| Path              | Purpose                                                          |
+| ----------------- | ---------------------------------------------------------------- |
+| `src/app/`        | App Router routes and layouts (`page.tsx`, `layout.tsx`)         |
+| `src/components/` | UI sections and layout (home, marketing, contact, FAQ, etc.)     |
+| `src/content/`    | Typed copy and structured data (legal text, FAQs, contact cards) |
+| `src/lib/`        | Shared utilities (navigation config, Cloudinary image loader)    |
+| `public/`         | Static assets served from the site root                          |
 
 ## Routes
 

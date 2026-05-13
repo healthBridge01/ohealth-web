@@ -1,6 +1,6 @@
-import Image from "next/image";
-import Link from "next/link";
-import { images } from "@/lib/images";
+import Image from 'next/image';
+import Link from 'next/link';
+import { images } from '@/lib/images';
 
 export function HomeHero() {
   return (
@@ -9,7 +9,7 @@ export function HomeHero() {
 
       <div className="relative z-10 mx-auto max-w-7xl px-5 text-center md:px-10">
         <h1 className="mx-auto max-w-4xl text-[32px] font-bold leading-[1.2] tracking-tight text-gray-900 md:text-6xl md:leading-[1.15]">
-          Healthcare made{" "}
+          Healthcare made{' '}
           <span className="font-serif text-[1.05em] font-medium italic text-brand-blue">
             accessible
           </span>
@@ -17,22 +17,20 @@ export function HomeHero() {
         </h1>
 
         <p className="mx-auto mt-5 max-w-3xl px-2 text-sm font-normal leading-relaxed text-gray-700 md:mt-6 md:px-4 md:text-lg">
-          OHealth is a digital healthcare platform that connects you with
-          verified healthcare professionals, lets you book consultations and lab
-          tests online, and securely manage all your health records in one place.
+          OHealth is a digital healthcare platform that connects you with verified
+          healthcare professionals, lets you book consultations and lab tests online, and
+          securely manage all your health records in one place.
         </p>
 
         <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row md:mt-10">
           <Link
             href="#"
-            className="w-full rounded-xl bg-brand-blue px-10 py-4 text-center text-[15px] font-semibold text-white shadow-xl shadow-blue-200/50 transition-all hover:bg-blue-800 sm:w-auto"
-          >
+            className="w-full rounded-xl bg-brand-blue px-10 py-4 text-center text-[15px] font-semibold text-white shadow-xl shadow-blue-200/50 transition-all hover:bg-blue-800 sm:w-auto">
             Get app
           </Link>
           <Link
             href="/for-professionals"
-            className="group flex w-full items-center justify-center gap-3 py-2 text-[15px] font-semibold text-gray-900 transition-colors hover:text-brand-blue sm:w-auto"
-          >
+            className="group flex w-full items-center justify-center gap-3 py-2 text-[15px] font-semibold text-gray-900 transition-colors hover:text-brand-blue sm:w-auto">
             Join as a professional
             <span className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 text-[10px] transition-colors group-hover:border-brand-blue">
               ▶

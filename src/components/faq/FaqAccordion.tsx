@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import type { FaqItem } from "@/content/faq";
+import { useState } from 'react';
+import type { FaqItem } from '@/content/faq';
 
 type FaqAccordionProps = {
   items: FaqItem[];
@@ -20,16 +20,14 @@ export function FaqAccordion({ items }: FaqAccordionProps) {
               type="button"
               onClick={() => setOpenIndex(open ? null : index)}
               className="flex w-full flex-row-reverse items-start gap-3 text-left md:flex-row md:gap-4"
-              aria-expanded={open}
-            >
+              aria-expanded={open}>
               <span
                 className={`mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border text-lg font-light transition-transform ${
                   open
-                    ? "rotate-45 border-brand-blue text-brand-blue"
-                    : "border-gray-200 text-gray-500"
+                    ? 'rotate-45 border-brand-blue text-brand-blue'
+                    : 'border-gray-200 text-gray-500'
                 }`}
-                aria-hidden
-              >
+                aria-hidden>
                 +
               </span>
               <span className="min-w-0 flex-1">

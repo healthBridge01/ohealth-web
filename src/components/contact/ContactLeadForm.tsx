@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useState } from 'react';
 
 export type ContactFormValues = {
   fullName: string;
@@ -10,10 +10,10 @@ export type ContactFormValues = {
 };
 
 const initial: ContactFormValues = {
-  fullName: "",
-  email: "",
-  phone: "",
-  message: "",
+  fullName: '',
+  email: '',
+  phone: '',
+  message: '',
 };
 
 export function ContactLeadForm() {
@@ -36,8 +36,8 @@ export function ContactLeadForm() {
 
       {submitted ? (
         <p className="mt-8 text-white/95">
-          Thanks — we&apos;ve received your message. This demo form doesn&apos;t
-          send email yet; wire your API here when ready.
+          Thanks — we&apos;ve received your message. This demo form doesn&apos;t send
+          email yet; wire your API here when ready.
         </p>
       ) : (
         <form onSubmit={handleSubmit} className="mt-8 space-y-5">
@@ -47,25 +47,19 @@ export function ContactLeadForm() {
               required
               name="fullName"
               value={values.fullName}
-              onChange={(e) =>
-                setValues((v) => ({ ...v, fullName: e.target.value }))
-              }
+              onChange={e => setValues(v => ({ ...v, fullName: e.target.value }))}
               className="mt-2 w-full rounded-lg border border-white/40 bg-white/10 px-4 py-3 text-white outline-none ring-white/30 placeholder:text-white/50 focus:ring-2"
               placeholder="Jane Doe"
             />
           </label>
           <label className="block">
-            <span className="text-sm font-medium text-white">
-              Email address *
-            </span>
+            <span className="text-sm font-medium text-white">Email address *</span>
             <input
               required
               type="email"
               name="email"
               value={values.email}
-              onChange={(e) =>
-                setValues((v) => ({ ...v, email: e.target.value }))
-              }
+              onChange={e => setValues(v => ({ ...v, email: e.target.value }))}
               className="mt-2 w-full rounded-lg border border-white/40 bg-white/10 px-4 py-3 text-white outline-none placeholder:text-white/50 focus:ring-2 focus:ring-white/30"
               placeholder="you@example.com"
             />
@@ -76,9 +70,7 @@ export function ContactLeadForm() {
               type="tel"
               name="phone"
               value={values.phone}
-              onChange={(e) =>
-                setValues((v) => ({ ...v, phone: e.target.value }))
-              }
+              onChange={e => setValues(v => ({ ...v, phone: e.target.value }))}
               className="mt-2 w-full rounded-lg border border-white/40 bg-white/10 px-4 py-3 text-white outline-none placeholder:text-white/50 focus:ring-2 focus:ring-white/30"
               placeholder="+1 (555) 000-0000"
             />
@@ -90,9 +82,7 @@ export function ContactLeadForm() {
               name="message"
               rows={4}
               value={values.message}
-              onChange={(e) =>
-                setValues((v) => ({ ...v, message: e.target.value }))
-              }
+              onChange={e => setValues(v => ({ ...v, message: e.target.value }))}
               className="mt-2 w-full resize-y rounded-lg border border-white/40 bg-white/10 px-4 py-3 text-white outline-none placeholder:text-white/50 focus:ring-2 focus:ring-white/30"
               placeholder="How can we help?"
             />
@@ -100,8 +90,7 @@ export function ContactLeadForm() {
           <div className="flex justify-end pt-2">
             <button
               type="submit"
-              className="rounded-lg border-2 border-white px-8 py-3 text-[15px] font-semibold text-white transition-colors hover:bg-white/10"
-            >
+              className="rounded-lg border-2 border-white px-8 py-3 text-[15px] font-semibold text-white transition-colors hover:bg-white/10">
               Submit
             </button>
           </div>
