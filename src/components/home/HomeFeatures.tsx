@@ -54,7 +54,7 @@ export function HomeFeatures() {
           {features.map((feature) => (
             <article
               key={feature.title}
-              className="group flex h-full flex-col rounded-3xl border border-gray-100 bg-[#f3f4f6] p-6 shadow-sm transition-all hover:shadow-md md:rounded-[2rem] md:p-8"
+              className="group flex h-full flex-col rounded-3xl border border-gray-100 bg-[#f3f4f6] p-6 shadow-sm transition-all hover:shadow-md md:rounded-4xl md:p-8"
             >
               <div className="mb-6 md:mb-8">
                 <h3 className="text-[20px] font-bold leading-tight text-gray-900 md:text-[22px]">

@@ -10,7 +10,7 @@ export function SiteChrome({ children, navVariant = "default" }: SiteChromeProps
   return (
     <>
       <Navbar variant={navVariant} />
-      <div className="pt-[4.5rem]">{children}</div>
+      <div className="pt-18">{children}</div>
       <Footer />
     </>
   );

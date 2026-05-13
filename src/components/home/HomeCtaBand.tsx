@@ -37,7 +37,7 @@ export function HomeCtaBand() {
         </div>
 
         <div className="relative flex w-full justify-end self-end md:w-1/2">
-          <div className="relative aspect-[4/3] w-full md:h-[650px] md:max-w-none lg:h-[750px]">
+          <div className="relative aspect-4/3 w-full md:h-[650px] md:max-w-none lg:h-[750px]">
             <Image
               src={images.ctaPhones}
               alt="Person using the OHealth app"

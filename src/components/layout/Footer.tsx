@@ -90,7 +90,7 @@ export function Footer() {
           <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
             <Link
               href="#"
-              className="flex w-full max-w-[11rem] items-center gap-3 rounded-xl bg-gray-900 px-5 py-3 text-white transition-colors hover:bg-gray-800 sm:w-44"
+              className="flex w-full max-w-44 items-center gap-3 rounded-xl bg-gray-900 px-5 py-3 text-white transition-colors hover:bg-gray-800 sm:w-44"
             >
               <AppleIcon />
               <div className="text-left">
@@ -102,7 +102,7 @@ export function Footer() {
             </Link>
             <Link
               href="#"
-              className="flex w-full max-w-[11rem] items-center gap-3 rounded-xl bg-gray-900 px-5 py-3 text-white transition-colors hover:bg-gray-800 sm:w-44"
+              className="flex w-full max-w-44 items-center gap-3 rounded-xl bg-gray-900 px-5 py-3 text-white transition-colors hover:bg-gray-800 sm:w-44"
             >
               <PlayIcon />
               <div className="text-left">

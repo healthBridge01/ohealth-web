@@ -58,7 +58,7 @@ export function HomeWhoItsFor() {
         </div>
 
         <div className="relative flex w-full justify-center md:w-[45%] md:justify-end">
-          <div className="relative aspect-[4/3.5] w-full max-w-[420px] md:aspect-square md:max-w-[520px]">
+          <div className="relative aspect-4/3.5 w-full max-w-[420px] md:aspect-square md:max-w-[520px]">
             <Image
               src={images.whoItsFor}
               alt="OHealth app preview on mobile devices"
