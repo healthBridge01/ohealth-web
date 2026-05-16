@@ -8,64 +8,58 @@ export type PolicyBlock = {
 export const termsSections: PolicyBlock[] = [
   {
     number: 1,
-    title: 'Introduction',
+    title: 'Acceptance of Terms',
     paragraphs: [
-      "Welcome to OHealth. These terms and conditions outline the rules and regulations for the use of OHealth's services, including our website and mobile applications.",
-      'By accessing or using our service, you agree to be bound by these terms. If you disagree with any part of the terms, you may not access the service.',
+      'By accessing and using OHealth, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to these terms, please do not use our services.',
     ],
   },
   {
     number: 2,
-    title: 'User accounts',
+    title: 'Use of Services',
     paragraphs: [
-      'When you create an account with us, you must provide information that is accurate, complete, and current at all times. You are responsible for safeguarding the password and for all activities that occur under your account.',
-      'You must notify us immediately upon becoming aware of any breach of security or unauthorized use of your account.',
+      'OHealth provides a platform to connect patients with healthcare professionals. You agree to use our services only for lawful purposes and in accordance with these Terms. You are responsible for maintaining the confidentiality of your account information.',
     ],
   },
   {
     number: 3,
-    title: 'Medical disclaimer',
+    title: 'Medical Disclaimer',
     paragraphs: [
-      'OHealth is a technology platform that facilitates connections between users and independent healthcare providers. We do not provide medical advice, diagnosis, or treatment.',
-      'Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition.',
+      'OHealth is not a healthcare provider. The platform facilitates connections between patients and licensed healthcare professionals. Any medical advice, diagnosis, or treatment you receive is provided by independent healthcare professionals, not by Health Bridge.',
     ],
   },
   {
     number: 4,
-    title: 'Privacy and data protection',
+    title: 'Privacy and Data Protection',
     paragraphs: [
-      'Your use of OHealth is also governed by our Privacy Policy. Please review our Privacy Policy, which also governs the site and informs users of our data collection practices.',
+      'Your privacy is important to us. Please review our Privacy Policy to understand how we collect, use, and protect your personal and health information. We comply with all applicable healthcare privacy regulations including HIPAA.',
     ],
   },
   {
     number: 5,
-    title: 'Appointment booking and cancellation',
+    title: 'Appointment Booking and Cancellations',
     paragraphs: [
-      'Users may book appointments through the platform subject to provider availability. Cancellation policies may vary by provider and will be displayed at the time of booking.',
-      'Repeated late cancellations or no-shows may result in restrictions on your ability to book future appointments.',
+      'You may book, reschedule, or cancel appointments through the platform. Cancellation policies may vary by healthcare provider. Late cancellations or no-shows may result in charges as determined by the individual healthcare provider.',
     ],
   },
   {
     number: 6,
-    title: 'Payment terms',
+    title: 'Payment Terms',
     paragraphs: [
-      'Fees for services are as quoted at the point of purchase. OHealth may use third-party payment processors; your use of those services may be subject to additional terms from the processor.',
-      'Refunds, when applicable, will be processed according to the refund policy communicated at checkout or by the provider.',
+      'You agree to pay all fees associated with your use of OHealth services. Payment is due at the time of service unless otherwise arranged. We accept various payment methods as displayed in the app.',
     ],
   },
   {
     number: 7,
-    title: 'Limitation of liability',
+    title: 'Limitation of Liability',
     paragraphs: [
-      'To the fullest extent permitted by applicable law, OHealth shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses.',
+      'OHealth shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use or inability to use the service, or for the cost of procurement of substitute services.',
     ],
   },
   {
     number: 8,
-    title: 'Changes to terms',
+    title: 'Changes to Terms',
     paragraphs: [
-      'We reserve the right, at our sole discretion, to modify or replace these terms at any time. We will provide notice of material changes where required by law.',
-      'By continuing to access or use our service after those revisions become effective, you agree to be bound by the revised terms.',
+      'We reserve the right to modify these terms at any time. We will notify you of any changes by posting the new Terms on this page and updating the "Last Updated" date. Your continued use of the service constitutes acceptance of the modified terms.',
     ],
   },
 ];
@@ -73,69 +67,66 @@ export const termsSections: PolicyBlock[] = [
 export const privacySections: PolicyBlock[] = [
   {
     number: 1,
-    title: 'Information we collect',
+    title: 'Information We Collect',
     paragraphs: [
-      'We collect information you provide directly, such as when you create an account, complete forms, book appointments, or contact us. This may include name, contact details, date of birth, payment information, and health-related information you choose to share.',
-      'We also collect usage data and device information to improve our services and keep your account secure.',
+      'We collect information you provide directly to us, including your name, email address, phone number, date of birth, medical history, and health-related information. We also collect information automatically, such as device information, usage data, and location information when you use our services.',
     ],
   },
   {
     number: 2,
-    title: 'How we use your information',
+    title: 'How We Use Your Information',
     paragraphs: [
-      'We use the information we collect to provide, maintain, and improve our services, process transactions, communicate with you, and comply with legal obligations.',
-      'Where required, we rely on appropriate legal bases such as consent, contract performance, and legitimate interests balanced against your rights.',
+      'We use the information we collect to provide, maintain, and improve our services; to process your appointments and payments; to communicate with you; to monitor and analyze trends and usage; and to protect the security and integrity of our services.',
     ],
   },
   {
     number: 3,
-    title: 'Disclosure of your information',
+    title: 'Information Sharing and Disclosure',
     paragraphs: [
-      'We may share information with healthcare providers you interact with through the platform, service providers who assist our operations, and authorities when required by law.',
-      'We do not sell your personal information.',
+      'We share your information with healthcare professionals you choose to consult, with service providers who assist us in operating our platform, and when required by law. We do not sell your personal information to third parties.',
     ],
   },
   {
     number: 4,
     id: 'data-security',
-    title: 'Data security',
+    title: 'Data Security',
     paragraphs: [
-      'We implement administrative, technical, and physical safeguards designed to protect personal information. No method of transmission over the Internet is 100% secure, and we cannot guarantee absolute security.',
+      'We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. We use encryption, secure servers, and regular security assessments to safeguard your data.',
     ],
   },
   {
     number: 5,
-    title: "Children's privacy",
+    title: 'HIPAA Compliance',
     paragraphs: [
-      'Our services are not directed to individuals under the age required by applicable law to consent to data processing without parental authorization. We do not knowingly collect personal information from children in violation of those requirements.',
+      'OHealth is committed to complying with the Health Insurance Portability and Accountability Act (HIPAA). Your protected health information is handled in accordance with HIPAA privacy and security rules.',
     ],
   },
   {
     number: 6,
-    title: 'Your rights and choices',
+    title: 'Your Rights and Choices',
     paragraphs: [
-      'Depending on your location, you may have rights to access, correct, delete, or port your personal data, or to object to or restrict certain processing. You may exercise these rights by contacting us using the details in the Contact section.',
+      'You have the right to access, update, or delete your personal information. You can also control communication preferences and opt-out of certain data collection. Contact us to exercise these rights.',
     ],
   },
   {
     number: 7,
-    title: 'Data retention',
+    title: 'Data Retention',
     paragraphs: [
-      'We retain personal information for as long as necessary to fulfill the purposes described in this policy, unless a longer retention period is required or permitted by law.',
+      'We retain your information for as long as necessary to provide our services, comply with legal obligations, resolve disputes, and enforce our agreements. Medical records are retained in accordance with applicable healthcare regulations.',
     ],
   },
   {
     number: 8,
-    title: 'Cookies and tracking',
+    title: "Children's Privacy",
     paragraphs: [
-      'We and our partners may use cookies and similar technologies to operate the platform, remember preferences, analyze traffic, and support security. You can control cookies through your browser settings where supported.',
+      'Our services are not intended for children under 13 years of age. We do not knowingly collect personal information from children under 13. If you are a parent or guardian and believe your child has provided us with personal information, please contact us.',
     ],
   },
   {
     number: 9,
-    title: 'Changes to this policy',
+    title: 'Changes to Privacy Policy',
     paragraphs: [
-      'We may update this Privacy Policy from time to time. We will post the updated policy on this page and update the effective date. We encourage you to review this policy periodically.',
+      'We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date.',
     ],
   },
 ];
