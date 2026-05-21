@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function ForProfessionalsPage() {
   return (
-    <SiteChrome navVariant="professional">
+    <SiteChrome>
       <ForProfessionalsContent />
     </SiteChrome>
   );

@@ -9,12 +9,6 @@ import { mainNav } from '@/lib/nav';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
-export type NavbarVariant = 'default' | 'professional';
-
-type NavbarProps = {
-  variant?: NavbarVariant;
-};
-
 type NavLinkButtonProps = {
   href: string;
   children: React.ReactNode;
@@ -44,24 +38,13 @@ function NavLinkButton({
   );
 }
 
-export function Navbar({ variant = 'default' }: NavbarProps) {
+export function Navbar() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
-  const isPro = variant === 'professional';
-
-  const navItems = isPro
-    ? [
-        { label: 'About', href: '/blog' },
-        { label: 'For professionals', href: '/for-professionals' },
-        { label: 'FAQs', href: '/faq' },
-        { label: 'Contact', href: '/contact' },
-      ]
-    : mainNav;
-
   return (
     <header className="sticky top-0 z-50 w-full bg-white/85 backdrop-blur-md">
-      <nav className="mx-auto flex max-w-360 items-center justify-between px-4 py-3.5 xl:py-7.5 xl:px-15">
+      <nav className="mx-auto flex max-w-460 items-center justify-between px-4 py-3.5 xl:py-7.5 xl:px-15">
         <Link href="/" className="" onClick={() => setOpen(false)}>
           <Image
             src="/icons/mini-logo.svg"
@@ -73,7 +56,7 @@ export function Navbar({ variant = 'default' }: NavbarProps) {
         </Link>
 
         <div className="hidden items-center gap-7.5 lg:flex">
-          {navItems.map(item => (
+          {mainNav.map(item => (
             <NavLinkButton
               key={item.href + item.label}
               href={item.href}
@@ -88,34 +71,15 @@ export function Navbar({ variant = 'default' }: NavbarProps) {
         </div>
 
         <div className="hidden items-center gap-2 lg:flex">
-          {isPro ? (
-            <>
-              <NavLinkButton
-                href="#"
-                variant="navLink"
-                className="text-base font-medium text-gray-600 hover:text-brand-blue">
-                Sign in
-              </NavLinkButton>
-              <NavLinkButton
-                href="/for-professionals"
-                variant="marketingBlue"
-                size="pill">
-                Join as professional
-              </NavLinkButton>
-            </>
-          ) : (
-            <>
-              <NavLinkButton
-                href="/for-professionals"
-                variant="marketingOutline"
-                size="nav-cta">
-                Join as a professional
-              </NavLinkButton>
-              <NavLinkButton href="#" variant="marketingPrimary" size="nav-cta">
-                Get App
-              </NavLinkButton>
-            </>
-          )}
+          <NavLinkButton
+            href="/for-professionals"
+            variant="marketingOutline"
+            size="nav-cta">
+            Join as a professional
+          </NavLinkButton>
+          <NavLinkButton href="#" variant="marketingPrimary" size="nav-cta">
+            Get App
+          </NavLinkButton>
         </div>
 
         <Button
@@ -135,7 +99,7 @@ export function Navbar({ variant = 'default' }: NavbarProps) {
       {open ? (
         <nav className="absolute top-full left-0 w-full border-b border-gray-100 bg-white px-6 py-8 lg:hidden">
           <div className="flex flex-col gap-2">
-            {navItems.map(item => (
+            {mainNav.map(item => (
               <NavLinkButton
                 key={item.href + item.label}
                 href={item.href}
@@ -146,41 +110,20 @@ export function Navbar({ variant = 'default' }: NavbarProps) {
               </NavLinkButton>
             ))}
             <hr className="my-2 border-gray-100" />
-            {isPro ? (
-              <>
-                <NavLinkButton
-                  href="#"
-                  variant="navLink"
-                  className="justify-start font-semibold text-brand-blue"
-                  onClick={() => setOpen(false)}>
-                  Sign in
-                </NavLinkButton>
-                <NavLinkButton
-                  href="/for-professionals"
-                  variant="marketingBlue"
-                  size="cta-mobile"
-                  onClick={() => setOpen(false)}>
-                  Join as professional
-                </NavLinkButton>
-              </>
-            ) : (
-              <>
-                <NavLinkButton
-                  href="/for-professionals"
-                  variant="marketingOutline"
-                  size="nav-cta"
-                  onClick={() => setOpen(false)}>
-                  Join as a professional
-                </NavLinkButton>
-                <NavLinkButton
-                  href="#"
-                  variant="marketingPrimary"
-                  size="nav-cta"
-                  onClick={() => setOpen(false)}>
-                  Get app
-                </NavLinkButton>
-              </>
-            )}
+            <NavLinkButton
+              href="/for-professionals"
+              variant="marketingOutline"
+              size="nav-cta"
+              onClick={() => setOpen(false)}>
+              Join as a professional
+            </NavLinkButton>
+            <NavLinkButton
+              href="#"
+              variant="marketingPrimary"
+              size="nav-cta"
+              onClick={() => setOpen(false)}>
+              Get app
+            </NavLinkButton>
           </div>
         </nav>
       ) : null}
