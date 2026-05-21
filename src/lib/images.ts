@@ -5,7 +5,7 @@ export const images = {
   feature2: '2_cacued.png',
   feature3: '3_ycuynq.png',
   howItWorksDesktop: 'hit-01_brxw2r.png',
-  howItWorksMobile: 'hit-02_pwbsgg.png',
+  howItWorksMobile: 'hit-02_v7r6d4.png',
   whoItsFor: 'hit_03_jgc2wq.png',
   proDashboard: 'prev_01_lkdewg.png',
   ctaPhones: 'comp-02_s0dfxh.png',
