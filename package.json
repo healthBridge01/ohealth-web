@@ -20,6 +20,20 @@
     "*.{json,css,md,yml,yaml}": [
       "prettier --write --ignore-unknown"
     ]
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write . --ignore-path .prettierignore",
+    "format:check": "prettier --check . --ignore-path .prettierignore",
+    "check": "npm run format:check && npm run lint && npm run build",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,mjs,cjs}": [
+      "eslint --fix --max-warnings 0"
+    ],
+    "*.{json,css,md,yml,yaml}": [
+      "prettier --write --ignore-unknown"
+    ]
   },
   "dependencies": {
     "@base-ui/react": "^1.4.1",
@@ -41,6 +55,12 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.6",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
+    "globals": "^17.6.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
+    "prettier": "^3.8.3",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.5",
     "globals": "^17.6.0",
