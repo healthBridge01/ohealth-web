@@ -12,9 +12,9 @@ export default function TermsPage() {
   return (
     <SiteChrome>
       <MarketingDocHero
-        metaLine="Updated May 13, 2026"
+        eyebrow="Current as of May 13, 2026"
         title="Terms and conditions"
-        subtitle="Please read these terms and conditions carefully before using our service."
+        subtitle="We respect your privacy regarding any information we may collect from you across our application."
       />
       <div className="bg-white">
         <PolicyBody sections={termsSections} />

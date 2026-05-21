@@ -1,7 +1,9 @@
 'use client';
 
+import Image from 'next/image';
 import { useState } from 'react';
 import type { FaqItem } from '@/content/faq';
+import { cn } from '@/lib/utils';
 
 type FaqAccordionProps = {
   items: FaqItem[];
@@ -11,36 +13,72 @@ export function FaqAccordion({ items }: FaqAccordionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <ul className="mx-auto max-w-3xl divide-y divide-gray-200 px-4 md:px-0">
+    <ul className="mx-auto max-w-3xl space-y-4">
       {items.map((item, index) => {
         const open = openIndex === index;
+        const panelId = `faq-panel-${index}`;
+        const triggerId = `faq-trigger-${index}`;
+
         return (
-          <li key={item.question} className="py-4 md:py-5">
+          <li key={item.question} className="p-5 xl:p-8">
             <button
               type="button"
+              id={triggerId}
+              aria-expanded={open}
+              aria-controls={panelId}
               onClick={() => setOpenIndex(open ? null : index)}
-              className="flex w-full flex-row-reverse items-start gap-3 text-left md:flex-row md:gap-4"
-              aria-expanded={open}>
-              <span
-                className={`mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border text-lg font-light transition-transform ${
-                  open
-                    ? 'rotate-45 border-brand-blue text-brand-blue'
-                    : 'border-gray-200 text-gray-500'
-                }`}
-                aria-hidden>
-                +
+              className="flex w-full cursor-pointer flex-row-reverse items-start gap-3 text-left md:flex-row md:gap-6">
+              <span className="relative mt-0.5 h-6 w-6 shrink-0" aria-hidden>
+                <Image
+                  src="/icons/plus-circle.svg"
+                  alt=""
+                  width={24}
+                  height={24}
+                  className={cn(
+                    'absolute inset-0 h-6 w-6 transition-all duration-300 ease-out motion-reduce:transition-none',
+                    open
+                      ? 'scale-75 rotate-90 opacity-0'
+                      : 'scale-100 rotate-0 opacity-100',
+                  )}
+                />
+                <Image
+                  src="/icons/minus-circle.svg"
+                  alt=""
+                  width={24}
+                  height={24}
+                  className={cn(
+                    'absolute inset-0 h-6 w-6 transition-all duration-300 ease-out motion-reduce:transition-none',
+                    open
+                      ? 'scale-100 rotate-0 opacity-100'
+                      : 'scale-75 -rotate-90 opacity-0',
+                  )}
+                />
               </span>
-              <span className="min-w-0 flex-1">
-                <span className="block text-base font-semibold text-gray-900 md:text-lg">
-                  {item.question}
-                </span>
-                {open ? (
-                  <span className="mt-3 block text-[15px] leading-relaxed text-gray-600 md:text-[16px]">
-                    {item.answer}
-                  </span>
-                ) : null}
+              <span className="min-w-0 flex-1 text-lg font-medium text-brand-neutral-900">
+                {item.question}
               </span>
             </button>
+
+            <div
+              id={panelId}
+              role="region"
+              aria-labelledby={triggerId}
+              className={cn(
+                'grid transition-[grid-template-rows] duration-300 ease-in-out motion-reduce:transition-none md:ml-12',
+                open ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]',
+              )}>
+              <div className="overflow-hidden" aria-hidden={!open}>
+                <p
+                  className={cn(
+                    'pt-2 text-base leading-relaxed text-brand-neutral-500 transition-[opacity,transform] duration-300 ease-out motion-reduce:transition-none',
+                    open
+                      ? 'translate-y-0 opacity-100 delay-75'
+                      : 'pointer-events-none -translate-y-2 opacity-0 delay-0',
+                  )}>
+                  {item.answer}
+                </p>
+              </div>
+            </div>
           </li>
         );
       })}
