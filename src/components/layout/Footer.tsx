@@ -68,7 +68,7 @@ const socialLinks: {
 export function Footer() {
   return (
     <footer className="border-t border-brand-gray-100 bg-brand-gray-100">
-      <section className="mx-auto grid max-w-360 gap-12 px-4 py-12 lg:gap-16 lg:px-20 lg:pt-16 lg:pb-12">
+      <section className="mx-auto grid max-w-360 gap-12 px-4 py-12 xl:gap-16 xl:px-20 xl:pt-16 xl:pb-12">
         <section className="flex flex-col gap-12 px-0 md:px-8 lg:flex-row lg:justify-between">
           <div className="grid gap-8">
             <div className="grid gap-6 md:gap-8">

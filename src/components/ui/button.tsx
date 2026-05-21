@@ -16,6 +16,9 @@ const buttonVariants = cva(
           'bg-clip-padding bg-secondary text-secondary-foreground hover:bg-secondary/80 aria-expanded:bg-secondary aria-expanded:text-secondary-foreground',
         ghost:
           'bg-clip-padding hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50',
+        /** Text links in nav/footer — color only, no hover fill */
+        navLink:
+          'bg-transparent hover:bg-transparent aria-expanded:bg-transparent dark:hover:bg-transparent',
         destructive:
           'bg-clip-padding bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40',
         link: 'bg-clip-padding text-primary underline-offset-4 hover:underline',
@@ -24,7 +27,7 @@ const buttonVariants = cva(
           'bg-clip-border border-brand-neutral-300 bg-transparent text-brand-neutral-700 shadow-brand-xs hover:border-brand-blue hover:bg-brand-light/40',
         /** Primary CTA — border-0 + bg-clip-border avoids hairline gap vs border-transparent + bg-clip-padding */
         marketingPrimary:
-          'border-0 bg-clip-border bg-brand-primary-600 text-white shadow-brand-xs hover:bg-brand-primary-700',
+          'border-0 bg-clip-border bg-brand-primary-600 w-30 text-white shadow-brand-xs hover:bg-brand-primary-700',
         /** Pro nav — solid blue (use with size="pill") */
         marketingBlue:
           'border-0 bg-clip-border bg-brand-blue text-white shadow-sm hover:bg-blue-800 hover:shadow-lg',

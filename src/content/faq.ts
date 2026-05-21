@@ -7,7 +7,7 @@ export const faqItems: FaqItem[] = [
   {
     question: 'What is OHealth?',
     answer:
-      'OHealth is a digital healthcare platform that connects patients with verified professionals for consultations, diagnostics coordination, and secure health record management — designed to make care more accessible from anywhere.',
+      'OHealth is a digital healthcare platform that connects patients with verified healthcare professionals. It allows users to book consultations, schedule lab tests, and manage their health records securely in one place.',
   },
   {
     question: 'Who can use OHealth?',
@@ -15,53 +15,43 @@ export const faqItems: FaqItem[] = [
       'Patients seeking care, licensed healthcare professionals, and partner institutions such as hospitals, pharmacies, and laboratories can all use OHealth within the scope of their role and applicable regulations.',
   },
   {
-    question: 'Is my health data secure?',
+    question: 'How can I create an account?',
     answer:
-      'We use industry-standard security practices and encryption to protect your information. Access is limited to what is needed to provide the service, and providers you choose to engage with.',
+      'You can create an account by clicking the "Create Account" button on the homepage and following the steps to provide your details. Once your account is created, you can start using the platform to book consultations, schedule lab tests, and manage your health records.',
   },
   {
-    question: 'Do I need insurance to book?',
+    question: 'How do online consultations work?',
     answer:
-      'Coverage rules depend on your region and provider. Many services can be booked directly through the platform; any insurance or payment requirements will be shown before you confirm.',
+      'Online consultations work similarly to in-person visits. You can schedule a consultation with a healthcare professional through the platform. The professional will then provide a diagnosis and treatment plan. You can then follow up with the professional to discuss the treatment plan.',
   },
   {
-    question: 'How do appointments work?',
+    question: 'Can I choose my healthcare professional?',
     answer:
-      'You can search for a service or provider, pick an available time, and receive confirmations and reminders in the app. Reschedule or cancel according to the provider’s policy shown at booking.',
+      'Yes, you can choose your healthcare professional by searching for a professional through the platform. You can then select the professional you want to book a consultation with.',
   },
   {
-    question: 'How do professionals join?',
+    question: 'Can I reschedule or cancel a consultation?',
     answer:
-      'Healthcare professionals can start onboarding from the For professionals page, complete verification steps, and then configure availability and services supported on the platform.',
+      'Yes, you can reschedule or cancel a consultation by logging into your account and selecting the consultation you want to reschedule or cancel. You can also contact the healthcare professional to reschedule or cancel the consultation.',
   },
   {
-    question: 'What regions are supported?',
+    question: 'How do I book a lab test?',
     answer:
-      'Availability varies by market and regulatory clearance. Create an account or contact us with your location and we’ll confirm what is supported in your area.',
+      'You can book a lab test by logging into your account and selecting the lab test you want to book. You can then select the lab you want to book the test at. You can then select the date and time you want to book the test for.',
   },
   {
-    question: 'How do I contact support?',
+    question: 'How will I receive my health records?',
     answer:
-      'Visit the Contact page for customer support, sales, and technical options. We aim to respond as quickly as possible during business hours.',
+      'Your health records will be available in your account. You can download them as a PDF or share them with your healthcare professional.',
   },
   {
-    question: 'Can I delete my account?',
+    question: 'How can healthcare professionals join OHealth?',
     answer:
-      'Yes. You can request account deletion subject to any legal or clinical record retention requirements that apply to your care history. Contact support for assistance.',
+      'Healthcare professionals can join OHealth by completing the onboarding process. Once onboarded, they can start accepting consultations and lab tests through the platform.',
   },
   {
-    question: 'Are video consultations recorded?',
+    question: 'Can hospitals, pharmacies, and laboratories partner with OHealth?',
     answer:
-      'Recording policies depend on provider configuration and local regulations. If a consultation may be recorded, you will be informed and asked to consent where required.',
-  },
-  {
-    question: 'What devices are supported?',
-    answer:
-      'OHealth runs on modern web browsers and our iOS and Android apps. For the best experience, keep your device updated and use a stable internet connection.',
-  },
-  {
-    question: 'Where can I read legal policies?',
-    answer:
-      'Our Terms & conditions and Privacy policy are available on this site. They describe how the service works and how we handle personal data.',
+      'Yes, hospitals, pharmacies, and laboratories can partner with OHealth by contacting us to discuss the partnership. We are always looking for new partners to help us grow and improve the platform.',
   },
 ];

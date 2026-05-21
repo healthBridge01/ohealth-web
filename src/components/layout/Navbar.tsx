@@ -27,7 +27,7 @@ type NavLinkButtonProps = {
 function NavLinkButton({
   href,
   children,
-  variant = 'ghost',
+  variant = 'navLink',
   size,
   className,
   onClick,
@@ -61,7 +61,7 @@ export function Navbar({ variant = 'default' }: NavbarProps) {
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white/85 backdrop-blur-md">
-      <nav className="mx-auto flex max-w-360 items-center justify-between px-5 py-3.5 lg:py-7.5 lg:px-15">
+      <nav className="mx-auto flex max-w-360 items-center justify-between px-4 py-3.5 xl:py-7.5 xl:px-15">
         <Link href="/" className="" onClick={() => setOpen(false)}>
           <Image
             src="/icons/mini-logo.svg"
@@ -77,9 +77,9 @@ export function Navbar({ variant = 'default' }: NavbarProps) {
             <NavLinkButton
               key={item.href + item.label}
               href={item.href}
-              variant="ghost"
+              variant="navLink"
               className={cn(
-                'text-base leading-[110%] font-medium tracking-[-0.2px] px-0 text-brand-neutral-700 hover:text-brand-blue',
+                'px-0 text-base leading-[110%] font-medium tracking-[-0.2px] text-brand-neutral-700 hover:text-brand-blue',
                 pathname === item.href && 'text-brand-blue',
               )}>
               {item.label}
@@ -92,7 +92,7 @@ export function Navbar({ variant = 'default' }: NavbarProps) {
             <>
               <NavLinkButton
                 href="#"
-                variant="ghost"
+                variant="navLink"
                 className="text-base font-medium text-gray-600 hover:text-brand-blue">
                 Sign in
               </NavLinkButton>
@@ -139,7 +139,7 @@ export function Navbar({ variant = 'default' }: NavbarProps) {
               <NavLinkButton
                 key={item.href + item.label}
                 href={item.href}
-                variant="ghost"
+                variant="navLink"
                 className="justify-start text-base font-medium text-gray-900 hover:text-brand-blue"
                 onClick={() => setOpen(false)}>
                 {item.label}
@@ -150,7 +150,7 @@ export function Navbar({ variant = 'default' }: NavbarProps) {
               <>
                 <NavLinkButton
                   href="#"
-                  variant="ghost"
+                  variant="navLink"
                   className="justify-start font-semibold text-brand-blue"
                   onClick={() => setOpen(false)}>
                   Sign in
