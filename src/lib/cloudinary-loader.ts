@@ -5,7 +5,16 @@ type LoaderProps = {
 };
 
 export default function cloudinaryLoader({ src, width }: LoaderProps): string {
-  if (src.startsWith('https://')) {
+  if (
+    src.startsWith('https://') ||
+    src.startsWith('http://') ||
+    src.startsWith('data:')
+  ) {
+    return src;
+  }
+
+  // Same-origin static files from /public (do not send through Cloudinary)
+  if (src.startsWith('/')) {
     return src;
   }
 

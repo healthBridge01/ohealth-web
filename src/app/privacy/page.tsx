@@ -12,9 +12,9 @@ export default function PrivacyPage() {
   return (
     <SiteChrome>
       <MarketingDocHero
-        metaLine="Effective date: May 13, 2026"
+        eyebrow="Current as of May 13, 2026"
         title="Privacy policy"
-        subtitle="This policy explains how OHealth collects, uses, and protects your information when you use our websites and apps."
+        subtitle="We respect your privacy regarding any information we may collect from you across our application."
       />
       <div className="bg-white">
         <PolicyBody sections={privacySections} />

@@ -3,148 +3,130 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
+import Image from 'next/image';
+import type { VariantProps } from 'class-variance-authority';
 import { mainNav } from '@/lib/nav';
+import { Button, buttonVariants } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
-export type NavbarVariant = 'default' | 'professional';
-
-type NavbarProps = {
-  variant?: NavbarVariant;
+type NavLinkButtonProps = {
+  href: string;
+  children: React.ReactNode;
+  variant?: VariantProps<typeof buttonVariants>['variant'];
+  size?: VariantProps<typeof buttonVariants>['size'];
+  className?: string;
+  onClick?: () => void;
 };
 
-export function Navbar({ variant = 'default' }: NavbarProps) {
+function NavLinkButton({
+  href,
+  children,
+  variant = 'navLink',
+  size,
+  className,
+  onClick,
+}: NavLinkButtonProps) {
+  return (
+    <Button
+      nativeButton={false}
+      variant={variant}
+      size={size}
+      className={className}
+      render={<Link href={href} onClick={onClick} prefetch={false} />}>
+      {children}
+    </Button>
+  );
+}
+
+export function Navbar() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
-  const isPro = variant === 'professional';
-
   return (
-    <nav className="fixed top-0 z-50 w-full border-b border-gray-100 bg-white/85 backdrop-blur-md">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-10">
-        <Link href="/" className="flex items-center gap-2" onClick={() => setOpen(false)}>
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-blue">
-            <span className="text-sm font-bold tracking-tighter text-white">O</span>
-          </div>
-          <span className="text-xl font-bold tracking-tight text-gray-900">OHealth</span>
+    <header className="sticky top-0 z-50 w-full bg-white/85 backdrop-blur-md">
+      <nav className="mx-auto flex max-w-460 items-center justify-between px-4 py-3.5 xl:py-7.5 xl:px-15">
+        <Link href="/" className="" onClick={() => setOpen(false)}>
+          <Image
+            src="/icons/mini-logo.svg"
+            alt="OHealth logo"
+            width={100}
+            height={20}
+            className="h-5 w-22"
+          />
         </Link>
 
-        <div className="hidden items-center gap-8 text-[15px] font-medium text-gray-600 md:flex">
-          {(isPro
-            ? [
-                { label: 'About', href: '/blog' },
-                { label: 'For professionals', href: '/for-professionals' },
-                { label: 'FAQs', href: '/faq' },
-                { label: 'Contact', href: '/contact' },
-              ]
-            : mainNav
-          ).map(item => (
-            <Link
+        <div className="hidden items-center gap-7.5 lg:flex">
+          {mainNav.map(item => (
+            <NavLinkButton
               key={item.href + item.label}
               href={item.href}
-              className={`transition-colors hover:text-brand-blue ${
-                pathname === item.href ? 'text-brand-blue' : ''
-              }`}>
+              variant="navLink"
+              className={cn(
+                'px-0 text-base leading-[110%] font-medium tracking-[-0.2px] text-brand-neutral-700 hover:text-brand-blue',
+                pathname === item.href && 'text-brand-blue',
+              )}>
               {item.label}
-            </Link>
+            </NavLinkButton>
           ))}
         </div>
 
-        <div className="hidden items-center gap-6 md:flex">
-          {isPro ? (
-            <>
-              <Link
-                href="#"
-                className="text-[15px] font-medium text-gray-600 hover:text-brand-blue">
-                Sign in
-              </Link>
-              <Link
-                href="/for-professionals"
-                className="rounded-full bg-brand-blue px-6 py-2.5 text-[15px] font-semibold text-white shadow-sm transition-all hover:bg-blue-800 hover:shadow-lg">
-                Join as professional
-              </Link>
-            </>
-          ) : (
-            <>
-              <Link
-                href="/for-professionals"
-                className="text-[15px] font-medium text-gray-600 hover:text-brand-blue">
-                Join as a professional
-              </Link>
-              <Link
-                href="#"
-                className="rounded-full bg-brand-blue px-6 py-2.5 text-[15px] font-semibold text-white transition-all hover:shadow-lg">
-                Get app
-              </Link>
-            </>
-          )}
+        <div className="hidden items-center gap-2 lg:flex">
+          <NavLinkButton
+            href="/for-professionals"
+            variant="marketingOutline"
+            size="nav-cta">
+            Join as a professional
+          </NavLinkButton>
+          <NavLinkButton href="#" variant="marketingPrimary" size="nav-cta">
+            Get App
+          </NavLinkButton>
         </div>
 
-        <button
+        <Button
           type="button"
-          className="p-2 text-gray-600 md:hidden"
+          variant="outline"
+          size="icon-sm"
+          className="flex flex-col gap-0.5 border-brand-neutral-300 p-0 text-gray-600 lg:hidden"
           aria-expanded={open}
           aria-label="Toggle menu"
           onClick={() => setOpen(v => !v)}>
-          <span className="block h-0.5 w-6 bg-current" />
-          <span className="mt-1.5 block h-0.5 w-6 bg-current" />
-          <span className="mt-1.5 ml-auto block h-0.5 w-4 bg-current" />
-        </button>
-      </div>
+          <span className="block h-0.5 w-3 rounded-full bg-current" />
+          <span className="block h-0.5 w-3 rounded-full bg-current" />
+          <span className="block h-0.5 w-3 rounded-full bg-current" />
+        </Button>
+      </nav>
 
       {open ? (
-        <div className="absolute left-0 top-full w-full border-b border-gray-100 bg-white px-6 py-8 md:hidden">
-          <div className="flex flex-col gap-6">
-            {(isPro
-              ? [
-                  { label: 'About', href: '/blog' },
-                  { label: 'For professionals', href: '/for-professionals' },
-                  { label: 'FAQs', href: '/faq' },
-                  { label: 'Contact', href: '/contact' },
-                ]
-              : mainNav
-            ).map(item => (
-              <Link
+        <nav className="absolute top-full left-0 w-full border-b border-gray-100 bg-white px-6 py-8 lg:hidden">
+          <div className="flex flex-col gap-2">
+            {mainNav.map(item => (
+              <NavLinkButton
                 key={item.href + item.label}
                 href={item.href}
-                className="text-lg font-medium text-gray-900"
+                variant="navLink"
+                className="justify-start text-base font-medium text-gray-900 hover:text-brand-blue"
                 onClick={() => setOpen(false)}>
                 {item.label}
-              </Link>
+              </NavLinkButton>
             ))}
-            <hr className="border-gray-100" />
-            {isPro ? (
-              <>
-                <Link
-                  href="#"
-                  className="font-semibold text-brand-blue"
-                  onClick={() => setOpen(false)}>
-                  Sign in
-                </Link>
-                <Link
-                  href="/for-professionals"
-                  className="rounded-xl bg-brand-blue py-4 text-center font-bold text-white"
-                  onClick={() => setOpen(false)}>
-                  Join as professional
-                </Link>
-              </>
-            ) : (
-              <>
-                <Link
-                  href="/for-professionals"
-                  className="font-semibold text-brand-blue"
-                  onClick={() => setOpen(false)}>
-                  Join as a professional
-                </Link>
-                <Link
-                  href="#"
-                  className="rounded-xl bg-brand-blue py-4 text-center font-bold text-white"
-                  onClick={() => setOpen(false)}>
-                  Get app
-                </Link>
-              </>
-            )}
+            <hr className="my-2 border-gray-100" />
+            <NavLinkButton
+              href="/for-professionals"
+              variant="marketingOutline"
+              size="nav-cta"
+              onClick={() => setOpen(false)}>
+              Join as a professional
+            </NavLinkButton>
+            <NavLinkButton
+              href="#"
+              variant="marketingPrimary"
+              size="nav-cta"
+              onClick={() => setOpen(false)}>
+              Get app
+            </NavLinkButton>
           </div>
-        </div>
+        </nav>
       ) : null}
-    </nav>
+    </header>
   );
 }

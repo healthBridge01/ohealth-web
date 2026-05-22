@@ -276,8 +276,8 @@ export function ForProfessionalsContent() {
         </div>
       </section>
 
-      <section className="bg-brand-blue-deep px-5 py-16 md:px-10 md:py-20">
-        <div className="mx-auto flex max-w-6xl flex-col items-center gap-10 md:flex-row md:justify-between">
+      <section className="bg-brand-primary-800 px-5 py-16 lg:px-15 lg:py-[0.08px]">
+        <div className="flex flex-col items-center md:flex-row md:justify-between px-6">
           <div className="max-w-xl text-center md:text-left">
             <h2 className="text-3xl font-bold text-white md:text-4xl">
               Start growing your practice today
@@ -299,7 +299,7 @@ export function ForProfessionalsContent() {
               </Link>
             </div>
           </div>
-          <div className="relative w-full max-w-xs shrink-0 md:max-w-sm">
+          <div className="relative w-full max-w-xs shrink-0 md:max-w-sm px-3 pt-4.5">
             <div className="relative aspect-4/5 w-full">
               <Image
                 src={images.ctaPhones}
