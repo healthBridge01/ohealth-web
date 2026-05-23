@@ -1,6 +1,7 @@
 'use client';
 
 import { FormEvent, useState } from 'react';
+import { ArrowRight } from 'lucide-react';
 
 export type ContactFormValues = {
   fullName: string;
@@ -26,8 +27,8 @@ export function ContactLeadForm() {
   }
 
   return (
-    <div className="rounded-2xl bg-gradient-to-b from-[#063595] to-[#254991] px-[16px] py-[24px] lg:py-[50px] lg:px-[40px] shadow-xl md:p-10">
-      <p className="text-[14px] lg:text-[16px] font-medium uppercase tracking-[-0.5px] lg:uppercase tracking-[-0.8px] text-[#FDEAD7] text-center leading-[110.00000000000001%]">
+    <div className="rounded-2xl bg-linear-to-b from-[#063595] to-[#254991] px-4 py-6 lg:py-12.5 lg:px-10 shadow-xl md:p-10">
+      <p className="text-[14px] lg:text-[16px] font-medium uppercase tracking-[-0.8px] text-[#FDEAD7] text-center leading-[110.00000000000001%]">
         Contact us
       </p>
       <h2 className="mt-2 lg:text-[36px] text-[24px] leading-[100%]  font-semibold text-white md:text-3xl text-center">
@@ -40,8 +41,8 @@ export function ContactLeadForm() {
           email yet; wire your API here when ready.
         </p>
       ) : (
-        <form onSubmit={handleSubmit} className="flex flex-col gap-[24px] mt-8">
-          <div className="grid lg:grid-cols-2 gap-[24px]">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-6 mt-8">
+          <div className="grid lg:grid-cols-2 gap-6">
             <label className="block">
               <span className="font-semibold text-[14px] text-white  leading-[120%]">
                 Full Name *
@@ -101,8 +102,9 @@ export function ContactLeadForm() {
           <div className="flex justify-center pt-2">
             <button
               type="submit"
-              className="rounded-[8px] border-2 border-white px-[18px] py-[12px] text-[15px] font-semibold text-white transition-colors hover:bg-white/10">
-              Send Message ➜
+              className="flex items-center justify-center gap-2 rounded-[8px] border border-white/90 px-4.5 py-3 text-[15px] font-semibold text-white transition-colors hover:bg-white/10">
+              Send Message
+              <ArrowRight size={16} strokeWidth={2} />
             </button>
           </div>
         </form>
