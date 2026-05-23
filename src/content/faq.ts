@@ -5,53 +5,61 @@ export type FaqItem = {
 
 export const faqItems: FaqItem[] = [
   {
-    question: 'What is OHealth?',
+    question: 'What is OHealth+?',
     answer:
-      'OHealth is a digital healthcare platform that connects patients with verified healthcare professionals. It allows users to book consultations, schedule lab tests, and manage their health records securely in one place.',
+      'OHealth+ is a digital healthcare platform that connects patients with verified healthcare professionals. It allows users to book consultations, schedule lab tests, and manage their health records securely in one place.',
   },
   {
-    question: 'Who can use OHealth?',
+    question: 'Who can use OHealth+?',
     answer:
-      'Patients seeking care, licensed healthcare professionals, and partner institutions such as hospitals, pharmacies, and laboratories can all use OHealth within the scope of their role and applicable regulations.',
+      'OHealth+ is designed for patients seeking healthcare services, healthcare professionals providing care, and hospitals or laboratories that want to offer services digitally.',
   },
   {
     question: 'How can I create an account?',
     answer:
-      'You can create an account by clicking the "Create Account" button on the homepage and following the steps to provide your details. Once your account is created, you can start using the platform to book consultations, schedule lab tests, and manage your health records.',
+      'To create an account, you need to download the OHealth+ mobile app from the app store. After installing the app, open it and tap Sign Up. Enter your basic details, verify your email or phone number, and complete your profile to get started.',
   },
   {
     question: 'How do online consultations work?',
     answer:
-      'Online consultations work similarly to in-person visits. You can schedule a consultation with a healthcare professional through the platform. The professional will then provide a diagnosis and treatment plan. You can then follow up with the professional to discuss the treatment plan.',
+      'Patients can browse verified healthcare professionals, choose one that fits their needs, book an appointment, and attend the consultation through the platform.',
   },
   {
     question: 'Can I choose my healthcare professional?',
-    answer:
-      'Yes, you can choose your healthcare professional by searching for a professional through the platform. You can then select the professional you want to book a consultation with.',
+    answer: '.',
   },
   {
     question: 'Can I reschedule or cancel a consultation?',
-    answer:
-      'Yes, you can reschedule or cancel a consultation by logging into your account and selecting the consultation you want to reschedule or cancel. You can also contact the healthcare professional to reschedule or cancel the consultation.',
+    answer: '.',
   },
   {
     question: 'How do I book a lab test?',
     answer:
-      'You can book a lab test by logging into your account and selecting the lab test you want to book. You can then select the lab you want to book the test at. You can then select the date and time you want to book the test for.',
+      'You can book lab tests directly through OHealth+ by selecting a partnered hospital or laboratory and choosing your preferred date and time.',
   },
   {
-    question: 'How will I receive my health records?',
+    question: 'How will I receive my test results?',
     answer:
-      'Your health records will be available in your account. You can download them as a PDF or share them with your healthcare professional.',
+      'Once your test is completed, the results will be uploaded securely to your OHealth+ account where you can access them anytime.',
   },
   {
-    question: 'How can healthcare professionals join OHealth?',
+    question: 'Is my health information secure?',
     answer:
-      'Healthcare professionals can join OHealth by completing the onboarding process. Once onboarded, they can start accepting consultations and lab tests through the platform.',
+      'Yes. OHealth+ uses secure systems and industry-standard protection to keep your personal and medical information safe.',
   },
   {
-    question: 'Can hospitals, pharmacies, and laboratories partner with OHealth?',
+    question: 'Who can access my health records?',
     answer:
-      'Yes, hospitals, pharmacies, and laboratories can partner with OHealth by contacting us to discuss the partnership. We are always looking for new partners to help us grow and improve the platform.',
+      'Only you and the healthcare professionals you choose to share them with during consultations can access your health records.',
+  },
+  {
+    question: 'How can healthcare professionals join OHealth+?',
+    answer:
+      'Healthcare professionals can register on the platform and submit their credentials for verification before offering consultations.',
+  },
+  {
+    question: 'Can hospitals, pharmacies or laboratories partner with OHealth+?',
+    answer:
+      'Yes. Hospitals, pharmacies and diagnostic laboratories can register through the Partner with Us option to offer services and receive bookings through the platform.',
   },
 ];
