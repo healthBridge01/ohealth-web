@@ -74,7 +74,7 @@ export function ContactLeadForm() {
 
           <label className="block">
             <span className="font-semibold text-[14px] text-white  leading-[120%]">
-              Phone Number
+              Profession (optional)
             </span>
             <input
               type="tel"
@@ -82,7 +82,7 @@ export function ContactLeadForm() {
               value={values.phone}
               onChange={e => setValues(v => ({ ...v, phone: e.target.value }))}
               className="mt-2 w-full rounded-lg border border-white/40 bg-white/10 px-4 py-3 text-white outline-none placeholder:text-white/50 focus:ring-2 focus:ring-white/30"
-              placeholder="+1 (555) 000-0000"
+              placeholder="Profession"
             />
           </label>
           <label className="block">
