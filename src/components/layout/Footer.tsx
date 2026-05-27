@@ -85,7 +85,7 @@ export function Footer() {
                 online, and securely manage all your health records in one place.
               </p>
             </div>
-            <ul className="grid grid-cols-2 gap-3 text-base leading-6 font-medium text-brand-neutral-500 md:flex md:gap-8">
+            <ul className="grid grid-cols-1 min-[320px]:grid-cols-2 gap-3 text-base leading-6 font-medium text-brand-neutral-500 md:flex md:gap-8">
               {footerPrimaryLinks.map(item => (
                 <li key={item.href + item.label}>
                   <FooterLinkButton
@@ -100,7 +100,7 @@ export function Footer() {
           </div>
           <div className="flex flex-col gap-4">
             <p className="text-base font-medium text-brand-primary-700">Get the app</p>
-            <div className="flex gap-4 lg:flex-col">
+            <div className="flex flex-wrap gap-4 lg:flex-col">
               <Button
                 nativeButton={false}
                 variant="ghost"

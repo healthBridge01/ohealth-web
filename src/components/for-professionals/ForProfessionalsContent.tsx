@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import type { LucideIcon } from 'lucide-react';
 import {
+  ArrowRightCircle,
   CalendarDays,
   ClipboardCheck,
   Globe2,
@@ -11,6 +12,7 @@ import {
   Users2,
   Video,
 } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import { images } from '@/lib/images';
 
 const whyCards: {
@@ -276,39 +278,45 @@ export function ForProfessionalsContent() {
         </div>
       </section>
 
-      <section className="bg-brand-primary-800 px-5 py-16 lg:px-15 lg:py-[0.08px]">
-        <div className="flex flex-col items-center md:flex-row md:justify-between px-6">
-          <div className="max-w-xl text-center md:text-left">
-            <h2 className="text-3xl font-bold text-white md:text-4xl">
-              Start growing your practice today
-            </h2>
-            <p className="mt-4 text-white/85">
-              Join OHealth as a verified provider and meet patients where they already are
-              — on their phones.
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center md:justify-start">
-              <Link
-                href="#"
-                className="inline-flex justify-center rounded-lg bg-white px-8 py-3.5 text-[15px] font-bold text-brand-cta hover:bg-blue-50">
+      <section className="bg-brand-primary-800 px-4 md:px-5 pt-12.5 md:pt-8 pb-0 xl:px-15 lg:py-[0.005rem]">
+        <div className="flex flex-col items-center md:flex-row md:justify-between md:pl-6 xl:pl-16 max-w-430 mx-auto gap-7.5 md:gap-0">
+          <div className="max-w-xl text-center md:text-left py-0 md:py-6 lg:py-16">
+            <div>
+              <h2 className="text-[2.5rem] lg:text-[3.75rem] font-semibold leading-[1.15] tracking-[-1px] text-brand-neutral-25">
+                Start Growing Your Practice Today
+              </h2>
+              <p className="mt-3 text-brand-neutral-50 text-base">
+                Join OHealth and take the next step in delivering accessible, efficient,
+                and modern healthcare.
+              </p>
+            </div>
+            <div className="mt-6 md:mt-17.5 flex flex-col gap-2 sm:flex-row sm:justify-center md:justify-start">
+              <Button
+                nativeButton={false}
+                variant="marketingPrimary"
+                className="h-auto w-full justify-center rounded-lg border-0 leading-[110%] bg-white px-4.5 py-2.5 text-base font-semibold text-brand-primary-700 shadow-none hover:bg-blue-50 sm:w-auto"
+                render={<Link href="#" prefetch={false} />}>
                 Join as professional
-              </Link>
-              <Link
-                href="/contact"
-                className="inline-flex justify-center rounded-lg border-2 border-white px-8 py-3.5 text-[15px] font-bold text-white hover:bg-white/10">
-                Learn more
-              </Link>
+              </Button>
+              <Button
+                nativeButton={false}
+                variant="outline"
+                className="h-auto justify-center gap-2 rounded-lg border-2 leading-[110%] border-white bg-transparent px-4.5 py-2.5 text-base font-semibold text-white shadow-none hover:bg-white/10 hover:text-white dark:border-white dark:bg-transparent dark:hover:bg-white/10"
+                render={<Link href="/" prefetch={false} />}>
+                Create an Account
+                <ArrowRightCircle className="size-6" aria-hidden />
+              </Button>
             </div>
           </div>
-          <div className="relative w-full max-w-xs shrink-0 md:max-w-sm px-3 pt-4.5">
-            <div className="relative aspect-4/5 w-full">
-              <Image
-                src={images.ctaPhones}
-                alt="Doctor profile on mobile"
-                fill
-                className="object-contain object-bottom"
-                sizes="(max-width: 768px) 100vw, 400px"
-              />
-            </div>
+          <div className="relative h-auto self-end">
+            <Image
+              src={images.ctaPhones}
+              alt="Doctor profile on mobile"
+              width={652}
+              height={683}
+              className="object-contain object-bottom"
+              sizes="(max-width: 768px) 100vw, 400px"
+            />
           </div>
         </div>
       </section>
