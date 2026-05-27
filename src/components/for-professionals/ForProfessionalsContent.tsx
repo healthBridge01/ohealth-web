@@ -3,13 +3,10 @@ import Link from 'next/link';
 import type { LucideIcon } from 'lucide-react';
 import {
   ArrowRightCircle,
-  CalendarDays,
   ClipboardCheck,
   Globe2,
-  LayoutDashboard,
   ShieldCheck,
   Stethoscope,
-  Users2,
   Video,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -84,23 +81,24 @@ const roles = [
 const designedCards: {
   title: string;
   description: string;
-  icon: LucideIcon;
+  iconSrc: string;
 }[] = [
   {
-    title: 'Modern scheduling',
+    title: 'Patient Management Dashboard',
     description:
-      'Smart availability, buffers, and patient self-service reduce back-and-forth.',
-    icon: CalendarDays,
+      'View and manage all your patients in one place with clear, structured records.',
+    iconSrc: '/icons/dashboard-square-setting.svg',
   },
   {
-    title: 'Team-ready workflows',
-    description: 'Coordinate with staff while keeping the right access for each role.',
-    icon: Users2,
+    title: 'Consultation Tracking',
+    description:
+      'Keep a chronological history of consultations, notes, and patient interactions.',
+    iconSrc: '/icons/mentoring.svg',
   },
   {
-    title: 'Insight at a glance',
-    description: 'See what needs attention today — from follow-ups to pending labs.',
-    icon: LayoutDashboard,
+    title: 'Secure Communication',
+    description: 'Interact with patients through a safe and reliable platform.',
+    iconSrc: '/icons/message-secure.svg',
   },
 ];
 
@@ -229,27 +227,40 @@ export function ForProfessionalsContent() {
         </div>
       </section>
 
-      <section className="bg-white px-5 py-16 md:px-10 md:py-24">
-        <div className="mx-auto max-w-6xl text-center">
-          <h2 className="text-3xl font-bold text-gray-900 md:text-4xl">
-            Designed for modern healthcare professionals
+      <section className="bg-white px-4 py-12.5 md:px-8 md:py-10 lg:py-30 lg:px-12.5">
+        <div className="flex flex-col items-center text-center gap-3 max-w-180.5 mx-auto">
+          <p className="text-brand-primary-600 text-sm font-semibold leading-[120%]">
+            Built for Your Workflow
+          </p>
+          <h2 className="text-2xl lg:text-[2.5rem] leading-[120%] md:leading-none font-semibold text-brand-neutral-800">
+            Designed for Modern Healthcare Professionals
           </h2>
-          <p className="mx-auto mt-3 max-w-2xl text-gray-600">
-            Clear workflows, fewer clicks, and a calm interface for busy days.
+          <p className="text-brand-neutral-700 text-base leading-5.5 md:leading-[120%] tracking-[-1%]">
+            OHealth is designed to fit naturally into your workflow, helping you deliver
+            care efficiently without the complexity of traditional systems.
           </p>
         </div>
-        <div className="mx-auto mt-12 grid max-w-6xl gap-6 md:grid-cols-3">
+        <div className="mx-auto mt-10 grid max-w-335 lg:gap-10 gap-6 md:grid-cols-3">
           {designedCards.map(c => (
             <article
               key={c.title}
-              className="rounded-2xl border border-gray-100 bg-[#fafafa] p-8 text-center shadow-sm">
-              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-orange-100 text-brand-orange-deep">
-                <c.icon className="h-6 w-6" />
+              className="grid place-items-center gap-4 rounded-xl hover:border hover:border-brand-primary-200 border-transparent bg-white px-4 lg:px-6 pb-6 pt-7.5 text-center shadow-brand-sm">
+              <Image
+                src={c.iconSrc}
+                alt=""
+                width={50}
+                height={50}
+                unoptimized
+                className="lg:h-12.5 lg:w-12.5 h-10 w-10"
+              />
+              <div className="">
+                <h3 className="text-lg lg:text-[1.375rem] lg:leading-8 font-semibold text-brand-gray-800">
+                  {c.title}
+                </h3>
+                <p className="mt-1 text-base leading-[120%] tracking-[-1%] text-brand-gray-700">
+                  {c.description}
+                </p>
               </div>
-              <h3 className="mt-5 text-lg font-bold text-gray-900">{c.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-gray-600">
-                {c.description}
-              </p>
             </article>
           ))}
         </div>
