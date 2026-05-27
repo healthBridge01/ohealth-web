@@ -6,7 +6,6 @@ import {
   ClipboardCheck,
   Globe2,
   ShieldCheck,
-  Stethoscope,
   Video,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -71,11 +70,12 @@ const steps: { n: number; title: string; body: string; tone: 'blue' | 'orange' }
 ];
 
 const roles = [
-  'Physicians & specialists',
-  'Nurses & nurse practitioners',
-  'Therapists & counselors',
-  'Allied health professionals',
-  'Clinic administrators (with provider oversight)',
+  'Doctors',
+  'Nurses',
+  'Therapists',
+  'Nutritionists',
+  'Hospitals, Pharmacies, and Laboratories',
+  'Other certified healthcare specialists',
 ];
 
 const designedCards: {
@@ -197,32 +197,40 @@ export function ForProfessionalsContent() {
         </div>
       </section>
 
-      <section className="px-5 py-16 md:px-10 md:py-24">
-        <div className="mx-auto flex max-w-6xl flex-col items-center gap-12 md:flex-row md:items-start">
-          <div className="w-full md:w-1/2">
-            <h2 className="text-3xl font-bold text-gray-900 md:text-4xl">Who can join</h2>
-            <p className="mt-3 text-gray-600">
-              OHealth supports a wide range of licensed roles and supervised care teams.
-            </p>
-            <ul className="mt-8 space-y-3 text-gray-800">
+      <section className="bg-white px-4 py-12.5 md:px-8 md:py-10 xl:px-39.5 xl:py-25">
+        <div className="mx-auto flex max-w-6xl flex-col items-center gap-12.5 md:flex-row justify-center">
+          <div className="grid gap-10 w-full md:w-1/2">
+            <div className="max-w-80">
+              <h2 className="text-2xl lg:text-[2.5rem] leading-none font-semibold text-brand-gray-800 mb-3">
+                Who Can Join
+              </h2>
+              <p className="text-brand-neutral-700 test-sm md:text-base md:leading-[120%] tracking-[-1%]">
+                Built for Healthcare Professionals Across Specialties
+              </p>
+            </div>
+            <ul className="space-y-9 lg:space-y-12.5 text-gray-800 max-w-137.5">
               {roles.map(r => (
-                <li key={r} className="flex gap-3">
-                  <Stethoscope className="mt-0.5 h-5 w-5 shrink-0 text-brand-blue" />
-                  <span>{r}</span>
+                <li key={r} className="flex gap-1.5">
+                  <div
+                    className={`w-1 self-stretch rounded-[1px] ${r === 'Doctors' ? 'bg-brand-accent-500' : 'bg-brand-accent-200'}`}
+                    aria-hidden
+                  />
+                  <span className="text-xl lg:text-2xl font-semibold text-brand-gray-800">
+                    {r}
+                  </span>
                 </li>
               ))}
             </ul>
           </div>
-          <div className="relative w-full max-w-md md:w-1/2">
-            <div className="relative aspect-square w-full">
-              <Image
-                src={images.whoItsFor}
-                alt="OHealth on mobile"
-                fill
-                className="object-contain"
-                sizes="(max-width: 768px) 100vw, 480px"
-              />
-            </div>
+          <div className="relative h-auto">
+            <Image
+              src={images.whoItsFor}
+              alt="OHealth on mobile"
+              width={522}
+              height={642}
+              className="object-contain"
+              sizes="(max-width: 768px) 100vw, 480px"
+            />
           </div>
         </div>
       </section>

@@ -32,6 +32,7 @@
   --color-brand-neutral-50: #f9fafb;
   --color-brand-neutral-25: #fcfcfd;
   --color-brand-accent-500: #ef6820;
+  --color-brand-accent-200: #f9dbaf;
   --font-sans: var(--font-inter);
   --font-serif: var(--font-playfair);
   /* matches box-shadow: 0px 1px 2px 0px #1018280D */
