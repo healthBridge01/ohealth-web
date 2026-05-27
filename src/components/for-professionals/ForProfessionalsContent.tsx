@@ -255,17 +255,29 @@ export function ForProfessionalsContent() {
         </div>
       </section>
 
-      <section className="bg-[#f9fafb] px-5 py-16 md:px-10 md:py-24">
-        <div className="mx-auto max-w-6xl text-center">
-          <h2 className="text-3xl font-bold text-gray-900 md:text-4xl">
-            Grow your practice with OHealth
-          </h2>
-          <Link
-            href="#"
-            className="mt-8 inline-flex rounded-xl bg-brand-cta px-8 py-3.5 text-[15px] font-bold text-white shadow-md transition hover:bg-[#0041cc]">
-            Join as professional
-          </Link>
-          <div className="relative mx-auto mt-14 max-w-5xl overflow-hidden rounded-2xl border border-gray-200 shadow-xl">
+      <section className="bg-brand-neutral-50 px-4 md:px-8 md:py-4 xl:px-15 xl:py-7.5">
+        <div className="flex flex-col items-center gap-10 mx-auto max-w-430 text-center py-12.5 px-4 xl:py-25 xl:px-6">
+          <div className="flex flex-col items-center gap-6">
+            <p className="text-brand-accent-500 text-sm font-semibold leading-[120%]">
+              For Professionals
+            </p>
+            <div className="max-w-162.5 mx-auto">
+              <h2 className="text-2xl lg:text-[2.5rem] leading-[120%] md:leading-none font-semibold text-brand-neutral-800">
+                Grow Your Practice with OHealth
+              </h2>
+              <p className="mt-3 text-brand-neutral-700 text-base leading-5.5 md:leading-[120%] tracking-[-1%]">
+                Join a trusted digital platform to reach more patients, manage your
+                schedule, and deliver care flexibly.
+              </p>
+            </div>
+            <Button
+              variant="marketingPrimary"
+              className="h-auto justify-center rounded-lg border border-brand-primary-600 leading-[110%] bg-brand-primary-600 px-4.5 py-2.5 text-sm font-semibold text-white shadow-none hover:bg-brand-primary-700 w-auto"
+              render={<Link href="#" prefetch={false} />}>
+              Get Started as a Provider
+            </Button>
+          </div>
+          <div className="relative overflow-hidden md:pt-7.5 md:px-7.5 rounded-t-3xl bg-brand-gray-100">
             <Image
               src={images.proDashboard}
               alt="Appointments and patient records"
