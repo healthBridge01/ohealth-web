@@ -15,7 +15,7 @@ export function HeroSection() {
                 <span className="relative font-serif font-medium italic text-brand-blue-deep">
                   Accessible
                 </span>
-              </span>{' '}
+              </span>
               , Secure, and Connected.
             </h2>
             <p className="mt-3 text-base leading-5.5 text-brand-neutral-700 md:leading-6.5">
@@ -27,14 +27,14 @@ export function HeroSection() {
           <div className="flex gap-2">
             <Button
               variant="marketingPrimary"
-              className="h-auto w-auto justify-center rounded-lg border border-brand-primary-600 bg-brand-primary-600 px-4.5 py-2.5 text-base font-semibold leading-[110%] text-white shadow-none hover:bg-brand-primary-700"
+              className="h-12 w-auto justify-center rounded-lg border border-brand-primary-600 bg-brand-primary-600 px-9.5 py-2.5 text-base font-semibold leading-[110%] text-white shadow-none hover:bg-brand-primary-700"
               render={<Link href="#" prefetch={false} />}>
               Get App
             </Button>
             <Button
               variant="marketingOutline"
               // size="nav-cta"
-              className="h-auto w-auto justify-center rounded-lg border border-brand-neutral-300 bg-transparent px-4.5 py-2.5 text-base font-semibold leading-[110%] text-brand-neutral-700 shadow-brand-sm hover:bg-brand-neutral-50"
+              className="h-12 w-auto justify-center rounded-lg border border-brand-neutral-300 bg-transparent px-4.5 py-2.5 text-base font-semibold leading-[110%] text-brand-neutral-700 shadow-brand-sm hover:bg-brand-neutral-50"
               render={<Link href="/for-professionals" />}>
               Join as a professional
             </Button>

@@ -33,7 +33,7 @@ export function HeroSection() {
           </div>
           <Button
             variant="marketingPrimary"
-            className="h-auto w-auto justify-center rounded-lg border border-brand-primary-600 bg-brand-primary-600 px-4.5 py-2.5 text-base font-semibold leading-[110%] text-white shadow-none hover:bg-brand-primary-700"
+            className="h-12 w-auto justify-center rounded-lg border border-brand-primary-600 bg-brand-primary-600 px-4.5 py-2.5 text-base font-semibold leading-[110%] text-white shadow-none hover:bg-brand-primary-700"
             render={<Link href="#" prefetch={false} />}>
             Join as a Professional
           </Button>
