@@ -7,31 +7,31 @@ export type SupportCard = {
 
 export const supportCards: SupportCard[] = [
   {
-    title: 'Customer support',
+    title: 'Customer Support',
     description:
-      'For general questions about your account, appointments, or using OHealth day to day.',
-    href: '/contact',
-    linkLabel: 'Go to support center',
+      'Need help with your account, bookings, or technical issues? Our support team is here to assist you.',
+    href: 'mailto:support@ohealthltd.com',
+    linkLabel: 'support@ohealthltd.com',
   },
   {
-    title: 'Sales inquiries',
+    title: 'Partnerships',
     description:
-      'For partnerships, enterprise rollout, and questions about plans for teams and organizations.',
-    href: '/contact',
-    linkLabel: 'Talk to sales',
+      'Interested in partnering with us as a hospital, lab, or organization? Reach out to explore collaboration opportunities.',
+    href: 'mailto:partnerships@ohealthltd.com',
+    linkLabel: 'partnerships@ohealthltd.com',
   },
   {
-    title: 'Technical support',
+    title: 'General Inquiries',
     description:
-      'If something isn’t working as expected, our team can help troubleshoot the platform or app.',
-    href: '/contact',
-    linkLabel: 'Get technical help',
+      'For general questions about OHealth, our services, or how the platform works.',
+    href: 'mailto:info@ohealthltd.com',
+    linkLabel: 'info@ohealthltd.com',
   },
   {
-    title: 'General information',
+    title: 'Check Our FAQs First',
     description:
-      'Press, compliance, security reviews, or anything that doesn’t fit the categories above.',
-    href: '/contact',
-    linkLabel: 'Contact us',
+      'Take a look at our FAQs. It’s the fastest way to find answers to common questions about OHealth.',
+    href: '/faq',
+    linkLabel: 'Go to FAQs',
   },
 ];
