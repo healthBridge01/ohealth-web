@@ -2,25 +2,18 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { footerPrimaryLinks } from '@/lib/nav';
 import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
 type FooterLinkButtonProps = {
   href: string;
   children: React.ReactNode;
-  variant?: 'ghost' | 'link';
-  className?: string;
 };
 
-function FooterLinkButton({
-  href,
-  children,
-  variant = 'ghost',
-  className,
-}: FooterLinkButtonProps) {
+function FooterLinkButton({ href, children }: FooterLinkButtonProps) {
   return (
     <Button
       nativeButton={false}
-      variant={variant}
-      className={className}
+      variant="footerLink"
       render={<Link href={href} prefetch={false} />}>
       {children}
     </Button>
@@ -72,28 +65,28 @@ export function Footer() {
         <section className="flex flex-col gap-12 px-0 md:px-8 lg:flex-row lg:justify-between">
           <div className="grid gap-8">
             <div className="grid gap-6 md:gap-8">
-              <Image
-                src="/icons/mini-logo.svg"
-                alt="OHealth logo"
-                width={100}
-                height={24}
-                className="h-6 w-25"
-              />
+              <div className="flex items-center gap-1">
+                <Image
+                  src="/icons/logo.svg"
+                  alt="OHealth+ logo"
+                  width={24}
+                  height={24}
+                  className="h-6 w-6"
+                />
+                <p className="text-base font-semibold text-brand-black-800 tracking-[-0.8px] leading-[110%]">
+                  OHealth+
+                </p>
+              </div>
               <p className="max-w-md text-base text-brand-neutral-500">
-                OHealth is a digital healthcare platform that connects you with verified
+                OHealth+ is a digital healthcare platform that connects you with verified
                 healthcare professionals, lets you book consultations and lab tests
                 online, and securely manage all your health records in one place.
               </p>
             </div>
-            <ul className="grid grid-cols-1 min-[320px]:grid-cols-2 gap-3 text-base leading-6 font-medium text-brand-neutral-500 md:flex md:gap-8">
+            <ul className="grid grid-cols-1 min-[320px]:grid-cols-2 gap-y-2 sm:gap-3 text-base leading-6 font-medium text-brand-neutral-500 md:flex md:gap-8">
               {footerPrimaryLinks.map(item => (
                 <li key={item.href + item.label}>
-                  <FooterLinkButton
-                    href={item.href}
-                    variant="ghost"
-                    className="h-auto whitespace-nowrap px-0 text-base font-medium text-brand-neutral-500 hover:text-brand-blue">
-                    {item.label}
-                  </FooterLinkButton>
+                  <FooterLinkButton href={item.href}>{item.label}</FooterLinkButton>
                 </li>
               ))}
             </ul>
@@ -103,8 +96,7 @@ export function Footer() {
             <div className="flex flex-wrap gap-4 lg:flex-col">
               <Button
                 nativeButton={false}
-                variant="ghost"
-                className="h-auto w-fit p-0 hover:bg-transparent"
+                variant="storeBadge"
                 render={<Link href="#" prefetch={false} />}>
                 <Image
                   src="/icons/apple-app-store.svg"
@@ -115,8 +107,7 @@ export function Footer() {
               </Button>
               <Button
                 nativeButton={false}
-                variant="ghost"
-                className="h-auto w-fit p-0 hover:bg-transparent"
+                variant="storeBadge"
                 render={<Link href="#" prefetch={false} />}>
                 <Image
                   src="/icons/google-play-store.svg"
@@ -131,7 +122,7 @@ export function Footer() {
 
         <section className="flex flex-col-reverse items-center justify-between gap-4 border-t border-brand-neutral-200 pt-8 md:flex-row md:px-8">
           <p className="text-base text-brand-neutral-500">
-            © {new Date().getFullYear()} OHealth Ltd. All rights reserved.
+            © {new Date().getFullYear()} OHealth+ Ltd. All rights reserved.
           </p>
           <div className="flex items-center gap-1 text-brand-neutral-500">
             {socialLinks.map(s => (
@@ -140,7 +131,7 @@ export function Footer() {
                 nativeButton={false}
                 variant="ghost"
                 size="icon"
-                className={`text-brand-neutral-500 ${s.className}`}
+                className={cn('text-brand-neutral-500', s.className)}
                 render={<Link href={s.href} prefetch={false} aria-label={s.label} />}>
                 <svg
                   className="size-5 shrink-0"

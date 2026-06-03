@@ -1,7 +1,9 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Inter, Playfair_Display, Geist } from 'next/font/google';
-import './globals.css';
+
+import { buildRootMetadata } from '@/lib/constants/seo';
 import { cn } from '@/lib/utils';
+import './globals.css';
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
 
@@ -15,13 +17,13 @@ const playfair = Playfair_Display({
   variable: '--font-playfair',
 });
 
-export const metadata: Metadata = {
-  title: {
-    default: 'OHealth — Accessible & secure healthcare',
-    template: '%s | OHealth',
-  },
-  description:
-    'Digital healthcare platform for consultations, lab bookings, and secure health records.',
+export const metadata: Metadata = buildRootMetadata();
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+  colorScheme: 'light',
 };
 
 export default function RootLayout({
@@ -39,7 +41,9 @@ export default function RootLayout({
         'font-sans',
         geist.variable,
       )}>
-      <body className="min-h-screen font-sans">{children}</body>
+      <body className="flex min-h-screen flex-col overflow-x-hidden font-sans">
+        {children}
+      </body>
     </html>
   );
 }

@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { ScrollReveal } from '@/components/motion/scroll-reveal';
 import { images } from '@/lib/images';
 
 type WhoCanItem = {
@@ -20,9 +21,11 @@ export function WhoCanSection({
   highlightedIndex = 0,
 }: WhoCanSectionProps) {
   return (
-    <section className="bg-white px-4 py-12.5 md:px-8 md:py-10 xl:px-39.5 xl:py-25">
+    <ScrollReveal
+      as="section"
+      className="bg-white px-4 py-12.5 md:px-8 md:py-10 xl:px-39.5 xl:py-25">
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-center gap-12.5 md:flex-row">
-        <div className="grid w-full gap-10 md:w-1/2">
+        <ScrollReveal variant="slideInLeft" className="grid w-full gap-10 md:w-1/2">
           <div className="max-w-80">
             <h2 className="mb-3 text-2xl font-semibold leading-none text-brand-gray-800 lg:text-[2.5rem]">
               {heading}
@@ -51,18 +54,21 @@ export function WhoCanSection({
               </li>
             ))}
           </ul>
-        </div>
-        <div className="relative h-auto">
+        </ScrollReveal>
+        <ScrollReveal
+          variant="slideInRight"
+          delay={0.08}
+          className="relative h-auto w-full md:w-auto">
           <Image
             src={images.whoItsFor}
-            alt="OHealth on mobile"
+            alt="OHealth+ app on mobile"
             width={522}
             height={642}
             className="object-contain"
             sizes="(max-width: 768px) 100vw, 480px"
           />
-        </div>
+        </ScrollReveal>
       </div>
-    </section>
+    </ScrollReveal>
   );
 }

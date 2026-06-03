@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { SiteChrome } from '@/components/layout/SiteChrome';
 import { Button } from '@/components/ui/button';
 import { FaqAccordion } from '@/components/faq/FaqAccordion';
+import { ScrollReveal } from '@/components/motion/scroll-reveal';
 import { MarketingDocHero } from '@/components/marketing/MarketingDocHero';
 import { faqItems } from '@/content/faq';
 
@@ -18,10 +19,12 @@ export default function FaqPage() {
         eyebrow="Support"
         subtitle="Need something cleared up? Here are our most frequently asked questions."
       />
-      <div className="bg-white px-4 py-10 xl:px-20 xl:py-24">
+      <ScrollReveal className="bg-white px-4 py-10 xl:px-20 xl:py-24">
         <FaqAccordion items={faqItems} />
-      </div>
-      <section className="grid gap-8 lg:gap-10 bg-brand-gray-50 px-4 pt-16 pb-28 text-center xl:pt-24 xl:pb-40 xl:px-20">
+      </ScrollReveal>
+      <ScrollReveal
+        as="section"
+        className="grid gap-8 bg-brand-gray-50 px-4 pt-16 pb-28 text-center lg:gap-10 xl:px-20 xl:pt-24 xl:pb-40">
         <div className="grid gap-4 lg:gap-5">
           <div className="grid gap-3">
             <p className="text-base font-semibold text-brand-primary-700">Contact us</p>
@@ -35,12 +38,13 @@ export default function FaqPage() {
         </div>
         <Button
           nativeButton={false}
-          variant="marketingBlue"
-          className="h-auto mx-auto bg-brand-primary-600 rounded-xl px-10 py-4 text-base w-fit font-semibold shadow-md"
+          variant="marketingPrimary"
+          size="marketing-lg"
+          className="mx-auto"
           render={<Link href="/contact" prefetch={false} />}>
           Contact Support
         </Button>
-      </section>
+      </ScrollReveal>
     </SiteChrome>
   );
 }

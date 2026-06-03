@@ -315,4 +315,4 @@ Mitigations:
 
 ## Reference: this repo
 
-The **ohealth-web** project uses the **Next.js** variant: see root **`eslint.config.mjs`**, **`.prettierrc`**, **`.prettierignore`**, **`package.json`** (`scripts`, `lint-staged`, `prepare`), and **`.husky/pre-commit`**.
+The **OHealth+-web** project uses the **Next.js** variant: see root **`eslint.config.mjs`**, **`.prettierrc`**, **`.prettierignore`**, **`package.json`** (`scripts`, `lint-staged`, `prepare`), and **`.husky/pre-commit`**.

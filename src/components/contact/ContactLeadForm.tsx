@@ -1,114 +1,153 @@
 'use client';
 
-import { FormEvent, useState } from 'react';
-import { ArrowRight } from 'lucide-react';
+import { useActionState, type ReactNode } from 'react';
+import { useFormStatus } from 'react-dom';
+import { ArrowRight, Loader2 } from 'lucide-react';
 
-export type ContactFormValues = {
-  fullName: string;
-  email: string;
-  phone: string;
-  message: string;
-};
+import { submitContactForm } from '@/app/contact/actions';
+import { ScrollReveal } from '@/components/motion/scroll-reveal';
+import { contactFormInitialState } from '@/lib/contact/contact-form-state';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { cn } from '@/lib/utils';
 
-const initial: ContactFormValues = {
-  fullName: '',
-  email: '',
-  phone: '',
-  message: '',
-};
+/** Fields on the gradient contact card — extends shadcn defaults without forking primitives */
+const contactFieldClassName = cn(
+  'mt-3 h-auto min-h-0 rounded-lg border-brand-neutral-200/25 bg-white/5 p-4 text-base leading-[120%] tracking-[-0.5px]',
+  'text-white shadow-none placeholder:text-white/50',
+  'focus-visible:border-white/40 focus-visible:ring-2 focus-visible:ring-white/30',
+  'disabled:opacity-70 disabled:bg-white/5 dark:bg-white/5 dark:disabled:bg-white/5',
+  'aria-invalid:border-red-300/80 aria-invalid:ring-red-200/40',
+);
 
-export function ContactLeadForm() {
-  const [values, setValues] = useState<ContactFormValues>(initial);
-  const [submitted, setSubmitted] = useState(false);
+function ContactFieldLabel({
+  htmlFor,
+  children,
+}: {
+  htmlFor: string;
+  children: ReactNode;
+}) {
+  return (
+    <label htmlFor={htmlFor} className="block">
+      <span className="font-semibold text-sm text-neutral-50 leading-[120%] tracking-[-0.5px]">
+        {children}
+      </span>
+    </label>
+  );
+}
 
-  function handleSubmit(e: FormEvent) {
-    e.preventDefault();
-    setSubmitted(true);
-  }
+function ContactSubmitButton() {
+  const { pending } = useFormStatus();
 
   return (
-    <div className="rounded-2xl bg-linear-to-b from-[#063595] to-[#254991] px-4 py-6 lg:py-12.5 lg:px-10 shadow-xl md:p-10">
-      <p className="text-[14px] lg:text-[16px] font-medium uppercase tracking-[-0.8px] text-[#FDEAD7] text-center leading-[110.00000000000001%]">
-        Contact us
-      </p>
-      <h2 className="mt-2 lg:text-[36px] text-[24px] leading-[100%]  font-semibold text-white md:text-3xl text-center">
-        Tell us how we can help.
-      </h2>
+    <Button type="submit" variant="marketingOnDark" size="form-submit" disabled={pending}>
+      {pending ? (
+        <>
+          Sending...
+          <Loader2 size={16} className="animate-spin" aria-hidden />
+        </>
+      ) : (
+        <>
+          Send Message
+          <ArrowRight size={16} strokeWidth={2} aria-hidden />
+        </>
+      )}
+    </Button>
+  );
+}
 
-      {submitted ? (
-        <p className="mt-8 text-white/95">
-          Thanks — we&apos;ve received your message. This demo form doesn&apos;t send
-          email yet; wire your API here when ready.
+export function ContactLeadForm() {
+  const [state, formAction] = useActionState(submitContactForm, contactFormInitialState);
+
+  return (
+    <ScrollReveal
+      variant="slideInRight"
+      delay={0.06}
+      className="grid w-full gap-6 rounded-3xl bg-linear-to-b from-[#063595] to-[#254991] px-4 py-6 shadow-xl md:gap-7 md:p-7 lg:gap-12.5 xl:px-10 xl:py-12.5">
+      <div>
+        <p className="text-center text-sm font-medium uppercase leading-[110%] tracking-[-0.8px] text-brand-accent-100 lg:text-base">
+          Contact us
+        </p>
+        <h2 className="mt-3 text-center text-4xl font-semibold leading-none text-white">
+          Tell us how we can help.
+        </h2>
+      </div>
+
+      {state.success ? (
+        <p className="text-center text-base text-white/95" role="status">
+          Thanks — we&apos;ve received your message. Our team will get back to you soon.
         </p>
       ) : (
-        <form onSubmit={handleSubmit} className="flex flex-col gap-6 mt-8">
-          <div className="grid lg:grid-cols-2 gap-6">
-            <label className="block">
-              <span className="font-semibold text-[14px] text-white  leading-[120%]">
-                Full Name *
-              </span>
-              <input
-                required
-                name="fullName"
-                value={values.fullName}
-                onChange={e => setValues(v => ({ ...v, fullName: e.target.value }))}
-                className="mt-2 w-full rounded-lg border border-white/40 bg-white/10 px-4 py-3 text-white outline-none ring-white/30 placeholder:text-white/50 focus:ring-2"
-                placeholder="Jane Doe"
+        <form action={formAction} className="grid gap-12">
+          <div className="grid gap-6">
+            <div className="grid gap-6 lg:grid-cols-2">
+              <div>
+                <ContactFieldLabel htmlFor="fullName">Full Name *</ContactFieldLabel>
+                <Input
+                  id="fullName"
+                  name="fullName"
+                  required
+                  autoComplete="name"
+                  placeholder="Jane Doe"
+                  className={contactFieldClassName}
+                  aria-invalid={state.error ? true : undefined}
+                />
+              </div>
+              <div>
+                <ContactFieldLabel htmlFor="email">Email Address *</ContactFieldLabel>
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  autoComplete="email"
+                  placeholder="you@example.com"
+                  className={contactFieldClassName}
+                  aria-invalid={state.error ? true : undefined}
+                />
+              </div>
+            </div>
+
+            <div>
+              <ContactFieldLabel htmlFor="phone">Profession (optional)</ContactFieldLabel>
+              <Input
+                id="phone"
+                name="phone"
+                autoComplete="organization-title"
+                placeholder="Profession"
+                className={contactFieldClassName}
               />
-            </label>
-            <label className="block">
-              <span className="font-semibold text-[14px] text-white  leading-[120%]">
-                Email Address *
-              </span>
-              <input
+            </div>
+
+            <div>
+              <ContactFieldLabel htmlFor="message">Message *</ContactFieldLabel>
+              <Textarea
+                id="message"
+                name="message"
                 required
-                type="email"
-                name="email"
-                value={values.email}
-                onChange={e => setValues(v => ({ ...v, email: e.target.value }))}
-                className="mt-2 w-full rounded-lg border border-white/40 bg-white/10 px-4 py-3 text-white outline-none placeholder:text-white/50 focus:ring-2 focus:ring-white/30"
-                placeholder="you@example.com"
+                rows={6}
+                placeholder="How can we help?"
+                className={cn(
+                  contactFieldClassName,
+                  'field-sizing-fixed min-h-40 resize-y',
+                )}
+                aria-invalid={state.error ? true : undefined}
               />
-            </label>
+            </div>
+
+            {state.error ? (
+              <p className="text-center text-sm text-red-200" role="alert">
+                {state.error}
+              </p>
+            ) : null}
           </div>
 
-          <label className="block">
-            <span className="font-semibold text-[14px] text-white  leading-[120%]">
-              Profession (optional)
-            </span>
-            <input
-              type="tel"
-              name="phone"
-              value={values.phone}
-              onChange={e => setValues(v => ({ ...v, phone: e.target.value }))}
-              className="mt-2 w-full rounded-lg border border-white/40 bg-white/10 px-4 py-3 text-white outline-none placeholder:text-white/50 focus:ring-2 focus:ring-white/30"
-              placeholder="Profession"
-            />
-          </label>
-          <label className="block">
-            <span className="font-semibold text-[14px] text-white  leading-[120%]">
-              Message *
-            </span>
-            <textarea
-              required
-              name="message"
-              rows={4}
-              value={values.message}
-              onChange={e => setValues(v => ({ ...v, message: e.target.value }))}
-              className="mt-2 w-full resize-y rounded-lg border border-white/40 bg-white/10 px-4 py-3 text-white outline-none placeholder:text-white/50 focus:ring-2 focus:ring-white/30"
-              placeholder="How can we help?"
-            />
-          </label>
           <div className="flex justify-center pt-2">
-            <button
-              type="submit"
-              className="flex items-center justify-center gap-2 rounded-[8px] border border-white/90 px-4.5 py-3 text-[15px] font-semibold text-white transition-colors hover:bg-white/10">
-              Send Message
-              <ArrowRight size={16} strokeWidth={2} />
-            </button>
+            <ContactSubmitButton />
           </div>
         </form>
       )}
-    </div>
+    </ScrollReveal>
   );
 }

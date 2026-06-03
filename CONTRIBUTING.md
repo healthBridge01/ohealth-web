@@ -1,4 +1,4 @@
-# Contributing to OHealth Web
+# Contributing to OHealth+ Web
 
 Thanks for contributing.
 

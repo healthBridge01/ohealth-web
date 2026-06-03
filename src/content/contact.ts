@@ -1,3 +1,5 @@
+export const CONTACT_SUPPORT_EMAIL = 'support@ohealthltd.com';
+
 export type SupportCard = {
   title: string;
   description: string;
@@ -10,8 +12,8 @@ export const supportCards: SupportCard[] = [
     title: 'Customer Support',
     description:
       'Need help with your account, bookings, or technical issues? Our support team is here to assist you.',
-    href: 'mailto:support@ohealthltd.com',
-    linkLabel: 'support@ohealthltd.com',
+    href: `mailto:${CONTACT_SUPPORT_EMAIL}`,
+    linkLabel: CONTACT_SUPPORT_EMAIL,
   },
   {
     title: 'Partnerships',
@@ -23,7 +25,7 @@ export const supportCards: SupportCard[] = [
   {
     title: 'General Inquiries',
     description:
-      'For general questions about OHealth, our services, or how the platform works.',
+      'For general questions about OHealth+, our services, or how the platform works.',
     href: 'mailto:info@ohealthltd.com',
     linkLabel: 'info@ohealthltd.com',
   },

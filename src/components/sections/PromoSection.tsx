@@ -1,12 +1,14 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { ScrollReveal } from '@/components/motion/scroll-reveal';
 import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
 import { images } from '@/lib/images';
 
 export function PromoSection() {
   return (
-    <section className="bg-brand-neutral-50 px-4 md:px-8 md:py-4 xl:px-15 xl:py-7.5">
+    <ScrollReveal
+      as="section"
+      className="bg-brand-neutral-50 px-4 md:px-8 md:py-4 xl:px-15 xl:py-7.5">
       <div className="mx-auto flex max-w-430 flex-col items-center gap-10 px-4 py-12.5 text-center xl:px-6 xl:py-25">
         <div className="flex flex-col items-center gap-6">
           <p className="text-brand-accent-500 text-sm font-semibold leading-[120%]">
@@ -14,7 +16,7 @@ export function PromoSection() {
           </p>
           <div className="mx-auto max-w-162.5">
             <h2 className="text-2xl font-semibold leading-[120%] text-brand-neutral-800 md:leading-none lg:text-[2.5rem]">
-              Grow Your Practice with OHealth
+              Grow Your Practice with OHealth+
             </h2>
             <p className="mt-3 text-base leading-5.5 tracking-[-1%] text-brand-neutral-700 md:leading-[120%]">
               Join a trusted digital platform to reach more patients, manage your
@@ -22,15 +24,17 @@ export function PromoSection() {
             </p>
           </div>
           <Button
+            nativeButton={false}
             variant="marketingPrimary"
-            className={cn(
-              'h-auto w-auto justify-center rounded-lg border border-brand-primary-600 bg-brand-primary-600 px-4.5 py-2.5 text-sm font-semibold leading-[110%] text-white shadow-none hover:bg-brand-primary-700',
-            )}
+            size="marketing-sm"
             render={<Link href="/for-professionals" prefetch={false} />}>
             Get Started as a Provider
           </Button>
         </div>
-        <div className="relative overflow-hidden rounded-t-3xl bg-brand-gray-100 md:px-7.5 md:pt-7.5">
+        <ScrollReveal
+          variant="scaleIn"
+          delay={0.1}
+          className="relative overflow-hidden rounded-t-3xl bg-brand-gray-100 md:px-7.5 md:pt-7.5">
           <Image
             src={images.proDashboard}
             alt="Appointments and patient records"
@@ -39,8 +43,8 @@ export function PromoSection() {
             className="h-auto w-full"
             sizes="(max-width: 1200px) 100vw, 1200px"
           />
-        </div>
+        </ScrollReveal>
       </div>
-    </section>
+    </ScrollReveal>
   );
 }

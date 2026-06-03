@@ -45,41 +45,45 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full bg-white/85 backdrop-blur-md">
       <nav className="mx-auto flex max-w-460 items-center justify-between px-4 py-3.5 xl:py-7.5 xl:px-15">
-        <Link href="/" className="" onClick={() => setOpen(false)}>
+        <Link href="/" className="flex items-center gap-1" onClick={() => setOpen(false)}>
           <Image
-            src="/icons/mini-logo.svg"
-            alt="OHealth logo"
-            width={100}
-            height={20}
-            className="h-5 w-22"
+            src="/icons/logo.svg"
+            alt="OHealth+ logo"
+            width={24}
+            height={24}
+            className="h-6 w-6"
           />
+          <p className="text-base font-semibold text-brand-black-800 tracking-[-0.8px] leading-[110%]">
+            OHealth+
+          </p>
         </Link>
 
-        <div className="hidden items-center gap-7.5 lg:flex">
-          {mainNav.map(item => (
+        <div className="flex items-center gap-8 xl:gap-39.5">
+          <div className="hidden items-center gap-4 xl:gap-7.5 lg:flex">
+            {mainNav.map(item => (
+              <NavLinkButton
+                key={item.href + item.label}
+                href={item.href}
+                variant="navLink"
+                className={cn(
+                  'leading-[110%] tracking-[-0.2px] text-brand-neutral-700 hover:text-brand-blue',
+                  pathname === item.href && 'text-brand-blue',
+                )}>
+                {item.label}
+              </NavLinkButton>
+            ))}
+          </div>
+          <div className="hidden items-center gap-2 lg:flex">
             <NavLinkButton
-              key={item.href + item.label}
-              href={item.href}
-              variant="navLink"
-              className={cn(
-                'px-0 text-base leading-[110%] font-medium tracking-[-0.2px] text-brand-neutral-700 hover:text-brand-blue',
-                pathname === item.href && 'text-brand-blue',
-              )}>
-              {item.label}
+              href="/for-professionals"
+              variant="marketingOutline"
+              size="nav-cta">
+              Join as a professional
             </NavLinkButton>
-          ))}
-        </div>
-
-        <div className="hidden items-center gap-2 lg:flex">
-          <NavLinkButton
-            href="/for-professionals"
-            variant="marketingOutline"
-            size="nav-cta">
-            Join as a professional
-          </NavLinkButton>
-          <NavLinkButton href="#" variant="marketingPrimary" size="nav-cta">
-            Get App
-          </NavLinkButton>
+            <NavLinkButton href="#" variant="marketingPrimary" size="nav-cta">
+              Get App
+            </NavLinkButton>
+          </div>
         </div>
 
         <Button
@@ -104,26 +108,29 @@ export function Navbar() {
                 key={item.href + item.label}
                 href={item.href}
                 variant="navLink"
-                className="justify-start text-base font-medium text-gray-900 hover:text-brand-blue"
+                className="justify-start text-gray-900 hover:text-brand-blue"
                 onClick={() => setOpen(false)}>
                 {item.label}
               </NavLinkButton>
             ))}
             <hr className="my-2 border-gray-100" />
-            <NavLinkButton
-              href="/for-professionals"
-              variant="marketingOutline"
-              size="nav-cta"
-              onClick={() => setOpen(false)}>
-              Join as a professional
-            </NavLinkButton>
-            <NavLinkButton
-              href="#"
-              variant="marketingPrimary"
-              size="nav-cta"
-              onClick={() => setOpen(false)}>
-              Get app
-            </NavLinkButton>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <NavLinkButton
+                href="/for-professionals"
+                variant="marketingOutline"
+                size="nav-cta"
+                className="w-fit"
+                onClick={() => setOpen(false)}>
+                Join as a professional
+              </NavLinkButton>
+              <NavLinkButton
+                href="#"
+                variant="marketingPrimary"
+                size="nav-cta"
+                onClick={() => setOpen(false)}>
+                Get app
+              </NavLinkButton>
+            </div>
           </div>
         </nav>
       ) : null}

@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useState } from 'react';
+import { ScrollRevealGroup, ScrollRevealItem } from '@/components/motion/scroll-reveal';
 import type { FaqItem } from '@/content/faq';
 import { cn } from '@/lib/utils';
 
@@ -13,14 +14,14 @@ export function FaqAccordion({ items }: FaqAccordionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <ul className="mx-auto max-w-3xl space-y-4">
+    <ScrollRevealGroup className="mx-auto max-w-3xl space-y-4" stagger={0.06}>
       {items.map((item, index) => {
         const open = openIndex === index;
         const panelId = `faq-panel-${index}`;
         const triggerId = `faq-trigger-${index}`;
 
         return (
-          <li key={item.question} className="p-5 xl:p-8">
+          <ScrollRevealItem key={item.question} className="p-5 xl:p-8">
             <button
               type="button"
               id={triggerId}
@@ -79,9 +80,9 @@ export function FaqAccordion({ items }: FaqAccordionProps) {
                 </p>
               </div>
             </div>
-          </li>
+          </ScrollRevealItem>
         );
       })}
-    </ul>
+    </ScrollRevealGroup>
   );
 }

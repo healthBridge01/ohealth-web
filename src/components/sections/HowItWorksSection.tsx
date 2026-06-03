@@ -1,4 +1,10 @@
 import Image from 'next/image';
+import {
+  ScrollReveal,
+  ScrollRevealGroup,
+  ScrollRevealItem,
+} from '@/components/motion/scroll-reveal';
+import { cn } from '@/lib/utils';
 
 type Step = {
   n: number;
@@ -44,7 +50,9 @@ export function HowItWorksSection({
     'relative flex max-w-125 gap-4 rounded-xl bg-white px-6 pb-6 pt-7.5 text-left shadow-brand-sm';
 
   return (
-    <section className="py-16 sm:px-5 xl:px-40 xl:py-25">
+    <ScrollReveal
+      as="section"
+      className="mx-auto max-w-430 py-16 sm:px-5 xl:px-40 xl:py-25">
       <div className={headingClasses}>
         <h2 className="mb-3 text-3xl font-semibold leading-none text-brand-gray-800 md:text-[2.5rem]">
           {title}
@@ -56,7 +64,7 @@ export function HowItWorksSection({
       <div className={cardsWrapClasses}>
         {backgroundImageSrc ? (
           <div
-            className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center"
+            className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center blur-xs md:blur-none"
             aria-hidden>
             <Image
               src={backgroundImageSrc}
@@ -71,40 +79,44 @@ export function HowItWorksSection({
             />
           </div>
         ) : null}
-        <div
-          className={`relative z-10 grid place-items-center gap-y-12.5 md:gap-y-10 ${cardsGridClassName ?? ''}`}>
-          {steps.map((s, i) => (
-            <div
-              key={s.n}
-              className={`${cardClasses} ${
-                i % 2 === 1
-                  ? alternateFromMd
-                    ? 'md:ml-auto'
-                    : 'ml-auto'
-                  : alternateFromMd
-                    ? 'md:mr-auto'
-                    : 'mr-auto'
-              } ${cardClassName ?? ''}`}>
-              <div
-                className={`absolute top-0 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full font-sans text-xl leading-none font-bold text-white lg:h-15 lg:w-15 lg:text-[1.875rem] ${
-                  i % 2 === 1 ? 'right-6 lg:left-6 lg:right-auto' : 'left-6'
-                } ${s.tone === 'blue' ? 'bg-brand-primary-600' : 'bg-brand-accent-500'}`}>
-                {s.n}
-              </div>
-              <div>
-                <h3
-                  className={`text-[1.125rem] font-semibold leading-8 text-brand-gray-800 lg:text-[1.375rem] ${titleClassName ?? ''}`}>
-                  {s.title}
-                </h3>
-                <p
-                  className={`mt-1 text-base leading-5 text-brand-neutral-700 ${bodyClassName ?? ''}`}>
-                  {s.body}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
+        <ScrollRevealGroup
+          className={`relative z-10 grid w-full gap-y-12.5 md:gap-y-10 ${cardsGridClassName ?? ''}`}
+          stagger={0.12}>
+          {steps.map((s, i) => {
+            const cardAlign =
+              i % 2 === 1
+                ? alternateFromMd
+                  ? 'md:ml-auto'
+                  : 'ml-auto'
+                : alternateFromMd
+                  ? 'md:mr-auto'
+                  : 'mr-auto';
+
+            return (
+              <ScrollRevealItem key={s.n} className="w-full">
+                <div className={cn(cardClasses, cardClassName, cardAlign)}>
+                  <div
+                    className={`absolute top-0 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full font-sans text-xl leading-none font-bold text-white lg:h-15 lg:w-15 lg:text-[1.875rem] ${
+                      i % 2 === 1 ? 'right-6 lg:left-6 lg:right-auto' : 'left-6'
+                    } ${s.tone === 'blue' ? 'bg-brand-primary-600' : 'bg-brand-accent-500'}`}>
+                    {s.n}
+                  </div>
+                  <div>
+                    <h3
+                      className={`text-[1.125rem] font-semibold leading-8 text-brand-gray-800 lg:text-[1.375rem] ${titleClassName ?? ''}`}>
+                      {s.title}
+                    </h3>
+                    <p
+                      className={`mt-1 text-base leading-5 text-brand-neutral-700 ${bodyClassName ?? ''}`}>
+                      {s.body}
+                    </p>
+                  </div>
+                </div>
+              </ScrollRevealItem>
+            );
+          })}
+        </ScrollRevealGroup>
       </div>
-    </section>
+    </ScrollReveal>
   );
 }

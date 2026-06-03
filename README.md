@@ -1,6 +1,6 @@
-# OHealth Web
+# OHealth+ Web
 
-Marketing and informational website for **OHealth**, built with:
+Marketing and informational website for **OHealth+**, built with:
 
 - `next@16` (App Router)
 - `react@19`
@@ -80,6 +80,25 @@ Main routes include:
 ## Contributing
 
 See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for development workflow, coding conventions, and PR checklist.
+
+## Contact form
+
+Submissions from `/contact` are sent to `support@ohealthltd.com` via a server action and [Resend](https://resend.com).
+
+Copy `.env.example` to `.env.local` and fill in values:
+
+```bash
+cp .env.example .env.local
+```
+
+| Variable               | Required           | Purpose                                            |
+| ---------------------- | ------------------ | -------------------------------------------------- |
+| `NEXT_PUBLIC_SITE_URL` | Recommended        | Canonical URLs, Open Graph, Twitter cards          |
+| `RESEND_API_KEY`       | Yes (contact form) | Sends messages from `/contact`                     |
+| `CONTACT_TO_EMAIL`     | No                 | Inbox override (default: `support@ohealthltd.com`) |
+| `CONTACT_FROM_EMAIL`   | No (prod: yes)     | Resend sender; use a verified domain in production |
+
+For production, set the same variables in `.env.production` or your host (e.g. Vercel). Use your real domain for `NEXT_PUBLIC_SITE_URL` and `CONTACT_FROM_EMAIL`.
 
 ## Notes
 
