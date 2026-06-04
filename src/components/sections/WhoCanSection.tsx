@@ -64,7 +64,8 @@ export function WhoCanSection({
             alt="OHealth+ app on mobile"
             width={522}
             height={642}
-            className="object-contain"
+            className="h-auto w-full max-w-[522px] object-contain"
+            style={{ width: '100%', height: 'auto' }}
             sizes="(max-width: 768px) 100vw, 480px"
           />
         </ScrollReveal>

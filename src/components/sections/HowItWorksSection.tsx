@@ -68,7 +68,7 @@ export function HowItWorksSection({
             aria-hidden>
             <Image
               src={backgroundImageSrc}
-              alt=""
+              alt="How OHealth+ works"
               width={400}
               height={640}
               unoptimized
@@ -76,6 +76,7 @@ export function HowItWorksSection({
                 backgroundImageClassName ??
                 'h-auto w-[300px] sm:w-[360px] md:w-[400px] lg:w-[400px]'
               }
+              style={{ height: 'auto' }}
             />
           </div>
         ) : null}

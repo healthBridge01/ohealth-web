@@ -41,6 +41,7 @@ export function PromoSection() {
             width={1200}
             height={700}
             className="h-auto w-full"
+            style={{ width: '100%', height: 'auto' }}
             sizes="(max-width: 1200px) 100vw, 1200px"
           />
         </ScrollReveal>

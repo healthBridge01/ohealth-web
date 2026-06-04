@@ -70,8 +70,8 @@ export const professionalsHero: HeroContent = {
   image: {
     src: '/images/hero-professional.svg',
     alt: 'Appointments and patient records',
-    width: 1200,
+    width: 1300,
     height: 566,
-    imageClassName: 'max-w-[1200px]',
+    imageClassName: 'max-w-[1300px]',
   },
 };

@@ -57,7 +57,7 @@ export function DesignedWorkflowSection({
             <article className="grid h-full place-items-center gap-4 rounded-xl border-transparent bg-white px-4 pb-6 pt-7.5 text-center shadow-brand-sm hover:border hover:border-brand-primary-200 lg:px-6">
               <Image
                 src={c.iconSrc}
-                alt=""
+                alt={c.title}
                 width={50}
                 height={50}
                 unoptimized

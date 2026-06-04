@@ -64,7 +64,8 @@ export function MarketingCtaBandSection({
             alt="Doctor profile on mobile"
             width={652}
             height={683}
-            className="object-contain object-bottom"
+            className="h-auto w-full max-w-[652px] object-contain object-bottom"
+            style={{ width: '100%', height: 'auto' }}
             sizes="(max-width: 768px) 100vw, 400px"
           />
         </ScrollReveal>

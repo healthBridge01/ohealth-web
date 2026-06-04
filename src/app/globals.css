@@ -42,6 +42,9 @@
   --shadow-brand-sm: 2px 4px 8px 2px rgba(41, 48, 61, 0.102);
   /* backdrop-filter: blur(4px) */
 
+  /* 1675px @ 16px root — professionals hero glow swap */
+  --breakpoint-hero-wide: 104.6875rem;
+
   /* marketing doc hero / soft page wash */
   --background-image-hero: linear-gradient(
     91.59deg,

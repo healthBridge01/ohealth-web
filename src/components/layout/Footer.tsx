@@ -72,6 +72,7 @@ export function Footer() {
                   width={24}
                   height={24}
                   className="h-6 w-6"
+                  unoptimized
                 />
                 <p className="text-base font-semibold text-brand-black-800 tracking-[-0.8px] leading-[110%]">
                   OHealth+
@@ -103,6 +104,7 @@ export function Footer() {
                   alt="Apple App Store"
                   width={135}
                   height={40}
+                  unoptimized
                 />
               </Button>
               <Button
@@ -114,6 +116,7 @@ export function Footer() {
                   alt="Google Play Store"
                   width={135}
                   height={40}
+                  unoptimized
                 />
               </Button>
             </div>

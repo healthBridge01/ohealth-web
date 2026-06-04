@@ -2,6 +2,7 @@
 
 import type { ContactFormState } from '@/lib/contact/contact-form-state';
 import {
+  isValidContactEmail,
   parseContactFormData,
   sendContactMessage,
 } from '@/lib/contact/send-contact-message';
@@ -13,9 +14,15 @@ export async function submitContactForm(
   const payload = parseContactFormData(formData);
 
   if (!payload) {
+    const email = formData.get('email');
+    const hasInvalidEmail =
+      typeof email === 'string' && email.trim().length > 0 && !isValidContactEmail(email);
+
     return {
       success: false,
-      error: 'Please fill in all required fields.',
+      error: hasInvalidEmail
+        ? 'Please enter a valid email address.'
+        : 'Please fill in all required fields.',
     };
   }
 

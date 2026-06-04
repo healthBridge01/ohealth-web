@@ -11,6 +11,12 @@ export type ContactMessageInput = {
 
 export type SendContactResult = { ok: true } | { ok: false; error: string };
 
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+export function isValidContactEmail(email: string): boolean {
+  return EMAIL_PATTERN.test(email.trim());
+}
+
 export function parseContactFormData(formData: FormData): ContactMessageInput | null {
   const fullName = formData.get('fullName');
   const email = formData.get('email');
@@ -24,7 +30,8 @@ export function parseContactFormData(formData: FormData): ContactMessageInput | 
     typeof phone !== 'string' ||
     fullName.trim().length === 0 ||
     email.trim().length === 0 ||
-    message.trim().length === 0
+    message.trim().length === 0 ||
+    !isValidContactEmail(email)
   ) {
     return null;
   }

@@ -56,7 +56,7 @@ export function WhatDoesSection({
           <ScrollRevealItem key={c.title} variant="scaleIn">
             <article
               className={cn(
-                'flex h-full flex-col rounded-xl border border-transparent bg-brand-neutral-50 px-6 pb-6 pt-7.5 shadow-brand-sm transition hover:border-brand-primary-200 hover:shadow-md',
+                'flex h-full flex-col rounded-xl border border-transparent bg-brand-neutral-50 px-4 pb-4 md:px-6 md:pb-6 pt-4 md:pt-7.5 shadow-brand-sm transition hover:border-brand-primary-200 hover:shadow-md',
                 cardClassName,
               )}>
               <div className="flex-1">
@@ -73,8 +73,10 @@ export function WhatDoesSection({
                   alt={c.imageAlt ?? c.title}
                   width={260}
                   height={154}
+                  priority
                   unoptimized
                   className="mt-4 h-auto w-full shrink-0"
+                  style={{ width: '100%', height: 'auto' }}
                 />
               ) : null}
             </article>

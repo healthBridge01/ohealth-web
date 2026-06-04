@@ -52,6 +52,7 @@ export function Navbar() {
             width={24}
             height={24}
             className="h-6 w-6"
+            unoptimized
           />
           <p className="text-base font-semibold text-brand-black-800 tracking-[-0.8px] leading-[110%]">
             OHealth+
