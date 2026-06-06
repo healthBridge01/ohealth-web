@@ -29,7 +29,6 @@
     "lucide-react": "^1.14.0",
     "motion": "^12.40.0",
     "next": "16.2.6",
-    "nodemailer": "^6.10.1",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "resend": "^6.12.4",
@@ -40,7 +39,6 @@
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
-    "@types/nodemailer": "^6.4.23",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
