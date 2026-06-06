@@ -1,7 +1,7 @@
 'use client';
 
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useSyncExternalStore } from 'react';
 
 import { BrandLogoMark } from '@/components/brand/BrandLogoMark';
 import { easeOutSmooth } from '@/lib/motion/presets';
@@ -12,21 +12,30 @@ const SPLASH_HOLD_MS = 3400;
 const SPLASH_EXIT_MS = 550;
 const SPLASH_REDUCED_MS = 1000;
 
+const subscribeNoop = () => () => {};
+const getClientSnapshot = () => true;
+const getServerSnapshot = () => false;
+
 export function AppSplash() {
   const reduceMotion = useReducedMotion();
+  const mounted = useSyncExternalStore(
+    subscribeNoop,
+    getClientSnapshot,
+    getServerSnapshot,
+  );
   const [active, setActive] = useState(true);
 
   useEffect(() => {
-    if (!active) return;
+    if (!mounted || !active) return;
 
     document.body.style.overflow = 'hidden';
     return () => {
       document.body.style.overflow = '';
     };
-  }, [active]);
+  }, [mounted, active]);
 
   useEffect(() => {
-    if (!active) return;
+    if (!mounted || !active) return;
 
     const holdMs = reduceMotion ? SPLASH_REDUCED_MS : SPLASH_HOLD_MS;
 
@@ -35,7 +44,9 @@ export function AppSplash() {
     }, holdMs);
 
     return () => window.clearTimeout(exitTimer);
-  }, [active, reduceMotion]);
+  }, [mounted, active, reduceMotion]);
+
+  if (!mounted) return null;
 
   return (
     <AnimatePresence mode="wait">

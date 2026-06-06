@@ -1,3 +1,8 @@
+/** True for assets served from `/public` — skip the Cloudinary custom loader. */
+export function isLocalPublicImage(src: string): boolean {
+  return src.startsWith('/') && !src.startsWith('//');
+}
+
 /** Cloudinary public IDs (same asset pipeline as legacy healthBridge-web). */
 export const images = {
   heroPhones: 'comp-01_gpjgmk.png',

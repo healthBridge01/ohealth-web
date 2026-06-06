@@ -35,24 +35,28 @@ export function FaqAccordion({ items }: FaqAccordionProps) {
                   alt=""
                   width={24}
                   height={24}
+                  unoptimized
                   className={cn(
                     'absolute inset-0 h-6 w-6 transition-all duration-300 ease-out motion-reduce:transition-none',
                     open
                       ? 'scale-75 rotate-90 opacity-0'
                       : 'scale-100 rotate-0 opacity-100',
                   )}
+                  style={{ width: 'auto', height: 'auto' }}
                 />
                 <Image
                   src="/icons/minus-circle.svg"
                   alt=""
                   width={24}
                   height={24}
+                  unoptimized
                   className={cn(
                     'absolute inset-0 h-6 w-6 transition-all duration-300 ease-out motion-reduce:transition-none',
                     open
                       ? 'scale-100 rotate-0 opacity-100'
                       : 'scale-75 -rotate-90 opacity-0',
                   )}
+                  style={{ width: 'auto', height: 'auto' }}
                 />
               </span>
               <span className="min-w-0 flex-1 text-lg font-medium text-brand-neutral-900">

@@ -73,7 +73,6 @@ export function WhatDoesSection({
                   alt={c.imageAlt ?? c.title}
                   width={260}
                   height={154}
-                  priority
                   unoptimized
                   className="mt-4 h-auto w-full shrink-0"
                   style={{ width: '100%', height: 'auto' }}

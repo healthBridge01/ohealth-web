@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ScrollReveal } from '@/components/motion/scroll-reveal';
 import { Button } from '@/components/ui/button';
+import { isLocalPublicImage } from '@/lib/images';
 import { cn } from '@/lib/utils';
 import {
   homeHero,
@@ -46,6 +47,7 @@ function ProfessionalsHeroTitle() {
           height={27}
           unoptimized
           className="pointer-events-none absolute -bottom-1 left-1/2 z-0 w-full max-w-none -translate-x-1/2 sm:h-5 lg:-bottom-4 lg:h-10 lg:w-[calc(100%+2.5rem)]"
+          style={{ width: '100%', height: 'auto' }}
           aria-hidden
         />
       </span>{' '}
@@ -364,21 +366,21 @@ function HeroPreviewImage({
     <div className="relative flex w-full max-w-315 mx-auto justify-center">
       <div
         className={cn(
-          'relative mx-auto',
+          'relative mx-auto w-full',
           variant === 'home'
-            ? 'max-w-[717px] w-full'
-            : 'w-full max-w-68 min-[360px]:max-w-80 min-[380px]:max-w-82 min-[400px]:max-w-94 sm:max-w-none bg-brand-gray-100 rounded-t-3xl px-2 pt-2 lg:px-3 lg:pt-3 xl:px-6 xl:pt-6',
+            ? 'max-w-[717px]'
+            : 'max-w-68 min-[360px]:max-w-80 min-[380px]:max-w-82 min-[400px]:max-w-94 sm:max-w-none bg-brand-gray-100 rounded-t-3xl px-2 pt-2 lg:px-3 lg:pt-3 xl:px-6 xl:pt-6',
+          image.imageClassName,
         )}>
         <Image
           src={image.src}
           alt={image.alt}
           width={image.width}
           height={image.height}
-          className={cn(
-            'relative z-10 h-auto w-full rounded-t-2xl object-contain',
-            image.imageClassName,
-          )}
-          style={{ width: '100%', height: 'auto' }}
+          priority
+          unoptimized={isLocalPublicImage(image.src)}
+          className="relative z-10 block h-auto w-full max-w-none rounded-t-2xl object-contain"
+          style={{ width: '100%', height: 'auto', maxWidth: '100%' }}
           sizes={`(max-width: ${image.width}px) 100vw, ${image.width}px`}
         />
       </div>
