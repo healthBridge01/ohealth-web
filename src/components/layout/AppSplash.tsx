@@ -45,7 +45,7 @@ export function AppSplash() {
           role="presentation"
           aria-hidden
           className={cn(
-            'fixed inset-0 z-[200] flex flex-col items-center justify-center',
+            'fixed inset-0 z-200 flex flex-col items-center justify-center',
             'bg-linear-to-br from-[#d8e5ff] via-white to-brand-gray-50',
           )}
           initial={{ opacity: 1 }}

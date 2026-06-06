@@ -83,7 +83,7 @@ See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for development workflow, coding conv
 
 ## Contact form
 
-Submissions from `/contact` are sent to `support@ohealthltd.com` via a server action and [Resend](https://resend.com).
+Submissions from `/contact` use a React 19 server action (`useActionState` + `useFormStatus`) and are sent via SMTP (Nodemailer). The same send logic is available at `POST /api/contact` for JSON clients.
 
 Copy `.env.example` to `.env.local` and fill in values:
 
@@ -94,11 +94,15 @@ cp .env.example .env.local
 | Variable               | Required           | Purpose                                            |
 | ---------------------- | ------------------ | -------------------------------------------------- |
 | `NEXT_PUBLIC_SITE_URL` | Recommended        | Canonical URLs, Open Graph, Twitter cards          |
-| `RESEND_API_KEY`       | Yes (contact form) | Sends messages from `/contact`                     |
+| `SMTP_HOST`            | Yes (contact form) | SMTP server hostname                               |
+| `SMTP_PORT`            | No                 | Default `465`                                      |
+| `SMTP_SECURE`          | No                 | Default `true` (set `false` for STARTTLS on 587)   |
+| `SMTP_USER`            | Yes (contact form) | SMTP login / from address                          |
+| `SMTP_PASSWORD`        | Yes (contact form) | SMTP password or app password                      |
 | `CONTACT_TO_EMAIL`     | No                 | Inbox override (default: `support@ohealthltd.com`) |
-| `CONTACT_FROM_EMAIL`   | No (prod: yes)     | Resend sender; use a verified domain in production |
+| `CONTACT_FROM_EMAIL`   | No                 | From header override (defaults to `SMTP_USER`)     |
 
-For production, set the same variables in `.env.production` or your host (e.g. Vercel). Use your real domain for `NEXT_PUBLIC_SITE_URL` and `CONTACT_FROM_EMAIL`.
+For production, set the same variables in `.env.production` or your host (e.g. Vercel).
 
 ## Notes
 

@@ -1,36 +1,34 @@
 'use server';
 
 import type { ContactFormState } from '@/lib/contact/contact-form-state';
-import {
-  isValidContactEmail,
-  parseContactFormData,
-  sendContactMessage,
-} from '@/lib/contact/send-contact-message';
+import { sendContactMessage } from '@/lib/contact/send-contact-message';
+import { validateContactForm } from '@/lib/contact/validate-contact-form';
 
 export async function submitContactForm(
   _prevState: ContactFormState,
   formData: FormData,
 ): Promise<ContactFormState> {
-  const payload = parseContactFormData(formData);
+  const validation = validateContactForm(formData);
 
-  if (!payload) {
-    const email = formData.get('email');
-    const hasInvalidEmail =
-      typeof email === 'string' && email.trim().length > 0 && !isValidContactEmail(email);
-
+  if (!validation.ok) {
     return {
       success: false,
-      error: hasInvalidEmail
-        ? 'Please enter a valid email address.'
-        : 'Please fill in all required fields.',
+      successAt: null,
+      error: validation.error,
+      fieldErrors: validation.fieldErrors,
     };
   }
 
-  const result = await sendContactMessage(payload);
+  const result = await sendContactMessage(validation.payload);
 
   if (!result.ok) {
-    return { success: false, error: result.error };
+    return {
+      success: false,
+      successAt: null,
+      error: result.error,
+      fieldErrors: {},
+    };
   }
 
-  return { success: true, error: null };
+  return { success: true, successAt: Date.now(), error: null, fieldErrors: {} };
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import { useActionState, type ReactNode } from 'react';
+import { useActionState, useEffect, useRef, useState, type ReactNode } from 'react';
 import { useFormStatus } from 'react-dom';
 import { ArrowRight, Loader2 } from 'lucide-react';
 
@@ -20,6 +20,8 @@ const contactFieldClassName = cn(
   'disabled:opacity-70 disabled:bg-white/5 dark:bg-white/5 dark:disabled:bg-white/5',
   'aria-invalid:border-red-300/80 aria-invalid:ring-red-200/40',
 );
+
+const THANK_YOU_VISIBLE_MS = 10_000;
 
 function ContactFieldLabel({
   htmlFor,
@@ -59,6 +61,29 @@ function ContactSubmitButton() {
 
 export function ContactLeadForm() {
   const [state, formAction] = useActionState(submitContactForm, contactFormInitialState);
+  const [dismissedSuccessAt, setDismissedSuccessAt] = useState<number | null>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+  const wasSuccessful = useRef(false);
+
+  const showThankYou = state.successAt != null && dismissedSuccessAt !== state.successAt;
+
+  useEffect(() => {
+    if (state.success && !wasSuccessful.current) {
+      formRef.current?.reset();
+    }
+    wasSuccessful.current = state.success;
+  }, [state.success]);
+
+  useEffect(() => {
+    if (state.successAt == null) return;
+
+    const successAt = state.successAt;
+    const timer = window.setTimeout(() => {
+      setDismissedSuccessAt(successAt);
+    }, THANK_YOU_VISIBLE_MS);
+
+    return () => window.clearTimeout(timer);
+  }, [state.successAt]);
 
   return (
     <ScrollReveal
@@ -74,80 +99,108 @@ export function ContactLeadForm() {
         </h2>
       </div>
 
-      {state.success ? (
-        <p className="text-center text-base text-white/95" role="status">
-          Thanks — we&apos;ve received your message. Our team will get back to you soon.
-        </p>
-      ) : (
-        <form action={formAction} className="grid gap-12">
-          <div className="grid gap-6">
-            <div className="grid gap-6 lg:grid-cols-2">
-              <div>
-                <ContactFieldLabel htmlFor="fullName">Full Name *</ContactFieldLabel>
-                <Input
-                  id="fullName"
-                  name="fullName"
-                  required
-                  autoComplete="name"
-                  placeholder="Jane Doe"
-                  className={contactFieldClassName}
-                  aria-invalid={state.error ? true : undefined}
-                />
-              </div>
-              <div>
-                <ContactFieldLabel htmlFor="email">Email Address *</ContactFieldLabel>
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  required
-                  autoComplete="email"
-                  placeholder="you@example.com"
-                  className={contactFieldClassName}
-                  aria-invalid={state.error ? true : undefined}
-                />
-              </div>
-            </div>
-
+      <form ref={formRef} action={formAction} noValidate className="grid gap-12">
+        <div className="grid gap-6">
+          <div className="grid gap-6 lg:grid-cols-2">
             <div>
-              <ContactFieldLabel htmlFor="phone">Profession (optional)</ContactFieldLabel>
+              <ContactFieldLabel htmlFor="fullName">Full Name *</ContactFieldLabel>
               <Input
-                id="phone"
-                name="phone"
-                autoComplete="organization-title"
-                placeholder="Profession"
-                className={contactFieldClassName}
-              />
-            </div>
-
-            <div>
-              <ContactFieldLabel htmlFor="message">Message *</ContactFieldLabel>
-              <Textarea
-                id="message"
-                name="message"
+                id="fullName"
+                name="fullName"
                 required
-                rows={6}
-                placeholder="How can we help?"
-                className={cn(
-                  contactFieldClassName,
-                  'field-sizing-fixed min-h-40 resize-y',
-                )}
-                aria-invalid={state.error ? true : undefined}
+                autoComplete="name"
+                placeholder="Jane Doe"
+                className={contactFieldClassName}
+                aria-invalid={!!state.fieldErrors.fullName}
+                aria-describedby={
+                  state.fieldErrors.fullName ? 'fullName-error' : undefined
+                }
               />
+              {state.fieldErrors.fullName ? (
+                <p
+                  id="fullName-error"
+                  role="alert"
+                  className="mt-1.5 text-xs text-red-300">
+                  {state.fieldErrors.fullName}
+                </p>
+              ) : null}
             </div>
+            <div>
+              <ContactFieldLabel htmlFor="email">Email Address *</ContactFieldLabel>
+              <Input
+                id="email"
+                name="email"
+                type="email"
+                required
+                autoComplete="email"
+                placeholder="you@example.com"
+                className={contactFieldClassName}
+                aria-invalid={!!state.fieldErrors.email}
+                aria-describedby={state.fieldErrors.email ? 'email-error' : undefined}
+              />
+              {state.fieldErrors.email ? (
+                <p id="email-error" role="alert" className="mt-1.5 text-xs text-red-300">
+                  {state.fieldErrors.email}
+                </p>
+              ) : null}
+            </div>
+          </div>
 
-            {state.error ? (
-              <p className="text-center text-sm text-red-200" role="alert">
-                {state.error}
+          <div>
+            <ContactFieldLabel htmlFor="profession">
+              Profession (optional)
+            </ContactFieldLabel>
+            <Input
+              id="profession"
+              name="profession"
+              autoComplete="organization-title"
+              placeholder="Profession"
+              className={contactFieldClassName}
+            />
+          </div>
+
+          <div>
+            <ContactFieldLabel htmlFor="message">Message *</ContactFieldLabel>
+            <Textarea
+              id="message"
+              name="message"
+              required
+              rows={6}
+              placeholder="How can we help?"
+              className={cn(
+                contactFieldClassName,
+                'field-sizing-fixed min-h-40 resize-y',
+              )}
+              aria-invalid={!!state.fieldErrors.message}
+              aria-describedby={state.fieldErrors.message ? 'message-error' : undefined}
+            />
+            {state.fieldErrors.message ? (
+              <p id="message-error" role="alert" className="mt-1.5 text-xs text-red-300">
+                {state.fieldErrors.message}
               </p>
             ) : null}
           </div>
 
-          <div className="flex justify-center pt-2">
-            <ContactSubmitButton />
-          </div>
-        </form>
-      )}
+          {state.error && Object.keys(state.fieldErrors).length === 0 ? (
+            <p className="text-center text-sm text-red-200" role="alert">
+              {state.error}
+            </p>
+          ) : null}
+        </div>
+
+        <div className="flex flex-col items-center gap-0 pt-2">
+          <ContactSubmitButton />
+          {showThankYou ? (
+            <p
+              className="mt-8 max-w-md animate-in fade-in duration-300 text-center text-base leading-relaxed text-white/95"
+              role="status"
+              aria-live="polite">
+              Thanks — we&apos;ve received your message. Our team will get back to you
+              soon.
+            </p>
+          ) : null}
+        </div>
+      </form>
     </ScrollReveal>
   );
 }
