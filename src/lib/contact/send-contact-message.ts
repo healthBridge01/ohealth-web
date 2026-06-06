@@ -90,6 +90,7 @@
 
 import { Resend } from 'resend';
 import { CONTACT_SUPPORT_EMAIL } from '@/content/contact';
+import { buildContactEmailHtml } from '@/lib/contact/contact-email-template';
 import type { ContactMessageInput } from '@/lib/contact/contact-message';
 
 export type { ContactMessageInput } from '@/lib/contact/contact-message';
@@ -112,20 +113,7 @@ export async function sendContactMessage(
   const from = process.env.CONTACT_FROM_EMAIL?.trim() || 'onboarding@resend.dev';
   const to = process.env.CONTACT_TO_EMAIL?.trim() || CONTACT_SUPPORT_EMAIL;
 
-  const professionLine = input.profession
-    ? `<p><strong>Profession:</strong> ${input.profession}</p>`
-    : '';
-
-  const html = `
-    <div>
-      <p><strong>Name:</strong> ${input.fullName}</p>
-      <p><strong>Email:</strong> ${input.email}</p>
-      ${professionLine}
-      <hr />
-      <div>${input.message.replace(/\n/g, '<br />')}</div>
-      <p style="margin-top:1rem;color:#666;">Sent from: ${input.email}</p>
-    </div>
-  `;
+  const html = buildContactEmailHtml(input);
 
   const text = [
     `Name: ${input.fullName}`,
