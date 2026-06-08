@@ -219,3 +219,15 @@ body {
 .bg-site {
   background: linear-gradient(91.59deg, #d8e5ff -0.43%, #f3f4f6 99.24%);
 }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

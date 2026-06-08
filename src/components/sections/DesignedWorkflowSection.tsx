@@ -4,6 +4,7 @@ import {
   ScrollRevealGroup,
   ScrollRevealItem,
 } from '@/components/motion/scroll-reveal';
+import { Card, CardContent } from '@/components/ui/card';
 
 type DesignedWorkflowCard = {
   title: string;
@@ -54,24 +55,26 @@ export function DesignedWorkflowSection({
         className={`mx-auto mt-10 grid max-w-335 gap-6 ${desktopColsClass} lg:gap-10`}>
         {cards.map(c => (
           <ScrollRevealItem key={c.title} variant="scaleIn">
-            <article className="grid h-full place-items-center gap-4 rounded-xl border-transparent bg-white px-4 pb-6 pt-7.5 text-center shadow-brand-sm hover:border hover:border-brand-primary-200 lg:px-6">
-              <Image
-                src={c.iconSrc}
-                alt={c.title}
-                width={50}
-                height={50}
-                unoptimized
-                className="h-10 w-10 lg:h-12.5 lg:w-12.5"
-              />
-              <div>
-                <h3 className="text-lg font-semibold text-brand-gray-800 lg:text-[1.375rem] lg:leading-8">
-                  {c.title}
-                </h3>
-                <p className="mt-1 text-base leading-[120%] tracking-[-1%] text-brand-gray-700">
-                  {c.description}
-                </p>
-              </div>
-            </article>
+            <Card className="!grid h-full place-items-center gap-4 border-transparent bg-white py-0 text-center shadow-brand-sm ring-0 hover:border hover:border-brand-primary-200">
+              <CardContent className="grid place-items-center gap-4 px-4 pb-6 pt-7.5 text-center lg:px-6">
+                <Image
+                  src={c.iconSrc}
+                  alt={c.title}
+                  width={50}
+                  height={50}
+                  unoptimized
+                  className="h-10 w-10 lg:h-12.5 lg:w-12.5"
+                />
+                <div>
+                  <h3 className="text-lg font-semibold text-brand-gray-800 lg:text-[1.375rem] lg:leading-8">
+                    {c.title}
+                  </h3>
+                  <p className="mt-1 text-base leading-[120%] tracking-[-1%] text-brand-gray-700">
+                    {c.description}
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
           </ScrollRevealItem>
         ))}
       </ScrollRevealGroup>

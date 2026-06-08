@@ -1,38 +1,74 @@
 'use client';
 
 import { AnimatePresence, m, useReducedMotion } from 'motion/react';
-import { useEffect, useState, useSyncExternalStore } from 'react';
+import { useCallback, useEffect, useRef, useSyncExternalStore } from 'react';
 
 import { BrandLogoMark } from '@/components/brand/BrandLogoMark';
 import { easeOutSmooth } from '@/lib/motion/presets';
 import { cn } from '@/lib/utils';
 
-/** Time the splash stays fully visible before fade-out (~4s total with exit) */
-const SPLASH_HOLD_MS = 3400;
-const SPLASH_EXIT_MS = 550;
-const SPLASH_REDUCED_MS = 1000;
+/** Time the splash stays fully visible before fade-out (~2s total with exit) */
+const SPLASH_HOLD_MS = 1600;
+const SPLASH_EXIT_MS = 400;
+const SPLASH_REDUCED_MS = 600;
+const SPLASH_SESSION_KEY = 'ohealth-splash-seen';
+
+const FOCUSABLE_SELECTOR = 'button:not([disabled]), [href], input:not([disabled])';
 
 const subscribeNoop = () => () => {};
-const getClientSnapshot = () => true;
-const getServerSnapshot = () => false;
+const getClientMountedSnapshot = () => true;
+const getServerMountedSnapshot = () => false;
+
+const splashListeners = new Set<() => void>();
+
+function subscribeSplash(onStoreChange: () => void) {
+  splashListeners.add(onStoreChange);
+  return () => splashListeners.delete(onStoreChange);
+}
+
+function notifySplashChange() {
+  splashListeners.forEach(listener => listener());
+}
+
+function hasSeenSplash(): boolean {
+  try {
+    return sessionStorage.getItem(SPLASH_SESSION_KEY) === '1';
+  } catch {
+    return false;
+  }
+}
+
+function getSplashShouldShow(): boolean {
+  return !hasSeenSplash();
+}
+
+function markSplashSeen(): void {
+  try {
+    sessionStorage.setItem(SPLASH_SESSION_KEY, '1');
+  } catch {
+    // Private browsing or storage disabled — splash may replay on reload.
+  }
+}
+
+function dismissSplash(): void {
+  markSplashSeen();
+  notifySplashChange();
+}
 
 export function AppSplash() {
   const reduceMotion = useReducedMotion();
   const mounted = useSyncExternalStore(
     subscribeNoop,
-    getClientSnapshot,
-    getServerSnapshot,
+    getClientMountedSnapshot,
+    getServerMountedSnapshot,
   );
-  const [active, setActive] = useState(true);
+  const active = useSyncExternalStore(subscribeSplash, getSplashShouldShow, () => false);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const skipRef = useRef<HTMLButtonElement>(null);
 
-  useEffect(() => {
-    if (!mounted || !active) return;
-
-    document.body.style.overflow = 'hidden';
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [mounted, active]);
+  const dismiss = useCallback(() => {
+    dismissSplash();
+  }, []);
 
   useEffect(() => {
     if (!mounted || !active) return;
@@ -40,11 +76,48 @@ export function AppSplash() {
     const holdMs = reduceMotion ? SPLASH_REDUCED_MS : SPLASH_HOLD_MS;
 
     const exitTimer = window.setTimeout(() => {
-      setActive(false);
+      dismissSplash();
     }, holdMs);
 
     return () => window.clearTimeout(exitTimer);
   }, [mounted, active, reduceMotion]);
+
+  useEffect(() => {
+    if (!mounted || !active) return;
+
+    skipRef.current?.focus();
+
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        dismissSplash();
+        return;
+      }
+
+      if (event.key !== 'Tab') return;
+
+      const dialog = dialogRef.current;
+      const focusables = dialog
+        ? Array.from(dialog.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR))
+        : [];
+
+      if (focusables.length === 0) return;
+
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
+
+    document.addEventListener('keydown', onKeyDown);
+    return () => document.removeEventListener('keydown', onKeyDown);
+  }, [mounted, active]);
 
   if (!mounted) return null;
 
@@ -52,9 +125,11 @@ export function AppSplash() {
     <AnimatePresence mode="wait">
       {active ? (
         <m.div
+          ref={dialogRef}
           key="app-splash"
-          role="presentation"
-          aria-hidden
+          role="dialog"
+          aria-modal="true"
+          aria-label="Welcome to OHealth+"
           className={cn(
             'fixed inset-0 z-200 flex flex-col items-center justify-center',
             'bg-linear-to-br from-[#d8e5ff] via-white to-brand-gray-50',
@@ -62,6 +137,14 @@ export function AppSplash() {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: SPLASH_EXIT_MS / 1000, ease: easeOutSmooth }}>
+          <button
+            ref={skipRef}
+            type="button"
+            onClick={dismiss}
+            className="absolute top-4 right-4 rounded-md px-3 py-1.5 text-sm font-medium text-brand-neutral-600 hover:bg-white/60 hover:text-brand-black-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary-500">
+            Skip
+          </button>
+
           <m.div
             aria-hidden
             className="pointer-events-none absolute size-72 rounded-full bg-brand-primary-200/45 blur-3xl sm:size-96"

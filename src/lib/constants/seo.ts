@@ -4,7 +4,6 @@ import type { Metadata } from 'next';
 export function getSiteUrl(): string {
   const fromEnv =
     process.env.NEXT_PUBLIC_SITE_URL?.trim() ||
-    process.env.SITE_URL?.trim() ||
     (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : '');
 
   return (fromEnv || 'http://localhost:3000').replace(/\/$/, '');
@@ -119,6 +118,7 @@ export function buildPageMetadata({
   };
 }
 
+/** Routes with real content — included in sitemap. */
 export const PUBLIC_ROUTES = [
   '/',
   '/for-professionals',
@@ -126,6 +126,19 @@ export const PUBLIC_ROUTES = [
   '/contact',
   '/privacy',
   '/terms',
-  '/blog',
-  '/careers',
 ] as const;
+
+/** Placeholder routes — live but excluded from sitemap until content ships. */
+export const STUB_ROUTES = ['/blog', '/careers'] as const;
+
+/** Metadata for stub/placeholder pages (noindex, follow). */
+export function buildStubPageMetadata({
+  title,
+  path,
+  description = SEO_DETAILS.description,
+}: PageMetadataOptions): Metadata {
+  return {
+    ...buildPageMetadata({ title, path, description }),
+    robots: { index: false, follow: true },
+  };
+}

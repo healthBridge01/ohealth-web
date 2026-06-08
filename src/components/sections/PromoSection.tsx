@@ -4,7 +4,15 @@ import { ScrollReveal } from '@/components/motion/scroll-reveal';
 import { Button } from '@/components/ui/button';
 import { images } from '@/lib/images';
 
-export function PromoSection() {
+type PromoSectionProps = {
+  ctaHref?: string;
+  ctaLabel?: string;
+};
+
+export function PromoSection({
+  ctaHref = '/for-professionals',
+  ctaLabel = 'Get Started as a Provider',
+}: PromoSectionProps) {
   return (
     <ScrollReveal
       as="section"
@@ -27,8 +35,8 @@ export function PromoSection() {
             nativeButton={false}
             variant="marketingPrimary"
             size="marketing-sm"
-            render={<Link href="/for-professionals" prefetch={false} />}>
-            Get Started as a Provider
+            render={<Link href={ctaHref} />}>
+            {ctaLabel}
           </Button>
         </div>
         <ScrollReveal

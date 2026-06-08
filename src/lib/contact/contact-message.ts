@@ -7,7 +7,8 @@ export type ContactMessageInput = {
   message: string;
 };
 
-const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const EMAIL_PATTERN =
+  /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z]{2,})+$/;
 
 function withinLimit(value: string, max: number): boolean {
   return value.length > 0 && value.length <= max;
@@ -15,6 +16,22 @@ function withinLimit(value: string, max: number): boolean {
 
 export function isValidContactEmail(email: string): boolean {
   return EMAIL_PATTERN.test(email.trim()) && email.length <= CONTACT_FIELD_LIMITS.email;
+}
+
+const FULL_NAME_MIN_LENGTH = 2;
+
+/**
+ * Accepts mononyms, multi-part names, and common name punctuation (hyphens, apostrophes).
+ * Requires at least one letter (any script) per whitespace-separated part.
+ */
+export function isValidContactFullName(fullName: string): boolean {
+  const trimmed = fullName.trim();
+  if (trimmed.length < FULL_NAME_MIN_LENGTH) return false;
+
+  const parts = trimmed.split(/\s+/).filter(part => part.length > 0);
+  if (parts.length === 0) return false;
+
+  return parts.every(part => /\p{L}/u.test(part));
 }
 
 export function parseContactFormData(formData: FormData): ContactMessageInput | null {
@@ -38,6 +55,7 @@ export function parseContactFormData(formData: FormData): ContactMessageInput | 
 
   if (
     !withinLimit(trimmedName, CONTACT_FIELD_LIMITS.fullName) ||
+    !isValidContactFullName(trimmedName) ||
     !withinLimit(trimmedMessage, CONTACT_FIELD_LIMITS.message) ||
     trimmedProfession.length > CONTACT_FIELD_LIMITS.profession ||
     !isValidContactEmail(trimmedEmail)
@@ -51,21 +69,4 @@ export function parseContactFormData(formData: FormData): ContactMessageInput | 
     profession: trimmedProfession,
     message: trimmedMessage,
   };
-}
-
-export function parseContactJson(body: unknown): ContactMessageInput | null {
-  if (!body || typeof body !== 'object') {
-    return null;
-  }
-
-  const record = body as Record<string, unknown>;
-  const formData = new FormData();
-
-  for (const key of ['fullName', 'email', 'profession', 'message'] as const) {
-    if (typeof record[key] === 'string') {
-      formData.set(key, record[key]);
-    }
-  }
-
-  return parseContactFormData(formData);
 }

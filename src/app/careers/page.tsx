@@ -2,9 +2,9 @@ import Link from 'next/link';
 import { SiteChrome } from '@/components/layout/SiteChrome';
 import { ScrollReveal } from '@/components/motion/scroll-reveal';
 import { MarketingDocHero } from '@/components/marketing/MarketingDocHero';
-import { buildPageMetadata } from '@/lib/constants/seo';
+import { buildStubPageMetadata } from '@/lib/constants/seo';
 
-export const metadata = buildPageMetadata({
+export const metadata = buildStubPageMetadata({
   title: 'Careers',
   path: '/careers',
   description: 'Explore careers at OHealth+ and help make healthcare more accessible.',

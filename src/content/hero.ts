@@ -6,11 +6,15 @@ type MarketingButtonSize = Extract<
   'marketing-md' | 'marketing-md-wide'
 >;
 
+export type HeroCtaKind = 'appCta';
+
 export type HeroCta = {
   label: string;
   href: string;
   variant: 'marketingPrimary' | 'marketingOutline';
   size: MarketingButtonSize;
+  /** Resolved at render time (e.g. app CTA href from env). */
+  kind?: HeroCtaKind;
 };
 
 export type HeroImage = {
@@ -35,9 +39,10 @@ export const homeHero: HeroContent = {
   ctas: [
     {
       label: 'Get App',
-      href: '#',
+      href: '/contact',
       variant: 'marketingPrimary',
       size: 'marketing-md-wide',
+      kind: 'appCta',
     },
     {
       label: 'Join as a professional',
@@ -62,7 +67,7 @@ export const professionalsHero: HeroContent = {
   ctas: [
     {
       label: 'Join as a Professional',
-      href: '#',
+      href: '/contact',
       variant: 'marketingPrimary',
       size: 'marketing-md',
     },

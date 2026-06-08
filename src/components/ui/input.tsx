@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { Input as InputPrimitive } from '@base-ui/react/input';
 
 import { cn } from '@/lib/utils';
 
+/** Native input — matches Textarea; avoids Base UI Field.Control desync on server-action forms. */
 function Input({ className, type, ...props }: React.ComponentProps<'input'>) {
   return (
-    <InputPrimitive
+    <input
       type={type}
       data-slot="input"
       className={cn(

@@ -5,6 +5,7 @@ import {
 } from '@/lib/contact/contact-limits';
 import {
   isValidContactEmail,
+  isValidContactFullName,
   parseContactFormData,
   type ContactMessageInput,
 } from '@/lib/contact/contact-message';
@@ -37,6 +38,8 @@ export function validateContactForm(formData: FormData): ValidateContactResult {
     fieldErrors.fullName = 'Full name is required.';
   } else if (fullName.trim().length > CONTACT_FIELD_LIMITS.fullName) {
     fieldErrors.fullName = `Full name must be ${CONTACT_FIELD_LIMITS.fullName} characters or fewer.`;
+  } else if (!isValidContactFullName(fullName)) {
+    fieldErrors.fullName = 'Please enter a valid full name.';
   }
 
   if (typeof email !== 'string' || email.trim().length === 0) {

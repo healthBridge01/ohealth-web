@@ -4,6 +4,7 @@ import {
   ScrollRevealGroup,
   ScrollRevealItem,
 } from '@/components/motion/scroll-reveal';
+import { Card, CardContent } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 
 type Step = {
@@ -45,9 +46,10 @@ export function HowItWorksSection({
   const headingClasses =
     headingWrapClassName ?? 'mx-auto mb-12.5 max-w-150 text-center md:mb-25';
   const cardsWrapClasses = cardsWrapClassName ?? 'relative mx-auto mt-14 max-w-250';
-  const cardClasses =
-    cardClassName ??
-    'relative flex max-w-125 gap-4 rounded-xl bg-white px-6 pb-6 pt-7.5 text-left shadow-brand-sm';
+  const isCustomCard = cardClassName != null;
+  const cardClasses = isCustomCard
+    ? cardClassName
+    : 'relative max-w-125 gap-0 bg-white py-0 text-left shadow-brand-sm ring-0';
 
   return (
     <ScrollReveal
@@ -94,15 +96,21 @@ export function HowItWorksSection({
                   : 'mr-auto';
 
             return (
-              <ScrollRevealItem key={s.n} className="w-full">
-                <div className={cn(cardClasses, cardClassName, cardAlign)}>
+              <ScrollRevealItem key={s.n} className="w-full overflow-visible">
+                <Card
+                  className={cn(
+                    cardClasses,
+                    cardAlign,
+                    !isCustomCard && 'ring-0',
+                    'overflow-visible!',
+                  )}>
                   <div
-                    className={`absolute top-0 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full font-sans text-xl leading-none font-bold text-white lg:h-15 lg:w-15 lg:text-[1.875rem] ${
+                    className={`absolute top-0 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full font-sans text-xl leading-none font-bold text-white lg:h-15 lg:w-15 lg:text-[1.875rem] ${
                       i % 2 === 1 ? 'right-6 lg:left-6 lg:right-auto' : 'left-6'
                     } ${s.tone === 'blue' ? 'bg-brand-primary-600' : 'bg-brand-accent-500'}`}>
                     {s.n}
                   </div>
-                  <div>
+                  <CardContent className={isCustomCard ? 'p-0' : 'px-6 pb-6 pt-7.5'}>
                     <h3
                       className={`text-[1.125rem] font-semibold leading-8 text-brand-gray-800 lg:text-[1.375rem] ${titleClassName ?? ''}`}>
                       {s.title}
@@ -111,8 +119,8 @@ export function HowItWorksSection({
                       className={`mt-1 text-base leading-5 text-brand-neutral-700 ${bodyClassName ?? ''}`}>
                       {s.body}
                     </p>
-                  </div>
-                </div>
+                  </CardContent>
+                </Card>
               </ScrollRevealItem>
             );
           })}

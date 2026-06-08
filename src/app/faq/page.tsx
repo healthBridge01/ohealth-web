@@ -44,7 +44,7 @@ export default function FaqPage() {
           variant="marketingPrimary"
           size="marketing-lg"
           className="mx-auto"
-          render={<Link href="/contact" prefetch={false} />}>
+          render={<Link href="/contact" />}>
           Contact Support
         </Button>
       </ScrollReveal>

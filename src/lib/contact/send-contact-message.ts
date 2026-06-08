@@ -1,7 +1,12 @@
 import { Resend } from 'resend';
 import { CONTACT_SUPPORT_EMAIL } from '@/content/contact';
 import { buildContactEmailHtml } from '@/lib/contact/contact-email-template';
-import type { ContactMessageInput } from '@/lib/contact/contact-message';
+import { isContactSendMocked } from '@/lib/contact/is-contact-send-mocked';
+import {
+  isValidContactEmail,
+  type ContactMessageInput,
+} from '@/lib/contact/contact-message';
+import { logServerError } from '@/lib/security/safe-log';
 
 export type { ContactMessageInput } from '@/lib/contact/contact-message';
 
@@ -12,6 +17,10 @@ export type SendContactResult =
 export async function sendContactMessage(
   input: ContactMessageInput,
 ): Promise<SendContactResult> {
+  if (isContactSendMocked()) {
+    return { ok: true, data: { id: 'mock-contact-send' } };
+  }
+
   const apiKey = process.env.RESEND_API_KEY?.trim();
 
   if (!apiKey) {
@@ -41,24 +50,26 @@ export async function sendContactMessage(
     .filter(Boolean)
     .join('\n');
 
+  const replyTo = isValidContactEmail(input.email) ? input.email.trim() : undefined;
+
   try {
     const { data, error } = await resend.emails.send({
       from,
       to,
-      replyTo: input.email,
+      ...(replyTo ? { replyTo } : {}),
       subject: `Contact form: ${input.fullName}`,
       html,
       text,
     });
 
     if (error || !data?.id) {
-      console.error('Resend error:', error);
+      logServerError('Resend contact send failed', error);
       return { ok: false, error: 'Unable to send your message. Please try again.' };
     }
 
     return { ok: true, data: { id: data.id } };
   } catch (err) {
-    console.error('Contact form email failed:', err);
+    logServerError('Contact form email failed', err);
     return { ok: false, error: 'Unable to send your message. Please try again.' };
   }
 }

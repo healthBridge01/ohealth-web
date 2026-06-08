@@ -30,7 +30,7 @@ export function WhoCanSection({
             <h2 className="mb-3 text-2xl font-semibold leading-none text-brand-gray-800 lg:text-[2.5rem]">
               {heading}
             </h2>
-            <p className="test-sm text-brand-neutral-700 tracking-[-1%] md:text-base md:leading-[120%]">
+            <p className="text-sm text-brand-neutral-700 tracking-[-1%] md:text-base md:leading-[120%]">
               {subheading}
             </p>
           </div>
@@ -42,9 +42,9 @@ export function WhoCanSection({
                   aria-hidden
                 />
                 <div>
-                  <span className="text-xl font-semibold text-brand-gray-800 lg:text-2xl">
+                  <h3 className="text-xl font-semibold text-brand-gray-800 lg:text-2xl">
                     {item.title}
-                  </span>
+                  </h3>
                   {item.description ? (
                     <p className="text-base leading-5.5 tracking-[-1%] text-brand-neutral-700 lg:mt-1.5 lg:text-lg lg:leading-7">
                       {item.description}

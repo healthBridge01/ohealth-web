@@ -32,14 +32,14 @@ export default function NotFound() {
             nativeButton={false}
             variant="marketingPrimary"
             size="marketing-sm"
-            render={<Link href="/" prefetch={false} />}>
+            render={<Link href="/" />}>
             Back to home
           </Button>
           <Button
             nativeButton={false}
             variant="marketingOutline"
             size="marketing-sm"
-            render={<Link href="/contact" prefetch={false} />}>
+            render={<Link href="/contact" />}>
             Contact support
           </Button>
         </div>

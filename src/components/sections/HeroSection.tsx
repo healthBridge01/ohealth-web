@@ -10,6 +10,7 @@ import {
   type HeroContent,
   type HeroCta,
 } from '@/content/hero';
+import { getAppCtaHref } from '@/lib/constants/external-links';
 
 type HeroSectionProps = {
   variant: 'home' | 'professionals';
@@ -71,7 +72,7 @@ function HeroCtaButtons({ ctas }: { ctas: HeroCta[] }) {
           nativeButton={false}
           variant={cta.variant}
           size={cta.size}
-          render={<Link href={cta.href} prefetch={false} />}>
+          render={<Link href={cta.href} />}>
           {cta.label}
         </Button>
       ))}
@@ -182,8 +183,15 @@ function HeroPreviewImage({
   );
 }
 
+function resolveHeroCtas(ctas: HeroCta[]): HeroCta[] {
+  const appCtaHref = getAppCtaHref();
+
+  return ctas.map(cta => (cta.kind === 'appCta' ? { ...cta, href: appCtaHref } : cta));
+}
+
 export function HeroSection({ variant }: HeroSectionProps) {
   const content = heroByVariant[variant];
+  const ctas = resolveHeroCtas(content.ctas);
 
   return (
     <ScrollReveal
@@ -201,7 +209,7 @@ export function HeroSection({ variant }: HeroSectionProps) {
               {content.description}
             </p>
           </div>
-          <HeroCtaButtons ctas={content.ctas} />
+          <HeroCtaButtons ctas={ctas} />
         </div>
         <HeroPreviewImage image={content.image} variant={variant} />
       </div>

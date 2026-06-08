@@ -6,6 +6,7 @@ import { WhoCanSection } from '../sections/WhoCanSection';
 import { HowItWorksSection } from '../sections/HowItWorksSection';
 import { WhatDoesSection } from '../sections/WhatDoesSection';
 import { homeSteps, trustedCards, whatDoesCards, whoItsForItems } from '@/content/home';
+import { getAppCtaHref } from '@/lib/constants/external-links';
 
 export function HomeContent() {
   return (
@@ -64,7 +65,7 @@ export function HomeContent() {
         }
         description="Whether you are seeking care or providing it, OHealth+ makes healthcare more accessible, efficient, and connected."
         primaryCtaLabel="Create a free account"
-        primaryCtaHref="#"
+        primaryCtaHref={getAppCtaHref()}
         secondaryCtaLabel="Join as a professional"
         secondaryCtaHref="/for-professionals"
       />
