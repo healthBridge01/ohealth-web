@@ -4,6 +4,7 @@ import {
   ScrollRevealGroup,
   ScrollRevealItem,
 } from '@/components/motion/scroll-reveal';
+import { Card, CardContent } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 
 type WhatDoesCard = {
@@ -54,31 +55,33 @@ export function WhatDoesSection({
         )}>
         {cards.map(c => (
           <ScrollRevealItem key={c.title} variant="scaleIn">
-            <article
-              className={cn(
-                'flex h-full flex-col rounded-xl border border-transparent bg-brand-neutral-50 px-4 pb-4 md:px-6 md:pb-6 pt-4 md:pt-7.5 shadow-brand-sm transition hover:border-brand-primary-200 hover:shadow-md',
-                cardClassName,
-              )}>
-              <div className="flex-1">
-                <h3 className="text-2xl font-semibold leading-8 text-brand-gray-800">
-                  {c.title}
-                </h3>
-                <p className="mt-4 text-base leading-5 text-brand-neutral-700">
-                  {c.description}
-                </p>
-              </div>
-              {c.imageSrc ? (
-                <Image
-                  src={c.imageSrc}
-                  alt={c.imageAlt ?? c.title}
-                  width={260}
-                  height={154}
-                  unoptimized
-                  className="mt-4 h-auto w-full shrink-0"
-                  style={{ width: '100%', height: 'auto' }}
-                />
-              ) : null}
-            </article>
+            <Card className="h-full gap-0 border border-transparent bg-brand-neutral-50 py-0 shadow-brand-sm ring-0 transition hover:border-brand-primary-200 hover:shadow-md">
+              <CardContent
+                className={cn(
+                  'flex flex-1 flex-col px-4 pb-4 pt-4 md:px-6 md:pb-6 md:pt-7.5',
+                  cardClassName,
+                )}>
+                <div className="flex-1">
+                  <h3 className="text-2xl font-semibold leading-8 text-brand-gray-800">
+                    {c.title}
+                  </h3>
+                  <p className="mt-4 text-base leading-5 text-brand-neutral-700">
+                    {c.description}
+                  </p>
+                </div>
+                {c.imageSrc ? (
+                  <Image
+                    src={c.imageSrc}
+                    alt={c.imageAlt ?? c.title}
+                    width={260}
+                    height={154}
+                    unoptimized
+                    className="mt-4 h-auto w-full shrink-0"
+                    style={{ width: '100%', height: 'auto' }}
+                  />
+                ) : null}
+              </CardContent>
+            </Card>
           </ScrollRevealItem>
         ))}
       </ScrollRevealGroup>

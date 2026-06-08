@@ -1,25 +1,32 @@
-// next.config.ts
-
 import type { NextConfig } from 'next';
 
-// // ── Environment variable validation ──────────────────────────────────────────
-// // Runs once at startup. If a required variable is missing, the server refuses
-// // to start and prints exactly which variable is missing — no more silent fails.
-// const REQUIRED_ENV_VARS = [
-//   'RESEND_API_KEY',
-//   'CONTACT_TO_EMAIL',
-//   'CONTACT_FROM_EMAIL',
-// ] as const;
+const shouldValidateEnv =
+  process.env.NODE_ENV === 'production' &&
+  (process.env.CI === 'true' || process.env.VERCEL === '1');
 
-// for (const key of REQUIRED_ENV_VARS) {
-//   if (!process.env[key]?.trim()) {
-//     throw new Error(
-//       `\n\n❌ Missing required environment variable: ${key}\n` +
-//         `   Add it to your .env.local file and restart the server.\n`,
-//     );
-//   }
-// }
-// // ─────────────────────────────────────────────────────────────────────────────
+if (shouldValidateEnv) {
+  const required = [
+    'RESEND_API_KEY',
+    'CONTACT_FROM_EMAIL',
+    'UPSTASH_REDIS_REST_URL',
+    'UPSTASH_REDIS_REST_TOKEN',
+  ] as const;
+
+  for (const key of required) {
+    if (!process.env[key]?.trim()) {
+      throw new Error(
+        `\n\nMissing required environment variable: ${key}\n` +
+          `Add it to your production environment and rebuild.\n`,
+      );
+    }
+  }
+
+  if (process.env.CONTACT_MOCK_SEND === 'true' || process.env.E2E === 'true') {
+    throw new Error(
+      '\n\nCONTACT_MOCK_SEND and E2E must not be enabled in production builds.\n',
+    );
+  }
+}
 
 const nextConfig: NextConfig = {
   images: {

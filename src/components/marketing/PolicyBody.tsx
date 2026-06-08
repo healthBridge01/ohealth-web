@@ -20,8 +20,8 @@ export function PolicyBody({ sections }: PolicyBodyProps) {
                 {section.number}. {section.title}
               </h2>
               <div className="space-y-4 text-base text-brand-neutral-600 leading-[130%] tracking-[-0.6px]">
-                {section.paragraphs.map((p, i) => (
-                  <p key={i}>{p}</p>
+                {section.paragraphs.map(p => (
+                  <p key={`${section.id ?? section.number}-${p}`}>{p}</p>
                 ))}
               </div>
             </section>

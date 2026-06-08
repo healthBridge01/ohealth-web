@@ -11,6 +11,7 @@ import {
   whoCanItems,
   whyCards,
 } from '@/content/for-professionals';
+import { getAppCtaHref } from '@/lib/constants/external-links';
 
 export function ForProfessionalsContent() {
   return (
@@ -48,15 +49,15 @@ export function ForProfessionalsContent() {
         desktopCols={3}
       />
 
-      <PromoSection />
+      <PromoSection ctaHref="/contact" ctaLabel="Get in touch" />
 
       <MarketingCtaBandSection
         title="Start Growing Your Practice Today"
         description="Join OHealth+ and take the next step in delivering accessible, efficient, and modern healthcare."
         primaryCtaLabel="Join as professional"
-        primaryCtaHref="#"
+        primaryCtaHref="/contact"
         secondaryCtaLabel="Create an Account"
-        secondaryCtaHref="/"
+        secondaryCtaHref={getAppCtaHref()}
       />
     </>
   );
