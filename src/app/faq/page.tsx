@@ -1,4 +1,3 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SiteChrome } from '@/components/layout/SiteChrome';
 import { Button } from '@/components/ui/button';
@@ -6,10 +5,14 @@ import { FaqAccordion } from '@/components/faq/FaqAccordion';
 import { ScrollReveal } from '@/components/motion/scroll-reveal';
 import { MarketingDocHero } from '@/components/marketing/MarketingDocHero';
 import { faqItems } from '@/content/faq';
+import { buildPageMetadata } from '@/lib/constants/seo';
 
-export const metadata: Metadata = {
+export const metadata = buildPageMetadata({
   title: 'FAQs',
-};
+  path: '/faq',
+  description:
+    'Answers to common questions about OHealth+, consultations, lab tests, and your health records.',
+});
 
 export default function FaqPage() {
   return (
@@ -41,7 +44,7 @@ export default function FaqPage() {
           variant="marketingPrimary"
           size="marketing-lg"
           className="mx-auto"
-          render={<Link href="/contact" prefetch={false} />}>
+          render={<Link href="/contact" />}>
           Contact Support
         </Button>
       </ScrollReveal>

@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useReducedMotion } from 'motion/react';
+import { m, useReducedMotion } from 'motion/react';
 import { useId } from 'react';
 
 import { easeOutSmooth } from '@/lib/motion/presets';
@@ -53,7 +53,7 @@ export function BrandLogoMark({
         </linearGradient>
       </defs>
 
-      <motion.g
+      <m.g
         style={{ transformOrigin: '12px 12px' }}
         initial={shouldAnimate ? { scale: 0.68, opacity: 0 } : false}
         animate={
@@ -74,12 +74,12 @@ export function BrandLogoMark({
             : heartTransition
         }>
         <path
-          d="M19.4626 3.99354C16.7809 2.34862 14.4404 3.0115 13.0344 4.0674C12.4578 4.50035 12.1696 4.71682 12 4.71682C11.8304 4.71682 11.5422 4.50035 10.9656 4.0674C9.55962 3.0115 7.21909 2.34862 4.53744 3.99354C1.01807 6.15232 0.221718 13.2742 8.33953 19.2827C9.88572 20.4272 10.6588 20.9994 12 20.9994C13.3412 20.9994 14.1143 20.4272 15.6605 19.2827C23.7783 13.2742 22.9819 6.15232 19.4626 3.99354Z"
+          d="M19.46 3.99C16.78 2.35 14.44 3.01 13.03 4.07C12.46 4.5 12.17 4.72 12 4.72C11.83 4.72 11.54 4.5 10.97 4.07C9.56 3.01 7.22 2.35 4.54 3.99C1.02 6.15 0.22 13.27 8.34 19.28C9.89 20.43 10.66 21 12 21C13.34 21 14.11 20.43 15.66 19.28C23.78 13.27 22.98 6.15 19.46 3.99Z"
           fill={`url(#${gradientId})`}
         />
-      </motion.g>
+      </m.g>
 
-      <motion.path
+      <m.path
         d="M12 9V15"
         stroke="#D1E0FF"
         strokeWidth="1.5"
@@ -89,7 +89,7 @@ export function BrandLogoMark({
         animate={shouldAnimate ? { scaleY: 1, opacity: 1 } : undefined}
         transition={shouldAnimate ? { ...plusTransition, delay: 0.38 } : plusTransition}
       />
-      <motion.path
+      <m.path
         d="M9 12H15"
         stroke="#D1E0FF"
         strokeWidth="1.5"

@@ -1,27 +1,50 @@
 'use client';
 
-import { useActionState, useEffect, useRef, useState, type ReactNode } from 'react';
+import {
+  startTransition,
+  useActionState,
+  useEffect,
+  useRef,
+  useState,
+  type FormEvent,
+  type ReactNode,
+} from 'react';
 import { useFormStatus } from 'react-dom';
 import { ArrowRight, Loader2 } from 'lucide-react';
 
 import { submitContactForm } from '@/app/contact/actions';
 import { ScrollReveal } from '@/components/motion/scroll-reveal';
 import { contactFormInitialState } from '@/lib/contact/contact-form-state';
+import { CONTACT_HONEYPOT_FIELD } from '@/lib/contact/contact-limits';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { cn } from '@/lib/utils';
 
-/** Fields on the gradient contact card — extends shadcn defaults without forking primitives */
+/** Fields on the gradient contact card — extends shared Input/Textarea primitives */
 const contactFieldClassName = cn(
   'mt-3 h-auto min-h-0 rounded-lg border-brand-neutral-200/25 bg-white/5 p-4 text-base leading-[120%] tracking-[-0.5px]',
-  'text-white shadow-none placeholder:text-white/50',
+  'text-white shadow-none outline-none transition-colors placeholder:text-white/50',
   'focus-visible:border-white/40 focus-visible:ring-2 focus-visible:ring-white/30',
-  'disabled:opacity-70 disabled:bg-white/5 dark:bg-white/5 dark:disabled:bg-white/5',
+  'disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-70 disabled:bg-white/5',
   'aria-invalid:border-red-300/80 aria-invalid:ring-red-200/40',
 );
 
 const THANK_YOU_VISIBLE_MS = 10_000;
+
+type FormValues = {
+  fullName: string;
+  email: string;
+  profession: string;
+  message: string;
+};
+
+const emptyFormValues: FormValues = {
+  fullName: '',
+  email: '',
+  profession: '',
+  message: '',
+};
 
 function ContactFieldLabel({
   htmlFor,
@@ -61,18 +84,19 @@ function ContactSubmitButton() {
 
 export function ContactLeadForm() {
   const [state, formAction] = useActionState(submitContactForm, contactFormInitialState);
+  const [values, setValues] = useState<FormValues>(emptyFormValues);
   const [dismissedSuccessAt, setDismissedSuccessAt] = useState<number | null>(null);
-  const formRef = useRef<HTMLFormElement>(null);
-  const wasSuccessful = useRef(false);
+  const clearedForSuccessAt = useRef<number | null>(null);
 
   const showThankYou = state.successAt != null && dismissedSuccessAt !== state.successAt;
 
   useEffect(() => {
-    if (state.success && !wasSuccessful.current) {
-      formRef.current?.reset();
-    }
-    wasSuccessful.current = state.success;
-  }, [state.success]);
+    if (state.successAt == null || clearedForSuccessAt.current === state.successAt)
+      return;
+
+    clearedForSuccessAt.current = state.successAt;
+    setValues(emptyFormValues);
+  }, [state.successAt]);
 
   useEffect(() => {
     if (state.successAt == null) return;
@@ -84,6 +108,27 @@ export function ContactLeadForm() {
 
     return () => window.clearTimeout(timer);
   }, [state.successAt]);
+
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    const formData = new FormData();
+    formData.set('fullName', values.fullName);
+    formData.set('email', values.email);
+    formData.set('profession', values.profession);
+    formData.set('message', values.message);
+
+    const honeypot = event.currentTarget.querySelector<HTMLInputElement>(
+      `input[name="${CONTACT_HONEYPOT_FIELD}"]`,
+    );
+    if (honeypot?.value) {
+      formData.set(CONTACT_HONEYPOT_FIELD, honeypot.value);
+    }
+
+    startTransition(() => {
+      formAction(formData);
+    });
+  }
 
   return (
     <ScrollReveal
@@ -99,7 +144,15 @@ export function ContactLeadForm() {
         </h2>
       </div>
 
-      <form ref={formRef} action={formAction} noValidate className="grid gap-12">
+      <form onSubmit={handleSubmit} noValidate className="grid gap-12">
+        <input
+          type="text"
+          name={CONTACT_HONEYPOT_FIELD}
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden
+          className="absolute left-[-9999px] h-0 w-0 opacity-0"
+        />
         <div className="grid gap-6">
           <div className="grid gap-6 lg:grid-cols-2">
             <div>
@@ -108,8 +161,13 @@ export function ContactLeadForm() {
                 id="fullName"
                 name="fullName"
                 required
+                aria-required
                 autoComplete="name"
                 placeholder="Jane Doe"
+                value={values.fullName}
+                onChange={event =>
+                  setValues(current => ({ ...current, fullName: event.target.value }))
+                }
                 className={contactFieldClassName}
                 aria-invalid={!!state.fieldErrors.fullName}
                 aria-describedby={
@@ -132,8 +190,13 @@ export function ContactLeadForm() {
                 name="email"
                 type="email"
                 required
+                aria-required
                 autoComplete="email"
                 placeholder="you@example.com"
+                value={values.email}
+                onChange={event =>
+                  setValues(current => ({ ...current, email: event.target.value }))
+                }
                 className={contactFieldClassName}
                 aria-invalid={!!state.fieldErrors.email}
                 aria-describedby={state.fieldErrors.email ? 'email-error' : undefined}
@@ -155,6 +218,10 @@ export function ContactLeadForm() {
               name="profession"
               autoComplete="organization-title"
               placeholder="Profession"
+              value={values.profession}
+              onChange={event =>
+                setValues(current => ({ ...current, profession: event.target.value }))
+              }
               className={contactFieldClassName}
             />
           </div>
@@ -165,8 +232,13 @@ export function ContactLeadForm() {
               id="message"
               name="message"
               required
+              aria-required
               rows={6}
               placeholder="How can we help?"
+              value={values.message}
+              onChange={event =>
+                setValues(current => ({ ...current, message: event.target.value }))
+              }
               className={cn(
                 contactFieldClassName,
                 'field-sizing-fixed min-h-40 resize-y',

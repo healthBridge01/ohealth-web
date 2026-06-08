@@ -1,12 +1,13 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 
 import { SiteChrome } from '@/components/layout/SiteChrome';
 import { ScrollReveal } from '@/components/motion/scroll-reveal';
 import { Button } from '@/components/ui/button';
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Page not found',
+  robots: { index: false, follow: false },
 };
 
 export default function NotFound() {
@@ -31,14 +32,14 @@ export default function NotFound() {
             nativeButton={false}
             variant="marketingPrimary"
             size="marketing-sm"
-            render={<Link href="/" prefetch={false} />}>
+            render={<Link href="/" />}>
             Back to home
           </Button>
           <Button
             nativeButton={false}
             variant="marketingOutline"
             size="marketing-sm"
-            render={<Link href="/contact" prefetch={false} />}>
+            render={<Link href="/contact" />}>
             Contact support
           </Button>
         </div>

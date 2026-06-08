@@ -42,14 +42,14 @@ export function MarketingCtaBandSection({
               nativeButton={false}
               variant="marketingInverse"
               size="marketing-base"
-              render={<Link href={primaryCtaHref} prefetch={false} />}>
+              render={<Link href={primaryCtaHref} />}>
               {primaryCtaLabel}
             </Button>
             <Button
               nativeButton={false}
               variant="marketingOnDark"
               size="marketing-base"
-              render={<Link href={secondaryCtaHref} prefetch={false} />}>
+              render={<Link href={secondaryCtaHref} />}>
               {secondaryCtaLabel}
               <ArrowRightCircle className="size-6" aria-hidden />
             </Button>
