@@ -11,7 +11,7 @@ The codebase is organized around reusable section components so Home and For Pro
 
 ## Prerequisites
 
-- Node.js 20+
+- Node.js 22.12+ (see `.nvmrc`)
 - npm 10+
 
 ## Quick start
@@ -33,6 +33,8 @@ Open [http://localhost:3000](http://localhost:3000).
 - `npm run format` - run Prettier write
 - `npm run format:check` - check formatting
 - `npm run check` - format check + lint + build
+- `npm test` - run unit tests (Vitest)
+- `npm run doctor` - React Doctor audit
 
 ## Project structure
 
@@ -83,7 +85,7 @@ See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for development workflow, coding conv
 
 ## Contact form
 
-Submissions from `/contact` use a React 19 server action (`useActionState` + `useFormStatus`) and are sent via SMTP (Nodemailer). The same send logic is available at `POST /api/contact` for JSON clients.
+Submissions from `/contact` use a React 19 server action (`useActionState` + `useFormStatus`) and are sent via [Resend](https://resend.com).
 
 Copy `.env.example` to `.env.local` and fill in values:
 
@@ -91,18 +93,15 @@ Copy `.env.example` to `.env.local` and fill in values:
 cp .env.example .env.local
 ```
 
-| Variable               | Required           | Purpose                                            |
-| ---------------------- | ------------------ | -------------------------------------------------- |
-| `NEXT_PUBLIC_SITE_URL` | Recommended        | Canonical URLs, Open Graph, Twitter cards          |
-| `SMTP_HOST`            | Yes (contact form) | SMTP server hostname                               |
-| `SMTP_PORT`            | No                 | Default `465`                                      |
-| `SMTP_SECURE`          | No                 | Default `true` (set `false` for STARTTLS on 587)   |
-| `SMTP_USER`            | Yes (contact form) | SMTP login / from address                          |
-| `SMTP_PASSWORD`        | Yes (contact form) | SMTP password or app password                      |
-| `CONTACT_TO_EMAIL`     | No                 | Inbox override (default: `support@ohealthltd.com`) |
-| `CONTACT_FROM_EMAIL`   | No                 | From header override (defaults to `SMTP_USER`)     |
+| Variable               | Required (prod) | Purpose                                            |
+| ---------------------- | --------------- | -------------------------------------------------- |
+| `RESEND_API_KEY`       | Yes             | Resend API key for outbound email                  |
+| `CONTACT_FROM_EMAIL`   | Yes             | Verified sender address in Resend                  |
+| `CONTACT_TO_EMAIL`     | No              | Inbox override (default: `support@ohealthltd.com`) |
+| `NEXT_PUBLIC_SITE_URL` | Recommended     | Canonical URLs, Open Graph, sitemap                |
+| `SITE_URL`             | Recommended     | Server-side site URL fallback                      |
 
-For production, set the same variables in `.env.production` or your host (e.g. Vercel).
+Production builds on Vercel/CI fail fast if `RESEND_API_KEY` or `CONTACT_FROM_EMAIL` are missing.
 
 ## Notes
 

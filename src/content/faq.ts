@@ -26,11 +26,13 @@ export const faqItems: FaqItem[] = [
   },
   {
     question: 'Can I choose my healthcare professional?',
-    answer: '.',
+    answer:
+      'Yes. You can browse verified healthcare professionals on OHealth+, compare profiles and availability, and select the provider that best fits your needs before booking.',
   },
   {
     question: 'Can I reschedule or cancel a consultation?',
-    answer: '.',
+    answer:
+      'Yes. You can reschedule or cancel a consultation from your OHealth+ account, subject to the cancellation policy shown at booking and your provider’s availability.',
   },
   {
     question: 'How do I book a lab test?',

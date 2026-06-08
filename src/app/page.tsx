@@ -2,9 +2,10 @@ import type { Metadata } from 'next';
 
 import { SiteChrome } from '@/components/layout/SiteChrome';
 import { HomeContent } from '@/components/home/HomeContent';
-import { buildRootMetadata } from '@/lib/constants/seo';
 
-export const metadata: Metadata = buildRootMetadata();
+export const metadata: Metadata = {
+  alternates: { canonical: '/' },
+};
 
 export default function HomePage() {
   return (

@@ -24,7 +24,7 @@ export const termsSections: PolicyBlock[] = [
     number: 3,
     title: 'Medical Disclaimer',
     paragraphs: [
-      'OHealth+ is not a healthcare provider. The platform facilitates connections between patients and licensed healthcare professionals. Any medical advice, diagnosis, or treatment you receive is provided by independent healthcare professionals, not by Health Bridge.',
+      'OHealth+ is not a healthcare provider. The platform facilitates connections between patients and licensed healthcare professionals. Any medical advice, diagnosis, or treatment you receive is provided by independent healthcare professionals, not by OHealth+.',
     ],
   },
   {

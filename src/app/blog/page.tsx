@@ -1,12 +1,14 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SiteChrome } from '@/components/layout/SiteChrome';
 import { ScrollReveal } from '@/components/motion/scroll-reveal';
 import { MarketingDocHero } from '@/components/marketing/MarketingDocHero';
+import { buildPageMetadata } from '@/lib/constants/seo';
 
-export const metadata: Metadata = {
+export const metadata = buildPageMetadata({
   title: 'Blog',
-};
+  path: '/blog',
+  description: 'News and updates from OHealth+.',
+});
 
 export default function BlogPage() {
   return (

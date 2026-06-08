@@ -1,13 +1,16 @@
-import type { Metadata } from 'next';
 import { SiteChrome } from '@/components/layout/SiteChrome';
 import { ContactLeadForm } from '@/components/contact/ContactLeadForm';
 import { SupportCardGrid } from '@/components/contact/SupportCardGrid';
 import { ScrollReveal } from '@/components/motion/scroll-reveal';
 import { MarketingDocHero } from '@/components/marketing/MarketingDocHero';
+import { buildPageMetadata } from '@/lib/constants/seo';
 
-export const metadata: Metadata = {
+export const metadata = buildPageMetadata({
   title: 'Contact',
-};
+  path: '/contact',
+  description:
+    'Get in touch with the OHealth+ team for support, partnerships, or general inquiries.',
+});
 
 export default function ContactPage() {
   return (

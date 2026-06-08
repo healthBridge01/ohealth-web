@@ -1,12 +1,14 @@
-import type { Metadata } from 'next';
 import { SiteChrome } from '@/components/layout/SiteChrome';
 import { MarketingDocHero } from '@/components/marketing/MarketingDocHero';
 import { PolicyBody } from '@/components/marketing/PolicyBody';
 import { termsSections } from '@/content/legal';
+import { buildPageMetadata } from '@/lib/constants/seo';
 
-export const metadata: Metadata = {
+export const metadata = buildPageMetadata({
   title: 'Terms & conditions',
-};
+  path: '/terms',
+  description: 'Terms and conditions for using the OHealth+ platform and services.',
+});
 
 export default function TermsPage() {
   return (
@@ -14,7 +16,7 @@ export default function TermsPage() {
       <MarketingDocHero
         eyebrow="Current as of May 13, 2026"
         title="Terms and conditions"
-        subtitle="We respect your privacy regarding any information we may collect from you across our application."
+        subtitle="Please read these terms carefully before using OHealth+."
       />
       <div className="bg-white">
         <PolicyBody sections={termsSections} />

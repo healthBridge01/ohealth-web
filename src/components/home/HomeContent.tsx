@@ -14,7 +14,7 @@ export function HomeContent() {
         <HeroSection variant="home" />
 
         <WhatDoesSection
-          eyebrow="What HealthBridge Does"
+          eyebrow="What OHealth+ Does"
           title="Everything You Need to Manage Your Health In One Platform"
           description="OHealth+ brings healthcare services together so you can access care, diagnostics, and your health data without stress or unnecessary hospital visits."
           cards={whatDoesCards}

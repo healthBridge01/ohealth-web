@@ -1,3 +1,5 @@
+import { CONTACT_FIELD_LIMITS } from '@/lib/contact/contact-limits';
+
 export type ContactMessageInput = {
   fullName: string;
   email: string;
@@ -7,8 +9,12 @@ export type ContactMessageInput = {
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+function withinLimit(value: string, max: number): boolean {
+  return value.length > 0 && value.length <= max;
+}
+
 export function isValidContactEmail(email: string): boolean {
-  return EMAIL_PATTERN.test(email.trim());
+  return EMAIL_PATTERN.test(email.trim()) && email.length <= CONTACT_FIELD_LIMITS.email;
 }
 
 export function parseContactFormData(formData: FormData): ContactMessageInput | null {
@@ -20,20 +26,30 @@ export function parseContactFormData(formData: FormData): ContactMessageInput | 
   if (
     typeof fullName !== 'string' ||
     typeof email !== 'string' ||
-    typeof message !== 'string' ||
-    fullName.trim().length === 0 ||
-    email.trim().length === 0 ||
-    message.trim().length === 0 ||
-    !isValidContactEmail(email)
+    typeof message !== 'string'
+  ) {
+    return null;
+  }
+
+  const trimmedName = fullName.trim();
+  const trimmedEmail = email.trim();
+  const trimmedMessage = message.trim();
+  const trimmedProfession = typeof profession === 'string' ? profession.trim() : '';
+
+  if (
+    !withinLimit(trimmedName, CONTACT_FIELD_LIMITS.fullName) ||
+    !withinLimit(trimmedMessage, CONTACT_FIELD_LIMITS.message) ||
+    trimmedProfession.length > CONTACT_FIELD_LIMITS.profession ||
+    !isValidContactEmail(trimmedEmail)
   ) {
     return null;
   }
 
   return {
-    fullName: fullName.trim(),
-    email: email.trim(),
-    profession: typeof profession === 'string' ? profession.trim() : '',
-    message: message.trim(),
+    fullName: trimmedName,
+    email: trimmedEmail,
+    profession: trimmedProfession,
+    message: trimmedMessage,
   };
 }
 

@@ -1,12 +1,13 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 
 import { SiteChrome } from '@/components/layout/SiteChrome';
 import { ScrollReveal } from '@/components/motion/scroll-reveal';
 import { Button } from '@/components/ui/button';
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Page not found',
+  robots: { index: false, follow: false },
 };
 
 export default function NotFound() {

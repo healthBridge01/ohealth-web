@@ -7,6 +7,7 @@ import { ArrowRight, Loader2 } from 'lucide-react';
 import { submitContactForm } from '@/app/contact/actions';
 import { ScrollReveal } from '@/components/motion/scroll-reveal';
 import { contactFormInitialState } from '@/lib/contact/contact-form-state';
+import { CONTACT_HONEYPOT_FIELD } from '@/lib/contact/contact-limits';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -100,6 +101,14 @@ export function ContactLeadForm() {
       </div>
 
       <form ref={formRef} action={formAction} noValidate className="grid gap-12">
+        <input
+          type="text"
+          name={CONTACT_HONEYPOT_FIELD}
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden
+          className="absolute left-[-9999px] h-0 w-0 opacity-0"
+        />
         <div className="grid gap-6">
           <div className="grid gap-6 lg:grid-cols-2">
             <div>
