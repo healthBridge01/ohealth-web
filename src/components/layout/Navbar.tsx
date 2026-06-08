@@ -6,7 +6,8 @@ import { useState } from 'react';
 import Image from 'next/image';
 import type { VariantProps } from 'class-variance-authority';
 import { mainNav } from '@/lib/nav';
-import { Button, buttonVariants } from '@/components/ui/button';
+import { Button } from '@/components/ui/button';
+import { buttonVariants } from '@/components/ui/button-variants';
 import { cn } from '@/lib/utils';
 
 type NavLinkButtonProps = {

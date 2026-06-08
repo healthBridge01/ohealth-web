@@ -124,7 +124,7 @@ export function Footer() {
         </section>
 
         <section className="flex flex-col-reverse items-center justify-between gap-4 border-t border-brand-neutral-200 pt-8 md:flex-row md:px-8">
-          <p className="text-base text-brand-neutral-500">
+          <p className="text-base text-brand-neutral-500" suppressHydrationWarning>
             © {new Date().getFullYear()} OHealth+ Ltd. All rights reserved.
           </p>
           <div className="flex items-center gap-1 text-brand-neutral-500">

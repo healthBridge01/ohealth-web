@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { Inter, Playfair_Display, Geist } from 'next/font/google';
 
 import { AppSplash } from '@/components/layout/AppSplash';
+import { MotionLazy } from '@/components/motion/motion-lazy';
 import { buildRootMetadata } from '@/lib/constants/seo';
 import { cn } from '@/lib/utils';
 import './globals.css';
@@ -44,8 +45,10 @@ export default function RootLayout({
         geist.variable,
       )}>
       <body className="flex min-h-screen flex-col overflow-x-hidden font-sans">
-        <AppSplash />
-        {children}
+        <MotionLazy>
+          <AppSplash />
+          {children}
+        </MotionLazy>
       </body>
     </html>
   );

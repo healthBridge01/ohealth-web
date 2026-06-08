@@ -1,6 +1,6 @@
 'use client';
 
-import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
+import { AnimatePresence, m, useReducedMotion } from 'motion/react';
 import { useEffect, useState, useSyncExternalStore } from 'react';
 
 import { BrandLogoMark } from '@/components/brand/BrandLogoMark';
@@ -51,7 +51,7 @@ export function AppSplash() {
   return (
     <AnimatePresence mode="wait">
       {active ? (
-        <motion.div
+        <m.div
           key="app-splash"
           role="presentation"
           aria-hidden
@@ -62,7 +62,7 @@ export function AppSplash() {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: SPLASH_EXIT_MS / 1000, ease: easeOutSmooth }}>
-          <motion.div
+          <m.div
             aria-hidden
             className="pointer-events-none absolute size-72 rounded-full bg-brand-primary-200/45 blur-3xl sm:size-96"
             initial={{ opacity: 0, scale: 0.6 }}
@@ -74,7 +74,7 @@ export function AppSplash() {
             }}
           />
 
-          <motion.div
+          <m.div
             className="relative flex flex-col items-center gap-5"
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -83,7 +83,7 @@ export function AppSplash() {
               duration: reduceMotion ? 0.15 : 0.65,
               ease: easeOutSmooth,
             }}>
-            <motion.div
+            <m.div
               className="relative"
               animate={
                 reduceMotion
@@ -103,9 +103,9 @@ export function AppSplash() {
                     }
               }>
               <BrandLogoMark size={112} animate />
-            </motion.div>
+            </m.div>
 
-            <motion.p
+            <m.p
               className="text-xl font-semibold tracking-[-0.8px] text-brand-black-800 sm:text-2xl"
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
@@ -115,9 +115,9 @@ export function AppSplash() {
                 ease: easeOutSmooth,
               }}>
               OHealth+
-            </motion.p>
-          </motion.div>
-        </motion.div>
+            </m.p>
+          </m.div>
+        </m.div>
       ) : null}
     </AnimatePresence>
   );

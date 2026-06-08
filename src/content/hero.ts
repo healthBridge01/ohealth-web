@@ -1,5 +1,5 @@
 import type { VariantProps } from 'class-variance-authority';
-import type { buttonVariants } from '@/components/ui/button';
+import type { buttonVariants } from '@/components/ui/button-variants';
 
 type MarketingButtonSize = Extract<
   VariantProps<typeof buttonVariants>['size'],

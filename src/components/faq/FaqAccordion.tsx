@@ -64,9 +64,8 @@ export function FaqAccordion({ items }: FaqAccordionProps) {
               </span>
             </button>
 
-            <div
+            <section
               id={panelId}
-              role="region"
               aria-labelledby={triggerId}
               className={cn(
                 'grid transition-[grid-template-rows] duration-300 ease-in-out motion-reduce:transition-none md:ml-12',
@@ -83,7 +82,7 @@ export function FaqAccordion({ items }: FaqAccordionProps) {
                   {item.answer}
                 </p>
               </div>
-            </div>
+            </section>
           </ScrollRevealItem>
         );
       })}
